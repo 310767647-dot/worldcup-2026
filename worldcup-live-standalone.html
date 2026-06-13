@@ -908,11 +908,16 @@
               <div><input type="text" id="predictPKAway" value="无" placeholder="点球客队"></div>
             </div>
             <button type="submit" class="predict-btn" id="predictSubmitBtn">&#127922; 提交竞猜</button>
+            <div style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <div id="predictTokenStatus" style="flex:1"></div>
+              <button onclick="showTokenConfig()" style="background:var(--surface-2);border:1px solid var(--border-default);border-radius:var(--radius-sm);color:var(--text-secondary);cursor:pointer;padding:4px 10px;font-size:.7rem;white-space:nowrap" title="配置GitHub Token以启用跨用户共享">&#9881; 设置</button>
+            </div>
+            <div id="predictSyncStatus" style="font-size:.68rem;color:var(--text-dim);margin-top:4px;text-align:center"></div>
           </form>
         </div>
         <!-- 右栏：竞猜滚动墙 + 图表分析 -->
         <div class="predict-panel">
-          <h3><span class="icon-badge">&#128172;</span> 竞猜滚动墙</h3>
+          <h3><span class="icon-badge">&#128172;</span> 竞猜滚动墙 <span style="font-size:.65rem;color:var(--text-dim);font-weight:400;margin-left:4px">（实时共享）</span></h3>
           <div class="predict-wall" id="predictWall">
             <div class="predict-wall-empty">还没有人竞猜，快来成为第一个吧！</div>
           </div>
@@ -1423,13 +1428,129 @@
     // Close mobile menu when tapping outside
     document.addEventListener('click',function(e){if(nl&&!e.target.closest('header')&&window.innerWidth<=600){nl.classList.remove('open')}})
 
-    // ============ 比分竞猜模块 ============
-    const PREDICT_STORAGE_KEY = 'worldcup2026_predictions';
+    // ============ 比分竞猜模块（远程共享版） ============
+    // 仓库信息：310767647-dot/worldcup-2026，分支 main
+    const GITHUB_REPO_OWNER = '310767647-dot';
+    const GITHUB_REPO_NAME = 'worldcup-2026';
+    const GITHUB_REPO_BRANCH = 'main';
+    const PREDICT_FILE_PATH = 'predictions.json';
+    const PREDICT_RAW_URL = 'https://raw.githubusercontent.com/'+GITHUB_REPO_OWNER+'/'+GITHUB_REPO_NAME+'/'+GITHUB_REPO_BRANCH+'/'+PREDICT_FILE_PATH;
+    const PREDICT_API_URL = 'https://api.github.com/repos/'+GITHUB_REPO_OWNER+'/'+GITHUB_REPO_NAME+'/contents/'+PREDICT_FILE_PATH;
+    const TOKEN_STORAGE_KEY = 'worldcup2026_gh_token';
+    const PREDICT_CACHE_KEY = 'worldcup2026_predictions_cache';
+    const SYNC_INTERVAL_MS = 15000; // 每15秒自动拉取远程数据
+
     let predictChart = null;
     let selectedPredictMatch = null;
+    let remotePredictions = [];  // 从远程拉取的竞猜数据
+    let syncTimer = null;
+    let lastSyncTime = 0;
 
-    function getPredictions(){try{const d=localStorage.getItem(PREDICT_STORAGE_KEY);return d?JSON.parse(d):[]}catch(e){return[]}}
-    function savePredictions(predictions){try{localStorage.setItem(PREDICT_STORAGE_KEY,JSON.stringify(predictions))}catch(e){console.warn('竞猜存储失败')}}
+    // 获取/设置 GitHub Token
+    function getGHToken(){try{return localStorage.getItem(TOKEN_STORAGE_KEY)||''}catch(e){return''}}
+    function setGHToken(t){try{localStorage.setItem(TOKEN_STORAGE_KEY,t)}catch(e){}}
+    function hasGHToken(){return !!getGHToken()}
+
+    // 获取本地缓存
+    function getLocalCache(){try{const d=localStorage.getItem(PREDICT_CACHE_KEY);return d?JSON.parse(d):[]}catch(e){return[]}}
+    function setLocalCache(preds){try{localStorage.setItem(PREDICT_CACHE_KEY,JSON.stringify(preds))}catch(e){}}
+
+    // 获取当前有效数据（优先远程，回退本地缓存）
+    function getPredictions(){return remotePredictions.length>0?remotePredictions:getLocalCache()}
+
+    // 从 GitHub Raw 拉取竞猜数据
+    async function fetchRemotePredictions(){
+      try{
+        const resp=await fetch(PREDICT_RAW_URL+'?t='+Date.now(),{cache:'no-store'});
+        if(!resp.ok)throw new Error('HTTP '+resp.status);
+        const data=await resp.json();
+        if(Array.isArray(data)){
+          remotePredictions=data;
+          setLocalCache(data);
+          lastSyncTime=Date.now();
+          updateSyncIndicator();
+          return data;
+        }
+      }catch(e){console.warn('拉取远程竞猜数据失败:',e.message)}
+      return null;
+    }
+
+    // 通过 GitHub API 上传竞猜数据到仓库
+    async function uploadPredictionsToGitHub(predictions){
+      if(!hasGHToken())return false;
+      const token=getGHToken();
+      try{
+        // 先获取当前文件的 SHA（GitHub API 更新文件需要 SHA）
+        const getResp=await fetch(PREDICT_API_URL+'?ref='+GITHUB_REPO_BRANCH,{
+          headers:{'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}
+        });
+        let sha='';
+        if(getResp.ok){
+          const getData=await getResp.json();
+          sha=getData.sha;
+        }
+        // 上传
+        const jsonStr=JSON.stringify(predictions,null,2);
+        const encoder=new TextEncoder();
+        const bytes=encoder.encode(jsonStr);
+        const content=btoa(String.fromCharCode(...bytes));
+        const body={
+          message:'update predictions ['+new Date().toISOString()+']',
+          content:content,
+          branch:GITHUB_REPO_BRANCH
+        };
+        if(sha)body.sha=sha;
+        const putResp=await fetch(PREDICT_API_URL,{
+          method:'PUT',
+          headers:{
+            'Authorization':'token '+token,
+            'Accept':'application/vnd.github.v3+json',
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(body)
+        });
+        if(putResp.ok){
+          console.log('竞猜数据已上传到GitHub仓库');
+          return true;
+        }else{
+          const errData=await putResp.json().catch(()=>({}));
+          console.error('上传失败:',putResp.status,errData.message||'');
+          return false;
+        }
+      }catch(e){console.error('上传竞猜数据异常:',e.message);return false}
+    }
+
+    // 同步状态指示器
+    function updateSyncIndicator(){
+      const el=$('predictSyncStatus');
+      if(!el)return;
+      if(lastSyncTime>0){
+        const sec=Math.floor((Date.now()-lastSyncTime)/1000);
+        el.innerHTML='<span style="color:var(--wc-green)">&#9679;</span> 已同步 '+(sec<60?sec+'秒前':Math.floor(sec/60)+'分钟前');
+      }else{
+        el.innerHTML='<span style="color:var(--wc-accent)">&#9679;</span> 等待同步...';
+      }
+    }
+
+    // 启动自动同步
+    function startAutoSync(){
+      if(syncTimer)clearInterval(syncTimer);
+      fetchRemotePredictions().then(()=>{
+        if(selectedPredictMatch)refreshPredictUI();
+      });
+      syncTimer=setInterval(async ()=>{
+        await fetchRemotePredictions();
+        if(selectedPredictMatch)refreshPredictUI();
+        updateSyncIndicator();
+      },SYNC_INTERVAL_MS);
+    }
+
+    // 刷新竞猜UI（不重新选择比赛）
+    function refreshPredictUI(){
+      renderPredictWall();
+      renderPredictChart();
+      if(selectedPredictMatch)updateResultPanel(selectedPredictMatch);
+    }
 
     // AI 分析预测（基于积分榜、历史比分、球队实力）
     function aiPredict(match){
@@ -1497,8 +1618,20 @@
       // 默认选中第一场
       if(!selectedPredictMatch&&upcoming.length>0){selectPredictMatch(upcoming[0].id)}
       else if(selectedPredictMatch){selectPredictMatch(selectedPredictMatch.id)}
-      renderPredictWall();
-      renderPredictChart();
+      // 启动自动同步
+      startAutoSync();
+      // Token 状态提示
+      renderTokenStatus();
+    }
+
+    function renderTokenStatus(){
+      const el=$('predictTokenStatus');
+      if(!el)return;
+      if(hasGHToken()){
+        el.innerHTML='<span style="color:var(--wc-green);font-size:.7rem">&#128274; 已配置共享Token，您的竞猜将同步给所有用户</span>';
+      }else{
+        el.innerHTML='<span style="color:var(--wc-accent);font-size:.7rem">&#9888; 未配置共享Token，竞猜仅保存在本地。点击设置 &#9881; 配置</span>';
+      }
     }
 
     function selectPredictMatch(matchId){
@@ -1545,7 +1678,7 @@
         '<div class="result-compare-item"><div class="rc-label">竞猜总人数</div><div class="rc-val" style="color:var(--wc-cyan)">'+preds.length+' 人</div></div>';
     }
 
-    function submitPrediction(){
+    async function submitPrediction(){
       const name=$('predictName').value.trim();
       if(!name){alert('请输入竞猜者名称');return}
       if(!selectedPredictMatch){alert('请先选择一场比赛');return}
@@ -1564,20 +1697,40 @@
         etHome:etH,etAway:etA,pkHome:pkH,pkAway:pkA,
         time:new Date().toISOString()
       };
+      // 1. 先拉取最新远程数据确保不覆盖他人的提交
+      await fetchRemotePredictions();
       const preds=getPredictions();
       preds.unshift(pred);
-      // 最多保留500条
       if(preds.length>500)preds.length=500;
-      savePredictions(preds);
-      // 清空名称保持，重置加时和点球
+      // 2. 尝试上传到 GitHub
+      let uploaded=false;
+      if(hasGHToken()){
+        const btn=$('predictSubmitBtn');
+        btn.textContent='上传中...';btn.disabled=true;
+        uploaded=await uploadPredictionsToGitHub(preds);
+        if(uploaded){
+          remotePredictions=preds;
+          setLocalCache(preds);
+        }
+      }
+      // 3. 无论如何更新本地缓存
+      if(!uploaded){
+        setLocalCache(preds);
+        remotePredictions=preds;
+        if(!hasGHToken()){
+          alert('竞猜已提交到本地！但未配置GitHub共享Token，其他用户暂时看不到。\n\n请在下方点击设置按钮配置Token以启用跨用户共享。');
+        }else{
+          alert('上传到GitHub失败，请检查Token是否有效。数据已保存到本地。');
+        }
+      }
+      // 清空重置
       $('predictETHome').value='无';$('predictETAway').value='无';
       $('predictPKHome').value='无';$('predictPKAway').value='无';
-      renderPredictWall();
-      renderPredictChart();
-      updateResultPanel(selectedPredictMatch);
-      // 动画提示
-      const btn=$('predictSubmitBtn');btn.textContent='已提交！';btn.disabled=true;
-      setTimeout(()=>{btn.textContent='提交竞猜';btn.disabled=false},1500);
+      refreshPredictUI();
+      const btn=$('predictSubmitBtn');
+      btn.textContent=uploaded?'已提交并同步！':'已提交';
+      btn.disabled=true;
+      setTimeout(()=>{btn.textContent='提交竞猜';btn.disabled=false},2000);
     }
 
     function renderPredictWall(){
@@ -1637,6 +1790,29 @@
           }
         }
       });
+    }
+
+    // Token 配置弹窗
+    function showTokenConfig(){
+      const currentToken=getGHToken();
+      const msg='配置 GitHub Personal Access Token 以启用跨用户竞猜共享：\n\n'+
+        '1. 访问 https://github.com/settings/tokens\n'+
+        '2. 点击 "Generate new token (classic)"\n'+
+        '3. 勾选 "public_repo" 权限\n'+
+        '4. 生成后将 Token 粘贴到下方\n\n'+
+        'Token 仅保存在您的浏览器中，不会上传到服务器。';
+      const token=prompt(msg,currentToken);
+      if(token!==null){
+        if(token.trim()){
+          setGHToken(token.trim());
+          alert('Token 已保存！现在您的竞猜将同步给所有用户。');
+          renderTokenStatus();
+        }else{
+          setGHToken('');
+          alert('Token 已清除，竞猜将仅保存在本地。');
+          renderTokenStatus();
+        }
+      }
     }
 
     // 竞猜表单提交
