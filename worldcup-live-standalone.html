@@ -510,6 +510,136 @@
     .source-item .src-desc{font-size:.7rem;color:var(--text-dim)}
 
     /* ============================================================
+       PREDICTION / 比分竞猜
+       ============================================================ */
+    .predict-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-lg)}
+    .predict-panel{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-lg);
+      padding:20px;
+    }
+    .predict-panel.full{grid-column:1/-1}
+    .predict-panel h3{font-size:.95rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .predict-panel h3 .icon-badge{
+      display:inline-flex;width:28px;height:28px;border-radius:50%;
+      background:linear-gradient(135deg,var(--wc-gold),var(--wc-accent));
+      align-items:center;justify-content:center;font-size:14px;flex-shrink:0;
+    }
+    /* 竞猜选择器 */
+    .predict-match-select{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:var(--gap-sm);margin-bottom:var(--gap-md);
+    }
+    .predict-match-option{
+      background:var(--surface-2);border:2px solid var(--border-default);
+      border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;
+      transition:all .2s;text-align:center;
+    }
+    .predict-match-option:hover{border-color:var(--wc-gold);background:var(--surface-3)}
+    .predict-match-option.selected{border-color:var(--wc-gold);background:rgba(200,164,78,.1);box-shadow:0 0 16px rgba(200,164,78,.1)}
+    .predict-match-option .pm-teams{font-weight:700;font-size:.9rem;margin-bottom:4px}
+    .predict-match-option .pm-meta{font-size:.7rem;color:var(--text-muted)}
+    .predict-match-option .pm-ai{font-size:.68rem;color:var(--wc-cyan);margin-top:6px;padding-top:6px;border-top:1px solid var(--border-subtle)}
+    /* 竞猜表单 */
+    .predict-form{display:flex;flex-direction:column;gap:var(--gap-sm)}
+    .predict-form label{font-size:.78rem;color:var(--text-secondary);font-weight:600}
+    .predict-form input[type="text"],.predict-form input[type="number"]{
+      padding:10px 14px;border-radius:var(--radius-sm);
+      border:1px solid var(--border-default);
+      background:var(--surface-2);color:var(--text-primary);
+      font-size:.85rem;width:100%;
+    }
+    .predict-form input:focus{outline:none;border-color:var(--wc-gold)}
+    .predict-form-row{display:flex;gap:var(--gap-sm);align-items:flex-end}
+    .predict-form-row>div{flex:1}
+    .predict-form .vs-divider{font-weight:800;font-size:1.1rem;color:var(--wc-gold);padding-bottom:10px;flex:0}
+    .predict-btn{
+      padding:12px 24px;border-radius:var(--radius-md);border:none;
+      background:linear-gradient(135deg,var(--wc-gold),#d4a030);
+      color:#0a0e27;font-weight:800;font-size:.9rem;cursor:pointer;
+      transition:all .2s;width:100%;margin-top:4px;
+    }
+    .predict-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(200,164,78,.3)}
+    .predict-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    /* AI预测卡片 */
+    .ai-predict-card{
+      background:linear-gradient(135deg,var(--surface-2),rgba(0,180,216,.08));
+      border:1px solid rgba(0,180,216,.2);
+      border-radius:var(--radius-md);padding:16px;
+      margin-bottom:var(--gap-md);
+    }
+    .ai-predict-card .ai-title{font-size:.78rem;color:var(--wc-cyan);font-weight:700;margin-bottom:8px}
+    .ai-predict-card .ai-score{font-size:1.6rem;font-weight:800;text-align:center;color:var(--wc-gold)}
+    .ai-predict-card .ai-reason{font-size:.75rem;color:var(--text-dim);margin-top:8px;line-height:1.5}
+    .ai-predict-card .ai-extra{font-size:.7rem;color:var(--text-muted);margin-top:6px}
+    /* 滚动竞猜墙 */
+    .predict-wall{
+      max-height:420px;overflow-y:auto;padding-right:4px;
+    }
+    .predict-wall::-webkit-scrollbar{width:4px}
+    .predict-wall::-webkit-scrollbar-track{background:transparent}
+    .predict-wall::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:2px}
+    .predict-wall-item{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:var(--radius-sm);
+      border:1px solid var(--border-subtle);
+      margin-bottom:6px;
+      background:var(--surface-0);
+      transition:all .2s;
+      animation:fadeInUp .3s ease-out;
+    }
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .predict-wall-item:hover{background:var(--surface-2);border-color:var(--border-default)}
+    .predict-wall-item .pw-avatar{
+      width:32px;height:32px;border-radius:50%;
+      background:linear-gradient(135deg,var(--wc-blue),var(--wc-cyan));
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:700;color:#fff;flex-shrink:0;
+    }
+    .predict-wall-item .pw-info{flex:1;min-width:0}
+    .predict-wall-item .pw-name{font-weight:700;font-size:.82rem}
+    .predict-wall-item .pw-match{font-size:.7rem;color:var(--text-muted)}
+    .predict-wall-item .pw-score{font-weight:800;font-size:.9rem;color:var(--wc-gold);text-align:right;flex-shrink:0}
+    .predict-wall-item .pw-extra{font-size:.65rem;color:var(--text-dim);text-align:right}
+    .predict-wall-item .pw-time{font-size:.62rem;color:var(--text-dim)}
+    .predict-wall-empty{text-align:center;padding:40px 20px;color:var(--text-dim)}
+    /* 图表区 */
+    .predict-chart-wrap{position:relative;min-height:280px}
+    .predict-chart-wrap canvas{max-height:320px}
+    .predict-stats-bar{display:flex;gap:var(--gap-sm);flex-wrap:wrap;margin-top:var(--gap-md)}
+    .predict-stat-item{
+      flex:1;min-width:100px;background:var(--surface-2);
+      border-radius:var(--radius-md);padding:12px;text-align:center;
+    }
+    .predict-stat-item .ps-val{font-size:1.2rem;font-weight:800;color:var(--wc-gold)}
+    .predict-stat-item .ps-lbl{font-size:.68rem;color:var(--text-muted);margin-top:2px}
+    /* 竞猜结果对比 */
+    .result-compare{display:flex;gap:var(--gap-md);margin-top:var(--gap-md)}
+    .result-compare-item{
+      flex:1;background:var(--surface-2);border-radius:var(--radius-md);
+      padding:14px;text-align:center;
+    }
+    .result-compare-item .rc-label{font-size:.7rem;color:var(--text-muted);margin-bottom:4px}
+    .result-compare-item .rc-val{font-size:1.1rem;font-weight:800}
+    .result-compare-item .rc-val.hit{color:var(--wc-green)}
+    .result-compare-item .rc-val.miss{color:var(--wc-accent)}
+    /* 响应式 */
+    @media (max-width:768px){
+      .predict-layout{grid-template-columns:1fr}
+      .predict-match-select{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:600px){
+      .predict-match-select{grid-template-columns:1fr}
+      .predict-form-row{flex-direction:column}
+      .predict-form-row .vs-divider{text-align:center;padding:0}
+      .predict-stats-bar{gap:var(--gap-xs)}
+      .predict-stat-item{padding:10px 8px}
+      .predict-stat-item .ps-val{font-size:1rem}
+      .result-compare{flex-direction:column;gap:var(--gap-sm)}
+    }
+
+    /* ============================================================
        FOOTER
        ============================================================ */
     footer{
@@ -609,6 +739,7 @@
         <button data-jump="players">&#9917; 球员</button>
         <button data-jump="goalvideos">&#9654; 进球</button>
         <button data-jump="videos">&#127909; 直播</button>
+        <button data-jump="predict">&#127922; 竞猜</button>
         <button id="refreshBtn" class="btn-refresh">&#8635; 刷新</button>
       </div>
       <div class="nav-status">
@@ -738,6 +869,67 @@
       <div class="section-header"><h2>红黄牌记录</h2></div>
       <div class="table-wrap" id="disciplineTable"></div>
     </div>
+
+    <!-- ===== 比分竞猜 ===== -->
+    <div class="section" id="predict">
+      <div class="section-header"><h2>比分竞猜</h2><div class="sub">根据各队实力分析预测比分，参与竞猜并查看其他用户的预测</div></div>
+      <div class="predict-layout">
+        <!-- 左栏：选择比赛 + AI预测 + 竞猜表单 -->
+        <div class="predict-panel">
+          <h3><span class="icon-badge">&#127922;</span> 选择竞猜比赛</h3>
+          <div class="predict-match-select" id="predictMatchSelect"></div>
+          <div class="ai-predict-card" id="aiPredictCard" style="display:none">
+            <div class="ai-title">&#129302; AI 实力分析预测</div>
+            <div class="ai-score" id="aiPredictScore">-</div>
+            <div class="ai-reason" id="aiPredictReason"></div>
+            <div class="ai-extra" id="aiPredictExtra"></div>
+          </div>
+          <h3 style="margin-top:16px"><span class="icon-badge">&#9997;</span> 提交竞猜</h3>
+          <form class="predict-form" id="predictForm" onsubmit="return false">
+            <label>竞猜者名称</label>
+            <input type="text" id="predictName" placeholder="输入你的昵称" maxlength="20" required>
+            <label>选择竞猜球队</label>
+            <div id="predictTeamSelect" style="font-size:.85rem;color:var(--text-secondary);padding:8px 0">请先选择上方比赛</div>
+            <div class="predict-form-row">
+              <div><label>主队比分</label><input type="number" id="predictHome" min="0" max="15" value="0" required></div>
+              <div class="vs-divider">:</div>
+              <div><label>客队比分</label><input type="number" id="predictAway" min="0" max="15" value="0" required></div>
+            </div>
+            <label>加时赛比分（无则填"无"）</label>
+            <div class="predict-form-row">
+              <div><input type="text" id="predictETHome" value="无" placeholder="加时主队"></div>
+              <div class="vs-divider" style="font-size:.85rem">:</div>
+              <div><input type="text" id="predictETAway" value="无" placeholder="加时客队"></div>
+            </div>
+            <label>点球比分（无则填"无"）</label>
+            <div class="predict-form-row">
+              <div><input type="text" id="predictPKHome" value="无" placeholder="点球主队"></div>
+              <div class="vs-divider" style="font-size:.85rem">:</div>
+              <div><input type="text" id="predictPKAway" value="无" placeholder="点球客队"></div>
+            </div>
+            <button type="submit" class="predict-btn" id="predictSubmitBtn">&#127922; 提交竞猜</button>
+          </form>
+        </div>
+        <!-- 右栏：竞猜滚动墙 + 图表分析 -->
+        <div class="predict-panel">
+          <h3><span class="icon-badge">&#128172;</span> 竞猜滚动墙</h3>
+          <div class="predict-wall" id="predictWall">
+            <div class="predict-wall-empty">还没有人竞猜，快来成为第一个吧！</div>
+          </div>
+        </div>
+        <!-- 全宽：图表分析 -->
+        <div class="predict-panel full">
+          <h3><span class="icon-badge">&#128202;</span> 竞猜数据分析</h3>
+          <div class="predict-chart-wrap"><canvas id="predictChart"></canvas></div>
+          <div class="predict-stats-bar" id="predictStatsBar"></div>
+        </div>
+        <!-- 全宽：结果对比（仅当选中比赛已完赛时显示） -->
+        <div class="predict-panel full" id="predictResultPanel" style="display:none">
+          <h3><span class="icon-badge">&#127942;</span> 竞猜结果对比</h3>
+          <div class="result-compare" id="predictResultCompare"></div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -761,6 +953,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script>
     // ============ 配置 ============
     const DATA_CONFIG = {
@@ -1077,6 +1270,7 @@
       renderPlayerStats('scorers');
       renderGoalVideos();
       renderVideos();
+      renderPredictModule();
     }
 
     function fillSelect(id,vals,first){
@@ -1228,6 +1422,226 @@
     if(mb&&nl){mb.addEventListener('click',function(e){e.stopPropagation();nl.classList.toggle('open')})}
     // Close mobile menu when tapping outside
     document.addEventListener('click',function(e){if(nl&&!e.target.closest('header')&&window.innerWidth<=600){nl.classList.remove('open')}})
+
+    // ============ 比分竞猜模块 ============
+    const PREDICT_STORAGE_KEY = 'worldcup2026_predictions';
+    let predictChart = null;
+    let selectedPredictMatch = null;
+
+    function getPredictions(){try{const d=localStorage.getItem(PREDICT_STORAGE_KEY);return d?JSON.parse(d):[]}catch(e){return[]}}
+    function savePredictions(predictions){try{localStorage.setItem(PREDICT_STORAGE_KEY,JSON.stringify(predictions))}catch(e){console.warn('竞猜存储失败')}}
+
+    // AI 分析预测（基于积分榜、历史比分、球队实力）
+    function aiPredict(match){
+      if(!match||!DATA)return null;
+      const homeSt=DATA.standings.find(s=>s.team===match.home);
+      const awaySt=DATA.standings.find(s=>s.team===match.away);
+      const completed=DATA.matches.filter(m=>m.completed);
+      // 已完赛同组比赛参考
+      const groupMatches=completed.filter(m=>m.group===match.group);
+      let homeGoalsAvg=1.5,awayGoalsAvg=1.0;
+      // 从积分榜推算
+      if(homeSt&&homeSt.played>0){homeGoalsAvg=homeSt.goalsFor/homeSt.played}
+      if(awaySt&&awaySt.played>0){awayGoalsAvg=awaySt.goalsFor/awaySt.played}
+      // 同组参考
+      if(groupMatches.length>0){
+        const totalG=groupMatches.reduce((s,m)=>s+(m.homeScore||0)+(m.awayScore||0),0);
+        const avgG=totalG/(groupMatches.length*2);
+        homeGoalsAvg=(homeGoalsAvg+avgG)/2;
+        awayGoalsAvg=(awayGoalsAvg+avgG)/2;
+      }
+      // 实力修正
+      let homeAdj=0,awayAdj=0;
+      if(homeSt&&awaySt){
+        const hPts=homeSt.points||0,aPts=awaySt.points||0;
+        const hGD=homeSt.goalDifference||0,aGD=awaySt.goalDifference||0;
+        homeAdj=(hPts-aPts)*0.08+(hGD-aGD)*0.1;
+        awayAdj=(aPts-hPts)*0.08+(aGD-hGD)*0.1;
+      }
+      let homePred=Math.round(Math.max(0,homeGoalsAvg+homeAdj));
+      let awayPred=Math.round(Math.max(0,awayGoalsAvg+awayAdj));
+      // 限制合理范围
+      homePred=Math.max(0,Math.min(8,homePred));
+      awayPred=Math.max(0,Math.min(6,awayPred));
+      let reason='';
+      if(homeSt&&homeSt.played>0)reason+=match.home+'场均进球'+homeSt.goalsFor+'个，';
+      else reason+=match.home+'暂无比赛数据，';
+      if(awaySt&&awaySt.played>0)reason+=match.away+'场均进球'+awaySt.goalsFor+'个。';
+      else reason+=match.away+'暂无比赛数据。';
+      if(homePred>awayPred+1)reason+='综合实力占优，'+match.home+'胜面较大。';
+      else if(awayPred>homePred+1)reason+='综合实力占优，'+match.away+'胜面较大。';
+      else reason+='双方实力接近，可能是一场势均力敌的较量。';
+      let extra='加时赛概率：'+(Math.abs(homePred-awayPred)<=1?'较高（实力接近易打平）':'较低')+' | 点球概率：'+(Math.abs(homePred-awayPred)===0?'中等':'较低');
+      return {home:homePred,away:awayPred,reason,extra};
+    }
+
+    function getUpcomingWithBoth(matches){
+      // 只返回对阵双方都确定的未来比赛（未开赛且两队名称都有）
+      return matches.filter(m=>!m.completed&&!m.live&&m.home&&m.away&&m.home!=='TBD'&&m.away!=='TBD');
+    }
+
+    function renderPredictModule(){
+      if(!DATA)return;
+      const upcoming=getUpcomingWithBoth(DATA.matches);
+      // 比赛选择器
+      const sel=$('predictMatchSelect');
+      if(sel){
+        sel.innerHTML=upcoming.slice(0,8).map(m=>{
+          const ai=aiPredict(m);
+          const aiScore=ai?ai.home+':'+ai.away:'';
+          const selected=selectedPredictMatch&&selectedPredictMatch.id===m.id?' selected':'';
+          return '<div class="predict-match-option'+selected+'" data-match-id="'+escA(m.id)+'" onclick="selectPredictMatch(\''+escA(m.id)+'\')"><div class="pm-teams">'+esc(m.home)+' vs '+esc(m.away)+'</div><div class="pm-meta">'+esc(m.time)+' | '+esc(m.group)+'</div><div class="pm-ai">AI预测 '+esc(aiScore)+'</div></div>';
+        }).join('');
+        if(upcoming.length===0)sel.innerHTML='<div style="color:var(--text-dim);font-size:.85rem;padding:12px">暂无对阵双方确定的未来比赛</div>';
+      }
+      // 默认选中第一场
+      if(!selectedPredictMatch&&upcoming.length>0){selectPredictMatch(upcoming[0].id)}
+      else if(selectedPredictMatch){selectPredictMatch(selectedPredictMatch.id)}
+      renderPredictWall();
+      renderPredictChart();
+    }
+
+    function selectPredictMatch(matchId){
+      const match=DATA.matches.find(m=>m.id===matchId);
+      if(!match)return;
+      selectedPredictMatch=match;
+      // 更新选择器高亮
+      document.querySelectorAll('.predict-match-option').forEach(el=>{el.classList.toggle('selected',el.dataset.matchId===matchId)});
+      // 更新AI预测
+      const ai=aiPredict(match);
+      if(ai){
+        $('aiPredictCard').style.display='block';
+        $('aiPredictScore').textContent=ai.home+' : '+ai.away;
+        $('aiPredictReason').textContent=ai.reason;
+        $('aiPredictExtra').textContent=ai.extra;
+      }else{$('aiPredictCard').style.display='none'}
+      // 更新竞猜表单
+      $('predictTeamSelect').innerHTML='<span style="color:var(--wc-gold);font-weight:700">'+esc(match.home)+'</span> vs <span style="color:var(--wc-cyan);font-weight:700">'+esc(match.away)+'</span> （'+esc(match.group)+'）';
+      // 预填AI预测比分
+      if(ai){$('predictHome').value=ai.home;$('predictAway').value=ai.away}
+      // 结果对比面板
+      updateResultPanel(match);
+      // 更新图表
+      renderPredictChart();
+      renderPredictWall();
+    }
+
+    function updateResultPanel(match){
+      const panel=$('predictResultPanel'),cmp=$('predictResultCompare');
+      if(!panel||!cmp)return;
+      if(!match.completed){panel.style.display='none';return}
+      panel.style.display='block';
+      const preds=getPredictions().filter(p=>p.matchId===match.id);
+      const actualH=match.homeScore||0,actualA=match.awayScore||0;
+      const exactHits=preds.filter(p=>p.homeScore===actualH&&p.awayScore===actualA).length;
+      const resultHits=preds.filter(p=>{
+        const pr=(p.homeScore>p.awayScore?'H':(p.homeScore<p.awayScore?'A':'D'));
+        const ar=(actualH>actualA?'H':(actualH<actualA?'A':'D'));
+        return pr===ar;
+      }).length;
+      cmp.innerHTML='<div class="result-compare-item"><div class="rc-label">实际比分</div><div class="rc-val" style="color:var(--wc-gold)">'+actualH+' : '+actualA+'</div></div>'+
+        '<div class="result-compare-item"><div class="rc-label">完全命中人数</div><div class="rc-val hit">'+exactHits+' 人</div></div>'+
+        '<div class="result-compare-item"><div class="rc-label">胜负关系命中</div><div class="rc-val '+(resultHits>0?'hit':'miss')+'">'+resultHits+' / '+preds.length+' 人</div></div>'+
+        '<div class="result-compare-item"><div class="rc-label">竞猜总人数</div><div class="rc-val" style="color:var(--wc-cyan)">'+preds.length+' 人</div></div>';
+    }
+
+    function submitPrediction(){
+      const name=$('predictName').value.trim();
+      if(!name){alert('请输入竞猜者名称');return}
+      if(!selectedPredictMatch){alert('请先选择一场比赛');return}
+      const h=parseInt($('predictHome').value)||0;
+      const a=parseInt($('predictAway').value)||0;
+      if(h<0||h>15||a<0||a>15){alert('比分需在0-15之间');return}
+      const etH=$('predictETHome').value.trim()||'无';
+      const etA=$('predictETAway').value.trim()||'无';
+      const pkH=$('predictPKHome').value.trim()||'无';
+      const pkA=$('predictPKAway').value.trim()||'无';
+      const pred={
+        id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+        name,team:selectedPredictMatch.home+' vs '+selectedPredictMatch.away,
+        matchId:selectedPredictMatch.id,
+        homeScore:h,awayScore:a,
+        etHome:etH,etAway:etA,pkHome:pkH,pkAway:pkA,
+        time:new Date().toISOString()
+      };
+      const preds=getPredictions();
+      preds.unshift(pred);
+      // 最多保留500条
+      if(preds.length>500)preds.length=500;
+      savePredictions(preds);
+      // 清空名称保持，重置加时和点球
+      $('predictETHome').value='无';$('predictETAway').value='无';
+      $('predictPKHome').value='无';$('predictPKAway').value='无';
+      renderPredictWall();
+      renderPredictChart();
+      updateResultPanel(selectedPredictMatch);
+      // 动画提示
+      const btn=$('predictSubmitBtn');btn.textContent='已提交！';btn.disabled=true;
+      setTimeout(()=>{btn.textContent='提交竞猜';btn.disabled=false},1500);
+    }
+
+    function renderPredictWall(){
+      const wall=$('predictWall');if(!wall)return;
+      const preds=getPredictions();
+      // 按选中比赛筛选
+      const filtered=selectedPredictMatch?preds.filter(p=>p.matchId===selectedPredictMatch.id):preds;
+      if(filtered.length===0){
+        wall.innerHTML='<div class="predict-wall-empty">还没有人竞猜这场比赛，快来成为第一个吧！</div>';
+        return;
+      }
+      wall.innerHTML=filtered.slice(0,50).map((p,i)=>{
+        const etStr=(p.etHome!=='无'||p.etAway!=='无')?' 加时('+p.etHome+':'+p.etAway+')':'';
+        const pkStr=(p.pkHome!=='无'||p.pkAway!=='无')?' 点球('+p.pkHome+':'+p.pkAway+')':'';
+        const t=new Date(p.time);const ts=t.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+        const avatarColors=['#e10600','#c8a44e','#0b8a4c','#00b4d8','#7b2d8e','#1a3a6b','#ff6b35','#00c9a7'];
+        const avColor=avatarColors[p.name.charCodeAt(0)%avatarColors.length];
+        return '<div class="predict-wall-item" style="animation-delay:'+(i*0.02)+'s"><div class="pw-avatar" style="background:'+avColor+'">'+esc(p.name.charAt(0).toUpperCase())+'</div><div class="pw-info"><div class="pw-name">'+esc(p.name)+'</div><div class="pw-match">'+esc(p.team)+'</div></div><div><div class="pw-score">'+esc(String(p.homeScore))+':'+esc(String(p.awayScore))+'</div><div class="pw-extra">'+esc(etStr+pkStr)+'</div><div class="pw-time">'+ts+'</div></div></div>';
+      }).join('');
+    }
+
+    function renderPredictChart(){
+      if(!selectedPredictMatch)return;
+      const preds=getPredictions().filter(p=>p.matchId===selectedPredictMatch.id);
+      const ctx=$('predictChart');if(!ctx)return;
+      if(predictChart){predictChart.destroy();predictChart=null}
+      // 统计区
+      const bar=$('predictStatsBar');
+      const total=preds.length;
+      if(total===0){
+        bar.innerHTML='<div class="predict-stat-item"><div class="ps-val">0</div><div class="ps-lbl">总竞猜数</div></div><div class="predict-stat-item"><div class="ps-val">-</div><div class="ps-lbl">最热门比分</div></div><div class="predict-stat-item"><div class="ps-val">-</div><div class="ps-lbl">平均主队进球</div></div><div class="predict-stat-item"><div class="ps-val">-</div><div class="ps-lbl">平均客队进球</div></div>';
+        const cvs=ctx.getContext('2d');cvs.clearRect(0,0,ctx.width,ctx.height);
+        return;
+      }
+      // 比分频率统计
+      const scoreFreq={};
+      preds.forEach(p=>{const k=p.homeScore+':'+p.awayScore;scoreFreq[k]=(scoreFreq[k]||0)+1});
+      const topScores=Object.entries(scoreFreq).sort((a,b)=>b[1]-a[1]).slice(0,8);
+      const avgHome=(preds.reduce((s,p)=>s+p.homeScore,0)/total).toFixed(1);
+      const avgAway=(preds.reduce((s,p)=>s+p.awayScore,0)/total).toFixed(1);
+      const homeWins=preds.filter(p=>p.homeScore>p.awayScore).length;
+      const awayWins=preds.filter(p=>p.homeScore<p.awayScore).length;
+      const draws=preds.filter(p=>p.homeScore===p.awayScore).length;
+      bar.innerHTML='<div class="predict-stat-item"><div class="ps-val">'+total+'</div><div class="ps-lbl">总竞猜数</div></div><div class="predict-stat-item"><div class="ps-val">'+(topScores[0]?topScores[0][0]:'-')+'</div><div class="ps-lbl">最热门比分 ('+(topScores[0]?topScores[0][1]:0)+'人)</div></div><div class="predict-stat-item"><div class="ps-val">'+avgHome+'</div><div class="ps-lbl">平均主队进球</div></div><div class="predict-stat-item"><div class="ps-val">'+avgAway+'</div><div class="ps-lbl">平均客队进球</div></div>';
+      // 胜负分布饼图
+      predictChart=new Chart(ctx,{
+        type:'doughnut',
+        data:{
+          labels:[selectedPredictMatch.home+'胜',selectedPredictMatch.away+'胜','平局'],
+          datasets:[{data:[homeWins,awayWins,draws],backgroundColor:['rgba(200,164,78,.8)','rgba(0,180,216,.7)','rgba(100,112,144,.6)'],borderColor:['rgba(200,164,78,1)','rgba(0,180,216,1)','rgba(100,112,144,1)'],borderWidth:1}]
+        },
+        options:{
+          responsive:true,maintainAspectRatio:true,
+          plugins:{
+            legend:{position:'bottom',labels:{color:'#a8b4d0',font:{size:12},padding:16}},
+            title:{display:true,text:'竞猜胜负分布 - '+selectedPredictMatch.home+' vs '+selectedPredictMatch.away,color:'#f0f2f8',font:{size:14},padding:{bottom:16}}
+          }
+        }
+      });
+    }
+
+    // 竞猜表单提交
+    $('predictForm').addEventListener('submit',function(e){e.preventDefault();submitPrediction()});
+    $('predictSubmitBtn').addEventListener('click',function(e){e.preventDefault();submitPrediction()});
 
     // ============ 初始化 ============
     if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initData)}else{initData()}
