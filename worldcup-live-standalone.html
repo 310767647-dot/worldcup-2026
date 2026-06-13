@@ -4,430 +4,587 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="2026世界杯实时比分、赛程、积分榜、球员统计和视频回放">
-  <meta name="keywords" content="2026世界杯,世界杯实时战报,世界杯赛程,世界杯积分榜,球员统计,进球视频">
   <meta property="og:title" content="2026世界杯实时战报中心">
   <meta property="og:description" content="2026世界杯实时比分、赛程、积分榜、球员统计和视频回放">
-  <meta property="og:type" content="website">
   <title>2026 世界杯实时战报中心</title>
   <style>
+    /* ============================================================
+       2026 FIFA WORLD CUP DESIGN SYSTEM v3.0
+       ============================================================ */
     :root {
-      --ink: #f8fbff;
-      --muted: #a9b8d6;
-      --dim: #6f819f;
-      --panel: rgba(8, 22, 48, .82);
-      --panel-strong: rgba(5, 15, 35, .96);
-      --line: rgba(255,255,255,.13);
-      --green: #16b879;
-      --red: #e02038;
-      --blue: #2f80ff;
-      --gold: #f4c86a;
-      --navy: #061126;
+      /* ---- 2026 世界杯官方配色 ---- */
+      --wc-deep: #0a0e27;
+      --wc-navy: #0f1b3d;
+      --wc-blue: #1a3a6b;
+      --wc-accent: #e10600;
+      --wc-gold: #c8a44e;
+      --wc-green: #0b8a4c;
+      --wc-cyan: #00b4d8;
+      --wc-purple: #7b2d8e;
+      /* ---- 表面层 ---- */
+      --surface-0: #080c20;
+      --surface-1: #0e1535;
+      --surface-2: #141f48;
+      --surface-3: #1a2859;
+      /* ---- 文字 ---- */
+      --text-primary: #f0f2f8;
+      --text-secondary: #a8b4d0;
+      --text-muted: #647090;
+      --text-dim: #455070;
+      /* ---- 边框 ---- */
+      --border-subtle: rgba(255,255,255,.08);
+      --border-default: rgba(255,255,255,.12);
+      --border-strong: rgba(255,255,255,.18);
+      /* ---- 状态色 ---- */
+      --live: #e10600;
+      --live-bg: rgba(225,6,0,.15);
+      --done: #0b8a4c;
+      --done-bg: rgba(11,138,76,.15);
+      --upcoming: #00b4d8;
+      --upcoming-bg: rgba(0,180,216,.12);
+      /* ---- 间距 ---- */
+      --gap-xs: 6px;
+      --gap-sm: 10px;
+      --gap-md: 16px;
+      --gap-lg: 24px;
+      --gap-xl: 32px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      /* ---- 阴影 ---- */
+      --shadow-card: 0 2px 12px rgba(0,0,0,.3), 0 0 1px rgba(255,255,255,.05);
+      --shadow-glow: 0 0 40px rgba(200,164,78,.12);
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin:0;
-      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+
+    /* ---- Reset ---- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--surface-0);
+      color:var(--text-primary);
+      line-height:1.5;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:'';
+      position:fixed;inset:0;
       background:
-        radial-gradient(circle at 78% 0%, rgba(47,128,255,.24), transparent 34%),
-        radial-gradient(circle at 12% 5%, rgba(224,32,56,.18), transparent 30%),
-        linear-gradient(180deg, #07132a 0%, #07111f 58%, #061126 100%);
-      color: var(--ink);
-      min-height: 100vh;
-      letter-spacing: 0;
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,164,78,.08),transparent),
+        radial-gradient(ellipse 60% 40% at 85% 20%, rgba(0,180,216,.06),transparent),
+        radial-gradient(ellipse 50% 40% at 15% 10%, rgba(225,6,0,.04),transparent),
+        radial-gradient(ellipse 70% 50% at 50% 80%, rgba(11,138,76,.04),transparent);
+      pointer-events:none;z-index:0;
     }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(4, 12, 28, .84);
-      border-bottom:1px solid var(--line);
+
+    /* ---- Typography ---- */
+    h2{font-size:1.25rem;font-weight:700;letter-spacing:.02em}
+    h3{font-size:1.05rem;font-weight:700}
+    a{color:var(--wc-cyan);text-decoration:none}
+    button,input,select{font:inherit}
+    img{max-width:100%;height:auto}
+
+    /* ---- Skip Link ---- */
+    .skip-link{position:absolute;top:-48px;left:12px;background:var(--surface-2);color:var(--text-primary);padding:8px 16px;border-radius:var(--radius-sm);z-index:1000;font-size:.85rem}
+    .skip-link:focus{top:12px}
+
+    /* ============================================================
+       HEADER & NAVIGATION
+       ============================================================ */
+    header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(8,12,32,.92);
+      backdrop-filter:blur(20px) saturate(180%);
+      -webkit-backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid var(--border-subtle);
     }
-    .nav {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+    .nav{
+      max-width:1200px;margin:0 auto;
+      padding:12px 20px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:var(--gap-md);
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 18px;
-      white-space: nowrap;
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:800;font-size:1.05rem;
+      white-space:nowrap;flex-shrink:0;
     }
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: conic-gradient(from 40deg, var(--red), var(--gold), var(--green), var(--blue), var(--red));
-      box-shadow: 0 0 30px rgba(47,128,255,.35);
-      flex: 0 0 auto;
+    .brand-icon{
+      width:36px;height:36px;flex-shrink:0;
+      border-radius:50%;
+      background:conic-gradient(from 30deg, var(--wc-accent), var(--wc-gold), var(--wc-green), var(--wc-cyan), var(--wc-accent));
+      box-shadow:0 0 24px rgba(200,164,78,.3);
+      position:relative;
     }
-    .nav-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    .brand-icon::after{
+      content:'⚽';
+      position:absolute;inset:3px;border-radius:50%;
+      background:var(--surface-0);
+      display:flex;align-items:center;justify-content:center;
+      font-size:15px;
     }
-    button, input, select {
-      font: inherit;
+    .brand-text{line-height:1.2}
+    .brand-text .year{font-size:.65rem;color:var(--wc-gold);letter-spacing:.15em;display:block;font-weight:600}
+    .brand-text .title{font-size:.95rem}
+
+    /* Nav buttons */
+    .nav-links{display:flex;gap:var(--gap-xs);flex-wrap:wrap;align-items:center}
+    .nav-links button{
+      padding:7px 14px;border-radius:20px;
+      border:1px solid var(--border-default);
+      background:rgba(255,255,255,.04);
+      color:var(--text-secondary);
+      cursor:pointer;font-size:.8rem;font-weight:600;
+      transition:all .2s;white-space:nowrap;
     }
-    .nav button, .control button {
-      border:1px solid var(--line);
-      color: var(--ink);
-      background: rgba(255,255,255,.06);
-      padding: 9px 13px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
+    .nav-links button:hover{background:rgba(255,255,255,.08);color:var(--text-primary)}
+    .nav-links button.active{background:linear-gradient(135deg,var(--wc-accent),var(--wc-purple));border-color:transparent;color:#fff}
+    .nav-links .btn-refresh{
+      background:var(--wc-gold);color:#0a0e27;border-color:transparent;font-weight:700;
     }
-    .nav button.active, .control button.active {
-      background: linear-gradient(135deg, var(--red), var(--blue));
-      border-color: transparent;
+    .nav-links .btn-refresh:hover{background:#d4b45a}
+
+    .nav-status{display:flex;align-items:center;gap:var(--gap-sm);font-size:.72rem;color:var(--text-muted)}
+    .nav-countdown{color:var(--wc-gold);font-weight:600}
+    .nav-mobile-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer;padding:4px 8px}
+
+    /* Data indicator bar */
+    .data-bar{
+      max-width:1200px;margin:0 auto;padding:6px 20px;
+      display:flex;align-items:center;gap:var(--gap-md);
+      font-size:.7rem;color:var(--text-dim);
+      flex-wrap:wrap;
     }
-    main { max-width: 1240px; margin: 0 auto; padding: 28px 22px 60px; }
-    .hero {
-      min-height: 500px;
-      display: grid;
-      grid-template-columns: minmax(0, .88fr) minmax(390px, 1.12fr);
-      gap: 26px;
+    .data-bar .dot{width:6px;height:6px;border-radius:50%;background:var(--wc-green);flex-shrink:0}
+    .data-bar .dot.stale{background:var(--wc-gold)}
+    .data-bar .dot.offline{background:var(--wc-accent)}
+
+    /* ============================================================
+       MAIN LAYOUT
+       ============================================================ */
+    main{max-width:1200px;margin:0 auto;padding:20px 20px 60px;position:relative;z-index:1}
+    .section{margin-bottom:var(--gap-xl)}
+    .section-header{margin-bottom:var(--gap-md)}
+    .section-header h2{display:flex;align-items:center;gap:var(--gap-sm)}
+    .section-header h2::before{
+      content:'';display:inline-block;
+      width:4px;height:20px;border-radius:2px;
+      background:linear-gradient(180deg,var(--wc-gold),var(--wc-accent));
     }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: minmax(0, 1fr); }
+    .section-header .sub{font-size:.8rem;color:var(--text-muted);margin-top:4px}
+
+    /* ============================================================
+       HERO AREA - 战报 + 数据概览 (单列纵向)
+       ============================================================ */
+    .hero{
+      display:flex;flex-direction:column;
+      gap:var(--gap-lg);
+      margin-bottom:var(--gap-xl);
     }
-    .hero-board {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 18px;
+    /* 战报卡片行 */
+    .hero-top{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:var(--gap-md);
     }
-    .hero-tile {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 14px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .hero-card{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-lg);
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+      transition:transform .2s,box-shadow .2s;
     }
-    .hero-tile span { color: var(--muted); font-size: 13px; }
-    .hero-tile b { font-size: 18px; }
-    .hero-tile small { color: var(--dim); font-size: 12px; }
-    .metric-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-      margin: 22px 0;
+    .hero-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card)}
+    .hero-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;
+      height:3px;
     }
-    .metric {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
+    .hero-card.card-latest::before{background:var(--done)}
+    .hero-card.card-next::before{background:var(--upcoming)}
+    .hero-card.card-leader::before{background:var(--wc-gold)}
+    .hero-card-label{font-size:.75rem;color:var(--text-muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+    .hero-card-title{font-size:1.15rem;font-weight:700;margin-bottom:4px}
+    .hero-card-detail{font-size:.8rem;color:var(--text-dim)}
+
+    /* 热点区 */
+    .hotspot{
+      background:linear-gradient(135deg,var(--surface-1),var(--surface-2));
+      border:1px solid var(--border-default);
+      border-radius:var(--radius-lg);
+      padding:22px;
     }
-    .metric b { display: block; font-size: 28px; }
-    .metric span { color: var(--muted); font-size: 13px; }
-    .control {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin: 18px 0;
+    .hotspot h3{color:var(--wc-gold);margin-bottom:8px}
+    .hotspot p{color:var(--text-secondary);font-size:.9rem;line-height:1.7}
+    .hotspot-chips{margin-top:12px;display:flex;gap:var(--gap-xs);flex-wrap:wrap}
+
+    /* 数据指标条 */
+    .metric-bar{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:var(--gap-sm);
     }
-    input[type="text"], select {
-      padding: 9px 13px;
-      border-radius: 8px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--ink);
-      font-size: 14px;
+    .metric-item{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-md);
+      padding:16px 12px;
+      text-align:center;
+      transition:transform .2s;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 18px;
+    .metric-item:hover{transform:translateY(-2px)}
+    .metric-value{font-size:1.8rem;font-weight:800;line-height:1.2}
+    .metric-value.gold{color:var(--wc-gold)}
+    .metric-value.green{color:var(--wc-green)}
+    .metric-value.red{color:var(--wc-accent)}
+    .metric-value.cyan{color:var(--wc-cyan)}
+    .metric-label{font-size:.72rem;color:var(--text-muted);margin-top:4px}
+
+    /* ============================================================
+       MATCH CARDS
+       ============================================================ */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--gap-md)}
+    .match-card{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-lg);
+      padding:18px;
+      transition:all .2s;
     }
-    .match-card {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px;
+    .match-card:hover{border-color:var(--border-default);box-shadow:var(--shadow-card)}
+    .match-card.live-card{border-color:rgba(225,6,0,.3);box-shadow:0 0 20px rgba(225,6,0,.08)}
+    .match-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:.78rem;color:var(--text-muted)}
+    .match-teams{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .match-team{flex:1;text-align:center}
+    .match-team-name{font-weight:700;font-size:1rem;margin-bottom:2px}
+    .match-score{
+      font-size:1.5rem;font-weight:800;
+      padding:6px 16px;border-radius:var(--radius-sm);
+      background:var(--surface-2);
+      letter-spacing:2px;
+      flex-shrink:0;
     }
-    .match-meta { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
-    .scoreline {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 10px;
+    .match-score.live{background:var(--live-bg);color:var(--live)}
+    .match-score.done{background:var(--done-bg);color:var(--done)}
+    .match-score.upcoming{background:var(--upcoming-bg);color:var(--upcoming)}
+    .match-venue{font-size:.75rem;color:var(--text-dim);margin-top:10px;text-align:center}
+
+    /* 状态标签 */
+    .pill{
+      display:inline-flex;align-items:center;gap:4px;
+      padding:3px 10px;border-radius:20px;
+      font-size:.72rem;font-weight:700;
     }
-    .score { letter-spacing: 2px; }
-    .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
+    .pill.live{background:var(--live-bg);color:var(--live)}
+    .pill.done{background:var(--done-bg);color:var(--done)}
+    .pill.upcoming{background:var(--upcoming-bg);color:var(--upcoming)}
+    .pill.default-pill{background:rgba(255,255,255,.06);color:var(--text-muted)}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:var(--live);animation:pulse 1.2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* ============================================================
+       FILTER CONTROLS
+       ============================================================ */
+    .controls{
+      display:flex;gap:var(--gap-sm);flex-wrap:wrap;align-items:center;
+      margin-bottom:var(--gap-md);
     }
-    .pill.live { background: rgba(224,32,56,.18); color: var(--red); }
-    .pill.finished { background: rgba(22,184,121,.18); color: var(--green); }
-    .pill.scheduled { background: rgba(47,128,255,.18); color: var(--blue); }
-    .venue { color: var(--dim); font-size: 13px; margin-top: 8px; }
-    .table-wrap {
-      overflow-x: auto;
-      margin: 18px 0;
+    .controls input[type="text"],
+    .controls select{
+      padding:8px 14px;border-radius:var(--radius-sm);
+      border:1px solid var(--border-default);
+      background:var(--surface-1);
+      color:var(--text-primary);
+      font-size:.82rem;
+      min-width:120px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
+    .controls input::placeholder{color:var(--text-dim)}
+    .controls select option{background:var(--surface-2);color:var(--text-primary)}
+    .btn{ 
+      padding:8px 16px;border-radius:var(--radius-sm);
+      border:1px solid var(--border-default);
+      background:rgba(255,255,255,.06);
+      color:var(--text-secondary);
+      cursor:pointer;font-size:.8rem;font-weight:600;
+      transition:all .2s;
     }
-    th {
-      background: var(--panel-strong);
-      padding: 12px 14px;
-      text-align: left;
-      font-weight: 700;
-      border-bottom:1px solid var(--line);
+    .btn:hover{background:rgba(255,255,255,.1);color:var(--text-primary)}
+    .btn-primary{background:var(--wc-blue);border-color:transparent;color:#fff}
+    .btn-primary:hover{background:#2255a0}
+
+    /* ============================================================
+       TAB BAR
+       ============================================================ */
+    .tabs{display:flex;gap:var(--gap-xs);flex-wrap:wrap;margin-bottom:var(--gap-md)}
+    .tab-btn{
+      padding:8px 18px;border-radius:20px;
+      border:1px solid var(--border-default);
+      background:rgba(255,255,255,.04);
+      color:var(--text-secondary);
+      cursor:pointer;font-size:.8rem;font-weight:600;
+      transition:all .2s;
     }
-    td {
-      padding: 10px 14px;
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .tab-btn:hover{background:rgba(255,255,255,.08)}
+    .tab-btn.active{background:linear-gradient(135deg,var(--wc-blue),var(--wc-cyan));border-color:transparent;color:#fff}
+
+    /* ============================================================
+       TABLE
+       ============================================================ */
+    .table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border-subtle)}
+    .table-wrap::-webkit-scrollbar{height:6px}
+    .table-wrap::-webkit-scrollbar-track{background:var(--surface-1)}
+    .table-wrap::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:3px}
+    table{width:100%;border-collapse:collapse;font-size:.82rem}
+    th{
+      background:var(--surface-2);padding:12px 14px;
+      text-align:left;font-weight:700;font-size:.75rem;
+      color:var(--text-muted);white-space:nowrap;
+      border-bottom:1px solid var(--border-default);
     }
-    tr:hover { background: rgba(255,255,255,.03); }
-    .leader-board {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
+    td{
+      padding:10px 14px;
+      border-bottom:1px solid var(--border-subtle);
+      white-space:nowrap;
     }
-    .leader {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    tr:hover td{background:rgba(255,255,255,.02)}
+    tr:last-child td{border-bottom:none}
+
+    /* ============================================================
+       PLAYER CARDS
+       ============================================================ */
+    .player-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:var(--gap-sm);
     }
-    .empty {
-      color: var(--dim);
-      padding: 40px;
-      text-align: center;
+    .player-card{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-md);
+      padding:14px 16px;
+      display:flex;align-items:center;gap:14px;
+      transition:all .2s;
     }
-    h2 { font-size: 22px; margin: 28px 0 14px; }
-    h3 { font-size: 17px; margin: 18px 0 10px; }
-    #refreshState { color: var(--dim); font-size: 12px; }
-    #countdownTimer { color: var(--gold); font-size: 12px; margin-left: 4px; }
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 10px;
-      background: var(--panel-strong);
-      color: var(--ink);
-      padding: 8px 14px;
-      border-radius: 6px;
-      z-index: 100;
+    .player-card:hover{border-color:var(--border-default);box-shadow:var(--shadow-card)}
+    .player-rank{
+      font-size:1.3rem;font-weight:800;
+      color:var(--wc-gold);
+      min-width:28px;text-align:center;
     }
-    .skip-link:focus { top: 10px; }
-    /* 视频直播样式 */
-    .section-head { margin-bottom: 18px; }
-    .section-note { color: var(--dim); font-size: 13px; margin-top: 6px; }
-    .video-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      margin-top: 18px;
+    .player-rank.silver{color:var(--text-muted)}
+    .player-rank.bronze{color:#c47a38}
+    .player-info{flex:1;min-width:0}
+    .player-name{font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis}
+    .player-team{font-size:.72rem;color:var(--text-muted)}
+    .player-stat-val{font-size:1.2rem;font-weight:800;text-align:center}
+    .player-stat-lbl{font-size:.65rem;color:var(--text-dim);text-align:center}
+
+    /* ============================================================
+       GOAL VIDEO CARDS
+       ============================================================ */
+    .goal-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:var(--gap-md);
     }
-    @media (max-width: 900px) {
-      .video-layout { grid-template-columns: 1fr; }
+    .goal-card{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      cursor:pointer;
+      transition:all .2s;
     }
-    .video-panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px;
+    .goal-card:hover{border-color:var(--wc-gold);box-shadow:var(--shadow-glow)}
+    .goal-thumb{
+      height:150px;background:linear-gradient(135deg,var(--surface-2),var(--surface-3));
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
     }
-    .video-window {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 12px 0;
+    .goal-play{
+      width:48px;height:48px;border-radius:50%;
+      background:rgba(225,6,0,.85);
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;color:#fff;
+      transition:transform .2s;
     }
-    .video-window iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+    .goal-card:hover .goal-play{transform:scale(1.1)}
+    .goal-info{padding:14px 16px}
+    .goal-match{font-size:.75rem;color:var(--text-muted)}
+    .goal-player{font-weight:700;margin:4px 0;font-size:.9rem}
+    .goal-detail{font-size:.72rem;color:var(--text-dim)}
+
+    /* ============================================================
+       VIDEO SECTION
+       ============================================================ */
+    .video-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:var(--gap-lg);
     }
-    .video-meta { color: var(--dim); font-size: 13px; margin-top: 8px; }
-    .video-list {
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: 12px;
-      padding-right: 8px;
+    .video-panel{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-lg);
+      padding:20px;
     }
-    .video-list-item {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--line);
-      cursor: pointer;
-      transition: background 0.2s;
+    .video-panel h3{font-size:.95rem;margin-bottom:12px}
+    .video-window{
+      position:relative;width:100%;
+      padding-bottom:56.25%;
+      background:#000;
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      margin-bottom:12px;
     }
-    .video-list-item:hover { background: rgba(255,255,255,.06); }
-    .video-list-item.active { background: rgba(47,128,255,.15); }
-    .source-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+    .video-window>div{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
     }
-    .source-modal[aria-hidden="false"] { display: flex; }
-    .source-dialog {
-      background: var(--panel-strong);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 680px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
+    .video-window iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+    .video-meta{font-size:.78rem;color:var(--text-dim);margin-bottom:12px}
+    .video-list{max-height:350px;overflow-y:auto;padding-right:4px}
+    .video-list::-webkit-scrollbar{width:4px}
+    .video-list::-webkit-scrollbar-track{background:transparent}
+    .video-list::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:2px}
+    .video-list-item{
+      padding:10px 12px;border-radius:var(--radius-sm);
+      cursor:pointer;transition:background .15s;
+      border:1px solid transparent;
     }
-    .source-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
+    .video-list-item:hover{background:rgba(255,255,255,.04)}
+    .video-list-item.active{background:rgba(0,180,216,.08);border-color:rgba(0,180,216,.2)}
+
+    /* ============================================================
+       LEADERBOARD
+       ============================================================ */
+    .leader-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:var(--gap-sm);
+      margin-bottom:var(--gap-lg);
     }
-    .source-close {
-      background: none;
-      border: none;
-      color: var(--ink);
-      font-size: 24px;
-      cursor: pointer;
-      padding: 4px 8px;
+    .leader-item{
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-md);
+      padding:14px 18px;
+      display:flex;justify-content:space-between;align-items:center;
     }
-    .source-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
+
+    /* ============================================================
+       MODAL
+       ============================================================ */
+    .modal-overlay{
+      position:fixed;inset:0;z-index:1000;
+      background:rgba(0,0,0,.75);
+      display:none;align-items:center;justify-content:center;
     }
-    .source-item {
-      padding: 12px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
+    .modal-overlay.open{display:flex}
+    .modal-dialog{
+      background:var(--surface-1);
+      border:1px solid var(--border-default);
+      border-radius:var(--radius-xl);
+      padding:24px;max-width:680px;width:92%;
+      max-height:80vh;overflow-y:auto;
     }
-    .source-item:hover { background: rgba(47,128,255,.2); border-color: var(--blue); }
-    .source-note { color: var(--dim); font-size: 12px; margin-top: 16px; text-align: center; }
-    /* 球员统计样式 */
-    .player-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
+    .modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+    .modal-close{background:none;border:none;color:var(--text-secondary);font-size:1.5rem;cursor:pointer;padding:4px}
+    .source-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+      gap:var(--gap-sm);
     }
-    .player-card {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .source-item{
+      padding:14px 12px;background:var(--surface-2);
+      border:1px solid var(--border-subtle);
+      border-radius:var(--radius-md);
+      text-align:center;cursor:pointer;
+      transition:all .2s;
     }
-    .player-rank {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--gold);
-      min-width: 32px;
-      text-align: center;
+    .source-item:hover{background:var(--surface-3);border-color:var(--wc-cyan)}
+    .source-item .src-name{font-weight:700;font-size:.85rem;margin-bottom:4px}
+    .source-item .src-desc{font-size:.7rem;color:var(--text-dim)}
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer{
+      text-align:center;color:var(--text-dim);font-size:.72rem;
+      padding:28px 20px;border-top:1px solid var(--border-subtle);
+      position:relative;z-index:1;
     }
-    .player-info { flex: 1; }
-    .player-name { font-weight: 700; font-size: 15px; }
-    .player-team { color: var(--muted); font-size: 12px; }
-    .player-stat { color: var(--blue); font-size: 18px; font-weight: 700; }
-    .player-stat-label { color: var(--dim); font-size: 11px; }
-    /* 进球视频样式 */
-    .goal-video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    /* 平板 (768-1024px) */
+    @media (max-width:1024px){
+      .hero-top{grid-template-columns:repeat(3,1fr)}
+      .metric-bar{grid-template-columns:repeat(3,1fr)}
+      .video-layout{grid-template-columns:1fr}
     }
-    .goal-video-card {
-      background: var(--panel);
-      border:1px solid var(--line);
-      border-radius: 12px;
-      overflow: hidden;
+    /* 手机横屏/小平板 (600-768px) */
+    @media (max-width:768px){
+      .nav{padding:10px 14px}
+      .brand-text .title{font-size:.85rem}
+      .nav-links{gap:4px}
+      .nav-links button{padding:6px 10px;font-size:.7rem;border-radius:16px}
+      .nav-status{font-size:.68rem}
+      main{padding:14px 14px 40px}
+      .hero-top{grid-template-columns:1fr 1fr;gap:var(--gap-sm)}
+      .hero-top .hero-card:last-child{grid-column:1/-1}
+      .metric-bar{grid-template-columns:repeat(3,1fr);gap:var(--gap-xs)}
+      .metric-item{padding:12px 8px}
+      .metric-value{font-size:1.4rem}
+      .grid{grid-template-columns:1fr;gap:var(--gap-sm)}
+      .player-grid{grid-template-columns:1fr}
+      .goal-grid{grid-template-columns:1fr}
+      .leader-grid{grid-template-columns:1fr 1fr}
+      h2{font-size:1.1rem}
+      .controls{flex-direction:column;align-items:stretch}
+      .controls input[type="text"],
+      .controls select{min-width:unset}
     }
-    .goal-video-thumb {
-      width: 100%;
-      padding-bottom: 56.25%;
-      background: #000;
-      position: relative;
-      cursor: pointer;
+    /* 手机竖屏 (<600px) */
+    @media (max-width:600px){
+      .nav{flex-wrap:wrap;gap:var(--gap-xs)}
+      .brand{width:100%;justify-content:space-between}
+      .brand-icon{width:30px;height:30px}
+      .brand-text .title{font-size:.8rem}
+      .nav-links{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+      .nav-links button{flex-shrink:0;font-size:.68rem;padding:5px 10px}
+      .nav-status{width:100%;justify-content:center;font-size:.65rem}
+      .data-bar{padding:4px 14px;gap:var(--gap-sm);font-size:.65rem}
+      .hero-top{grid-template-columns:1fr}
+      .metric-bar{grid-template-columns:repeat(2,1fr)}
+      .metric-value{font-size:1.2rem}
+      .metric-label{font-size:.65rem}
+      .match-card{padding:14px}
+      .match-team-name{font-size:.85rem}
+      .match-score{font-size:1.2rem;padding:4px 12px}
+      .leader-grid{grid-template-columns:1fr}
+      .video-layout{grid-template-columns:1fr;gap:var(--gap-md)}
+      .video-panel{padding:14px}
+      .goal-grid{grid-template-columns:1fr}
+      .player-grid{grid-template-columns:1fr}
+      .tabs{gap:4px}
+      .tab-btn{padding:6px 12px;font-size:.7rem}
+      table{font-size:.7rem}
+      th,td{padding:8px 10px}
+      .modal-dialog{padding:16px;width:96%}
+      .source-grid{grid-template-columns:repeat(2,1fr)}
     }
-    .goal-video-thumb-inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      background: rgba(0,0,0,.5);
-      transition: background .2s;
+
+    /* 空状态 */
+    .empty-state{
+      text-align:center;padding:40px 20px;
+      color:var(--text-dim);font-size:.85rem;
     }
-    .goal-video-thumb-inner:hover { background: rgba(47,128,255,.3); }
-    .goal-video-info { padding: 12px 16px; }
-    .goal-video-match { font-size: 13px; color: var(--muted); }
-    .goal-video-player { font-weight: 700; margin: 4px 0; }
-    .goal-video-minute { font-size: 12px; color: var(--dim); }
-    .tab-bar {
-      display: flex;
-      gap: 4px;
-      margin: 16px 0;
-      flex-wrap: wrap;
-    }
-    .tab-btn {
-      padding: 8px 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.06);
-      color: var(--ink);
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-      transition: all .2s;
-    }
-    .tab-btn.active {
-      background: linear-gradient(135deg, var(--red), var(--blue));
-      border-color: transparent;
-    }
-    .highlight-match {
-      background: rgba(47,128,255,.08);
-      border-color: var(--blue);
-    }
+    .empty-state .icon{font-size:3rem;margin-bottom:12px;opacity:.5}
   </style>
 </head>
 <body>
@@ -436,153 +593,169 @@
   <header>
     <nav class="nav" aria-label="主导航">
       <div class="brand">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <span>2026 世界杯战报中心</span>
+        <div class="brand-icon" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="year">FIFA WORLD CUP 2026</span>
+          <span class="title">世界杯战报中心</span>
+        </div>
       </div>
-      <div class="nav-actions">
-        <button type="button" data-jump="focus">焦点</button>
-        <button type="button" data-jump="matches">赛程</button>
-        <button type="button" data-jump="standings">积分榜</button>
-        <button type="button" data-jump="players">球员统计</button>
-        <button type="button" data-jump="goalvideos">进球视频</button>
-        <button type="button" data-jump="videos">视频直播</button>
-        <button type="button" id="refreshBtn">刷新数据</button>
+      <button class="nav-mobile-toggle" id="mobileMenuBtn" aria-label="菜单">&#9776;</button>
+      <div class="nav-links" id="navLinks">
+        <button data-jump="focus" class="active">&#9673; 焦点</button>
+        <button data-jump="matches">&#9873; 赛程</button>
+        <button data-jump="standings">&#9733; 积分榜</button>
+        <button data-jump="players">&#9917; 球员</button>
+        <button data-jump="goalvideos">&#9654; 进球</button>
+        <button data-jump="videos">&#127909; 直播</button>
+        <button id="refreshBtn" class="btn-refresh">&#8635; 刷新</button>
+      </div>
+      <div class="nav-status">
         <span id="refreshState"></span>
-        <span id="countdownTimer"></span>
+        <span class="nav-countdown" id="countdownTimer"></span>
       </div>
     </nav>
-    <div id="data-source-indicator" style="display:none; padding:6px 22px; font-size:11px; color:var(--dim); background:rgba(255,255,255,.03); border-bottom:1px solid var(--line);">
-      &#x1F4E1; 数据来源: <span id="data-source-text">加载中...</span>
-      <span id="data-update-time" style="margin-left:12px;"></span>
-      <span id="auto-refresh-info" style="margin-left:12px;color:var(--gold);"></span>
+    <div class="data-bar" id="dataBar">
+      <span class="dot" id="dataDot"></span>
+      <span id="dataSourceText">数据加载中...</span>
+      <span id="dataUpdateTime"></span>
+      <span id="autoRefreshInfo" style="margin-left:auto"></span>
     </div>
   </header>
 
   <main id="main-content">
-    <div id="leadText" style="color:var(--dim);font-size:13px;margin-bottom:18px;"></div>
+    <!-- 日期信息 -->
+    <div class="section" id="leadText" style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px"></div>
 
+    <!-- ===== HERO: 战报三卡片 + 热点 ===== -->
     <div class="hero">
-      <section>
-        <h2>实时战报</h2>
-        <div id="heroBoard" class="hero-board"></div>
-
-        <div id="hotspot" style="margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;">
-          <h3 id="hotspotTitle"></h3>
-          <p id="hotspotBody"></p>
-          <div id="hotspotChips" style="margin-top:10px;"></div>
-        </div>
-      </section>
-
-      <section>
-        <h2>数据概览</h2>
-        <div id="metrics" class="metric-bar"></div>
-
-        <h2>次日赛程</h2>
-        <div id="tomorrowNote" style="color:var(--muted);font-size:13px;margin-bottom:10px;"></div>
-        <div id="tomorrowGrid" class="grid"></div>
-      </section>
+      <div class="hero-top" id="heroBoard"></div>
+      <div class="hotspot">
+        <h3 id="hotspotTitle"></h3>
+        <p id="hotspotBody"></p>
+        <div class="hotspot-chips" id="hotspotChips"></div>
+      </div>
     </div>
 
-    <section id="focus">
-      <h2>焦点比赛</h2>
-      <div id="focusGrid" class="grid"></div>
-    </section>
+    <!-- ===== 数据概览 ===== -->
+    <div class="section">
+      <div class="section-header"><h2>数据概览</h2></div>
+      <div class="metric-bar" id="metrics"></div>
+    </div>
 
-    <section id="videos">
-      <div class="section-head">
-        <div><h2>赛事视频直播与回放</h2><div class="section-note">直播窗口支持选择未来比赛；未开赛前可观看前一天进球集锦；完赛比赛可选择回放来源观看。</div></div>
+    <!-- ===== 次日赛程 ===== -->
+    <div class="section">
+      <div class="section-header">
+        <h2>次日赛程</h2>
+        <div class="sub" id="tomorrowNote"></div>
+      </div>
+      <div class="grid" id="tomorrowGrid"></div>
+    </div>
+
+    <!-- ===== 焦点比赛 ===== -->
+    <div class="section" id="focus">
+      <div class="section-header"><h2>焦点比赛</h2></div>
+      <div class="grid" id="focusGrid"></div>
+    </div>
+
+    <!-- ===== 视频直播/回放 ===== -->
+    <div class="section" id="videos">
+      <div class="section-header">
+        <h2>赛事视频直播与回放</h2>
+        <div class="sub">直播窗口支持选择未来比赛；未开赛前可观看前一天进球集锦；完赛比赛可选择回放来源观看。</div>
       </div>
       <div class="video-layout">
         <div class="video-panel">
-          <h3>现场直播窗口</h3>
-          <div class="control">
-            <select id="liveMatchSelect"><option value="">自动选择（进行中比赛优先）</option></select>
-            <button type="button" id="refreshLiveBtn" style="font-size:12px;padding:6px 12px;">刷新列表</button>
+          <h3>&#128250; 现场直播窗口</h3>
+          <div class="controls" style="margin-bottom:12px">
+            <select id="liveMatchSelect" style="flex:1"><option value="">自动选择（进行中比赛优先）</option></select>
+            <button class="btn" id="refreshLiveBtn">刷新列表</button>
           </div>
           <div class="video-window" id="liveVideoWindow"></div>
           <div class="video-meta" id="liveVideoMeta"></div>
           <div class="video-list" id="liveHighlightsList"></div>
         </div>
         <div class="video-panel">
-          <h3>完赛视频回放</h3>
-          <div class="control">
-            <select id="replaySelect"><option value="">选择已完赛比赛</option></select>
-            <button type="button" id="searchReplayBtn" style="font-size:12px;padding:6px 12px;">搜索回放</button>
+          <h3>&#127902; 完赛视频回放</h3>
+          <div class="controls" style="margin-bottom:12px">
+            <select id="replaySelect" style="flex:1"><option value="">选择已完赛比赛</option></select>
+            <button class="btn" id="searchReplayBtn">搜索回放</button>
           </div>
           <div class="video-window" id="replayVideoWindow"></div>
           <div class="video-meta" id="replayVideoMeta"></div>
           <div class="video-list" id="replayList"></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="matches">
-      <h2>全部赛程</h2>
-      <div class="control">
+    <!-- ===== 全部赛程 ===== -->
+    <div class="section" id="matches">
+      <div class="section-header"><h2>全部赛程</h2></div>
+      <div class="controls">
         <input type="text" id="searchBox" placeholder="搜索球队、球场..." aria-label="搜索比赛">
-        <select id="statusFilter" aria-label="筛选状态">
-          <option value="">全部状态</option>
-        </select>
-        <select id="groupFilter" aria-label="筛选小组">
-          <option value="">全部小组</option>
-        </select>
-        <select id="dateFilter" aria-label="筛选日期">
-          <option value="">全部日期</option>
-        </select>
-        <button type="button" id="resetFilters">重置筛选</button>
+        <select id="statusFilter" aria-label="筛选状态"><option value="">全部状态</option></select>
+        <select id="groupFilter" aria-label="筛选小组"><option value="">全部小组</option></select>
+        <select id="dateFilter" aria-label="筛选日期"><option value="">全部日期</option></select>
+        <button class="btn" id="resetFilters">重置筛选</button>
       </div>
-      <div id="matchGrid" class="grid"></div>
-    </section>
+      <div class="grid" id="matchGrid"></div>
+    </div>
 
-    <section id="players">
-      <h2>球员统计</h2>
-      <div class="tab-bar" id="playerTabs">
+    <!-- ===== 球员统计 ===== -->
+    <div class="section" id="players">
+      <div class="section-header"><h2>球员统计</h2></div>
+      <div class="tabs" id="playerTabs">
         <button class="tab-btn active" data-tab="scorers">射手榜</button>
         <button class="tab-btn" data-tab="assists">助攻榜</button>
         <button class="tab-btn" data-tab="cards">红黄牌榜</button>
       </div>
-      <div id="playerStatsContainer" class="player-stats-grid"></div>
-    </section>
+      <div id="playerStatsContainer" class="player-grid"></div>
+    </div>
 
-    <section id="goalvideos">
-      <h2>进球视频集锦</h2>
-      <div class="control">
-        <select id="goalVideoMatchFilter" aria-label="按比赛筛选">
-          <option value="">全部比赛</option>
-        </select>
+    <!-- ===== 进球视频 ===== -->
+    <div class="section" id="goalvideos">
+      <div class="section-header"><h2>进球视频集锦</h2></div>
+      <div class="controls">
+        <select id="goalVideoMatchFilter" aria-label="按比赛筛选"><option value="">全部比赛</option></select>
       </div>
-      <div id="goalVideoGrid" class="goal-video-grid"></div>
-      <div id="goalVideoEmpty" class="empty" style="display:none;">暂无进球视频数据。</div>
-    </section>
+      <div class="goal-grid" id="goalVideoGrid"></div>
+      <div class="empty-state" id="goalVideoEmpty" style="display:none">
+        <div class="icon">&#9917;</div>
+        <div>暂无进球视频数据。</div>
+      </div>
+    </div>
 
-    <section id="standings">
-      <h2>积分榜</h2>
-      <div id="leaders" class="leader-board"></div>
-      <div id="standingsTable" class="table-wrap"></div>
-    </section>
+    <!-- ===== 积分榜 ===== -->
+    <div class="section" id="standings">
+      <div class="section-header"><h2>积分榜</h2></div>
+      <div class="leader-grid" id="leaders"></div>
+      <div class="table-wrap" id="standingsTable"></div>
+    </div>
 
-    <section id="discipline">
-      <h2>红黄牌记录</h2>
-      <div id="disciplineTable" class="table-wrap"></div>
-    </section>
+    <!-- ===== 红黄牌 ===== -->
+    <div class="section" id="discipline">
+      <div class="section-header"><h2>红黄牌记录</h2></div>
+      <div class="table-wrap" id="disciplineTable"></div>
+    </div>
   </main>
 
-  <footer style="text-align:center;color:var(--dim);font-size:12px;padding:30px 22px;border-top:1px solid var(--line);margin-top:40px;">
+  <footer>
     本页面为2026世界杯实时战报中心，数据来源于FIFA官方及ESPN公开数据，仅供参考。自动刷新间隔：15分钟。
   </footer>
 
   <!-- 来源弹窗 -->
-  <div class="source-modal" id="sourceModal" aria-hidden="true" role="dialog" aria-label="视频来源选择">
-    <div class="source-dialog">
-      <div class="source-head">
+  <div class="modal-overlay" id="sourceModal" role="dialog" aria-label="视频来源选择">
+    <div class="modal-dialog">
+      <div class="modal-head">
         <div>
-          <h3 id="sourceTitle" style="margin:0;"></h3>
-          <div id="sourceSubtitle" style="color:var(--dim);font-size:13px;"></div>
+          <h3 id="sourceTitle" style="margin:0"></h3>
+          <div id="sourceSubtitle" style="font-size:.78rem;color:var(--text-dim)"></div>
         </div>
-        <button class="source-close" id="sourceClose" aria-label="关闭">&times;</button>
+        <button class="modal-close" id="sourceClose" aria-label="关闭">&times;</button>
       </div>
       <div class="source-grid" id="sourceGrid"></div>
-      <div class="source-note">以上为第三方视频平台链接，点击将在新窗口打开。</div>
+      <div style="text-align:center;color:var(--text-dim);font-size:.72rem;margin-top:16px">
+        以上为第三方视频平台链接，点击将在新窗口打开。
+      </div>
     </div>
   </div>
 
@@ -591,104 +764,75 @@
     const DATA_CONFIG = {
       apiUrl: 'https://310767647-dot.github.io/worldcup-2026/data.json',
       fallbackUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
-      autoRefreshInterval: 15 * 60 * 1000, // 15分钟
+      autoRefreshInterval: 15 * 60 * 1000,
       debug: true
     };
 
-    // ============ 中文队名/球场映射 ============
+    // ============ 中文映射 ============
     const TEAM_NAMES_ZH = {
-      'Mexico': '墨西哥', 'South Africa': '南非', 'Korea Republic': '韩国', 'South Korea': '韩国',
-      'Czech Republic': '捷克', 'Czechia': '捷克', 'Canada': '加拿大',
-      'Bosnia and Herzegovina': '波黑', 'Bosnia': '波黑', 'USA': '美国', 'United States': '美国',
-      'Paraguay': '巴拉圭', 'Qatar': '卡塔尔', 'Switzerland': '瑞士',
-      'Brazil': '巴西', 'Morocco': '摩洛哥', 'Haiti': '海地', 'Scotland': '苏格兰',
-      'Australia': '澳大利亚', 'Turkey': '土耳其', 'Germany': '德国',
-      'Curaçao': '库拉索', 'Ivory Coast': '科特迪瓦', 'Ecuador': '厄瓜多尔',
-      'Netherlands': '荷兰', 'Japan': '日本', 'Sweden': '瑞典', 'Tunisia': '突尼斯',
-      'Belgium': '比利时', 'Egypt': '埃及', 'Iran': '伊朗', 'New Zealand': '新西兰',
-      'Spain': '西班牙', 'Cape Verde': '佛得角', 'Saudi Arabia': '沙特阿拉伯', 'Uruguay': '乌拉圭',
-      'France': '法国', 'Senegal': '塞内加尔', 'Iraq': '伊拉克', 'Norway': '挪威',
-      'Argentina': '阿根廷', 'Algeria': '阿尔及利亚', 'Austria': '奥地利', 'Jordan': '约旦',
-      'Portugal': '葡萄牙', 'DR Congo': '刚果(金)', 'Colombia': '哥伦比亚', 'Uzbekistan': '乌兹别克斯坦',
-      'England': '英格兰', 'Croatia': '克罗地亚', 'Ghana': '加纳', 'Panama': '巴拿马',
-      'Poland': '波兰', 'Denmark': '丹麦', 'Italy': '意大利',
-      '墨西哥': '墨西哥', '南非': '南非', '韩国': '韩国', '捷克': '捷克',
-      '加拿大': '加拿大', '波黑': '波黑', '美国': '美国', '巴拉圭': '巴拉圭',
-      '卡塔尔': '卡塔尔', '瑞士': '瑞士', '巴西': '巴西', '摩洛哥': '摩洛哥',
-      '海地': '海地', '苏格兰': '苏格兰', '澳大利亚': '澳大利亚', '土耳其': '土耳其',
-      '德国': '德国', '库拉索': '库拉索', '科特迪瓦': '科特迪瓦', '厄瓜多尔': '厄瓜多尔',
-      '荷兰': '荷兰', '日本': '日本', '瑞典': '瑞典', '突尼斯': '突尼斯',
-      '比利时': '比利时', '埃及': '埃及', '伊朗': '伊朗', '新西兰': '新西兰',
-      '西班牙': '西班牙', '佛得角': '佛得角', '沙特阿拉伯': '沙特阿拉伯', '乌拉圭': '乌拉圭',
-      '法国': '法国', '塞内加尔': '塞内加尔', '伊拉克': '伊拉克', '挪威': '挪威',
-      '阿根廷': '阿根廷', '阿尔及利亚': '阿尔及利亚', '奥地利': '奥地利', '约旦': '约旦',
-      '葡萄牙': '葡萄牙', '刚果(金)': '刚果(金)', '哥伦比亚': '哥伦比亚', '乌兹别克斯坦': '乌兹别克斯坦',
-      '英格兰': '英格兰', '克罗地亚': '克罗地亚', '加纳': '加纳', '巴拿马': '巴拿马',
-      '波兰': '波兰', '丹麦': '丹麦', '意大利': '意大利',
-      'USA': '美国', 'Korea': '韩国', 'Czech': '捷克', 'Bosnia': '波黑', 'Costa Rica': '哥斯达黎加',
-      'Canada': '加拿大', 'Swiss': '瑞士', 'Holland': '荷兰'
+      'Mexico':'墨西哥','South Africa':'南非','Korea Republic':'韩国','South Korea':'韩国',
+      'Czech Republic':'捷克','Czechia':'捷克','Canada':'加拿大',
+      'Bosnia and Herzegovina':'波黑','Bosnia':'波黑','USA':'美国','United States':'美国',
+      'Paraguay':'巴拉圭','Qatar':'卡塔尔','Switzerland':'瑞士',
+      'Brazil':'巴西','Morocco':'摩洛哥','Haiti':'海地','Scotland':'苏格兰',
+      'Australia':'澳大利亚','Turkey':'土耳其','Germany':'德国',
+      'Curaçao':'库拉索','Ivory Coast':'科特迪瓦','Ecuador':'厄瓜多尔',
+      'Netherlands':'荷兰','Japan':'日本','Sweden':'瑞典','Tunisia':'突尼斯',
+      'Belgium':'比利时','Egypt':'埃及','Iran':'伊朗','New Zealand':'新西兰',
+      'Spain':'西班牙','Cape Verde':'佛得角','Saudi Arabia':'沙特阿拉伯','Uruguay':'乌拉圭',
+      'France':'法国','Senegal':'塞内加尔','Iraq':'伊拉克','Norway':'挪威',
+      'Argentina':'阿根廷','Algeria':'阿尔及利亚','Austria':'奥地利','Jordan':'约旦',
+      'Portugal':'葡萄牙','DR Congo':'刚果(金)','Colombia':'哥伦比亚','Uzbekistan':'乌兹别克斯坦',
+      'England':'英格兰','Croatia':'克罗地亚','Ghana':'加纳','Panama':'巴拿马',
+      'Poland':'波兰','Denmark':'丹麦','Italy':'意大利',
+      '墨西哥':'墨西哥','南非':'南非','韩国':'韩国','捷克':'捷克',
+      '加拿大':'加拿大','波黑':'波黑','美国':'美国','巴拉圭':'巴拉圭',
+      '卡塔尔':'卡塔尔','瑞士':'瑞士','巴西':'巴西','摩洛哥':'摩洛哥',
+      '海地':'海地','苏格兰':'苏格兰','澳大利亚':'澳大利亚','土耳其':'土耳其',
+      '德国':'德国','库拉索':'库拉索','科特迪瓦':'科特迪瓦','厄瓜多尔':'厄瓜多尔',
+      '荷兰':'荷兰','日本':'日本','瑞典':'瑞典','突尼斯':'突尼斯',
+      '比利时':'比利时','埃及':'埃及','伊朗':'伊朗','新西兰':'新西兰',
+      '西班牙':'西班牙','佛得角':'佛得角','沙特阿拉伯':'沙特阿拉伯','乌拉圭':'乌拉圭',
+      '法国':'法国','塞内加尔':'塞内加尔','伊拉克':'伊拉克','挪威':'挪威',
+      '阿根廷':'阿根廷','阿尔及利亚':'阿尔及利亚','奥地利':'奥地利','约旦':'约旦',
+      '葡萄牙':'葡萄牙','刚果(金)':'刚果(金)','哥伦比亚':'哥伦比亚','乌兹别克斯坦':'乌兹别克斯坦',
+      '英格兰':'英格兰','克罗地亚':'克罗地亚','加纳':'加纳','巴拿马':'巴拿马',
+      '波兰':'波兰','丹麦':'丹麦','意大利':'意大利','Korea':'韩国','Czech':'捷克',
+      'Costa Rica':'哥斯达黎加','Swiss':'瑞士','Holland':'荷兰'
     };
     const VENUE_NAMES_ZH = {
-      'Mexico City Stadium': '墨西哥城体育场', 'Estadio Guadalajara': '瓜达拉哈拉体育场',
-      'Toronto Stadium': '多伦多体育场', 'Los Angeles Stadium': '洛杉矶体育场',
-      'BC Place': '卑诗体育馆', 'New Jersey Stadium': '大都会人寿体育场',
-      'San Francisco Bay Area Stadium': '李维斯体育场', 'Philadelphia Stadium': '费城体育场',
-      'Houston Stadium': '休斯顿体育场', 'Dallas Stadium': '达拉斯体育场',
-      'Monterrey Stadium': '蒙特雷体育场', 'Miami Stadium': '迈阿密体育场',
-      'Atlanta Stadium': '亚特兰大体育场', 'Seattle Stadium': '西雅图球场',
-      'Kansas City Stadium': '堪萨斯城体育场', 'Boston Stadium': '吉列体育场',
-      'Lumen Field, Seattle': '流明球场（西雅图）', 'Arrowhead Stadium, Kansas City': '箭头体育场（堪萨斯城）',
-      'SoFi Stadium, Los Angeles': 'SoFi体育场（洛杉矶）', 'BMO Field, Toronto': 'BMO球场（多伦多）',
-      'MetLife Stadium, New York': '大都会人寿体育场（纽约）', 'Levis Stadium, San Francisco': '李维斯体育场（旧金山）',
-      'Mercedes-Benz Stadium, Atlanta': '梅赛德斯-奔驰体育场（亚特兰大）',
-      'NRG Stadium, Houston': 'NRG体育场（休斯顿）', 'Hard Rock Stadium, Miami': '硬石体育场（迈阿密）',
-      'Lincoln Financial Field, Philadelphia': '林肯金融球场（费城）',
-      'AT&T Stadium, Dallas': 'AT&T体育场（达拉斯）', 'Gillette Stadium, Boston': '吉列体育场（波士顿）',
-      'Estadio Azteca, Mexico City': '阿兹特克体育场（墨西哥城）',
-      'Estadio Akron, Guadalajara': '阿克伦球场（瓜达拉哈拉）',
-      'Estadio BBVA, Monterrey': 'BBVA体育场（蒙特雷）',
-      '阿克伦球场': '阿克伦球场（瓜达拉哈拉）', '巴诺特球场': '巴诺特球场',
-      'BMO 球场': 'BMO球场（多伦多）', 'SoFi 体育场': 'SoFi体育场（洛杉矶）',
-      '李维斯体育场': '李维斯体育场（旧金山）', '大都会人寿体育场': '大都会人寿体育场（纽约）',
-      '吉列体育场': '吉列体育场（波士顿）', '卑诗体育馆': '卑诗体育馆（温哥华）'
+      'Mexico City Stadium':'墨西哥城体育场','Estadio Guadalajara':'瓜达拉哈拉体育场',
+      'Toronto Stadium':'多伦多体育场','Los Angeles Stadium':'洛杉矶体育场',
+      'BC Place':'卑诗体育馆','New Jersey Stadium':'大都会人寿体育场',
+      'San Francisco Bay Area Stadium':'李维斯体育场','Philadelphia Stadium':'费城体育场',
+      'Houston Stadium':'休斯顿体育场','Dallas Stadium':'达拉斯体育场',
+      'Monterrey Stadium':'蒙特雷体育场','Miami Stadium':'迈阿密体育场',
+      'Atlanta Stadium':'亚特兰大体育场','Seattle Stadium':'西雅图球场',
+      'Kansas City Stadium':'堪萨斯城体育场','Boston Stadium':'吉列体育场',
+      'Lumen Field, Seattle':'流明球场（西雅图）','Arrowhead Stadium, Kansas City':'箭头体育场（堪萨斯城）',
+      'SoFi Stadium, Los Angeles':'SoFi体育场（洛杉矶）','BMO Field, Toronto':'BMO球场（多伦多）',
+      'MetLife Stadium, New York':'大都会人寿体育场（纽约）','Levis Stadium, San Francisco':'李维斯体育场（旧金山）',
+      'Mercedes-Benz Stadium, Atlanta':'梅赛德斯-奔驰体育场（亚特兰大）',
+      'NRG Stadium, Houston':'NRG体育场（休斯顿）','Hard Rock Stadium, Miami':'硬石体育场（迈阿密）',
+      'Lincoln Financial Field, Philadelphia':'林肯金融球场（费城）',
+      'AT&T Stadium, Dallas':'AT&T体育场（达拉斯）','Gillette Stadium, Boston':'吉列体育场（波士顿）',
+      'Estadio Azteca, Mexico City':'阿兹特克体育场（墨西哥城）',
+      'Estadio Akron, Guadalajara':'阿克伦球场（瓜达拉哈拉）',
+      'Estadio BBVA, Monterrey':'BBVA体育场（蒙特雷）',
+      '阿克伦球场':'阿克伦球场（瓜达拉哈拉）','BMO 球场':'BMO球场（多伦多）',
+      'SoFi 体育场':'SoFi体育场（洛杉矶）','李维斯体育场':'李维斯体育场（旧金山）',
+      '大都会人寿体育场':'大都会人寿体育场（纽约）','吉列体育场':'吉列体育场（波士顿）',
+      '卑诗体育馆':'卑诗体育馆（温哥华）'
     };
+    function zhName(n){return n?(TEAM_NAMES_ZH[n]||n):''}
+    function zhVenue(v){return v?(VENUE_NAMES_ZH[v]||v):''}
 
-    function zhName(name) {
-      if (!name) return '';
-      if (TEAM_NAMES_ZH[name]) return TEAM_NAMES_ZH[name];
-      return name;
-    }
-    function zhVenue(venue) {
-      if (!venue) return '';
-      if (VENUE_NAMES_ZH[venue]) return VENUE_NAMES_ZH[venue];
-      return venue;
-    }
-
-    // ============ 内联数据（真实2026世界杯数据） ============
+    // ============ 内联数据 ============
     const INLINE_DATA = {
-      "meta": {
-        "title": "2026 世界杯实时战报中心",
-        "reportDate": "2026-06-13",
-        "resultsDate": "2026-06-13",
-        "tomorrowDate": "2026-06-14",
-        "generatedAt": "2026-06-13 21:30:00",
-        "timezone": "Asia/Shanghai",
-        "source": "FIFA/ESPN 公开数据"
-      },
-      "metrics": {
-        "totalMatches": 104,
-        "completedMatches": 4,
-        "liveMatches": 0,
-        "standingsRows": 16,
-        "disciplineEvents": 12,
-        "tomorrowFixtures": 4
-      },
-      "hotspot": {
-        "title": "2026-06-13 完赛焦点：美国4:1大胜巴拉圭",
-        "body": "已完赛：墨西哥2:0南非 | 韩国2:1捷克 | 加拿大1:1波黑 | 美国4:1巴拉圭。明日看点：卡塔尔vs瑞士、巴西vs摩洛哥、海地vs苏格兰、澳大利亚vs土耳其。",
-        "chips": ["完赛比分", "次日赛程", "积分走势", "射手榜"]
-      },
-      "matches": [
+      "meta":{"title":"2026 世界杯实时战报中心","reportDate":"2026-06-13","resultsDate":"2026-06-13","tomorrowDate":"2026-06-14","generatedAt":"2026-06-13 21:30:00","timezone":"Asia/Shanghai","source":"FIFA/ESPN 公开数据"},
+      "metrics":{"totalMatches":104,"completedMatches":4,"liveMatches":0,"standingsRows":16,"disciplineEvents":12,"tomorrowFixtures":4},
+      "hotspot":{"title":"2026-06-13 完赛焦点：美国4:1大胜巴拉圭","body":"已完赛：墨西哥2:0南非 | 韩国2:1捷克 | 加拿大1:1波黑 | 美国4:1巴拉圭。明日看点：卡塔尔vs瑞士、巴西vs摩洛哥、海地vs苏格兰、澳大利亚vs土耳其。","chips":["完赛比分","次日赛程","积分走势","射手榜"]},
+      "matches":[
         {"id":"M01","time":"2026-06-12 03:00","date":"2026-06-12","stage":"小组赛","group":"A组","home":"墨西哥","away":"南非","homeScore":2,"awayScore":0,"score":"2:0","status":"已完赛","statusRaw":"FULL_TIME","venue":"墨西哥城体育场","source":"FIFA 官方","completed":true,"live":false},
         {"id":"M02","time":"2026-06-12 10:00","date":"2026-06-12","stage":"小组赛","group":"A组","home":"韩国","away":"捷克","homeScore":2,"awayScore":1,"score":"2:1","status":"已完赛","statusRaw":"FULL_TIME","venue":"瓜达拉哈拉体育场","source":"FIFA 官方","completed":true,"live":false},
         {"id":"M03","time":"2026-06-13 03:00","date":"2026-06-13","stage":"小组赛","group":"B组","home":"加拿大","away":"波黑","homeScore":1,"awayScore":1,"score":"1:1","status":"已完赛","statusRaw":"FULL_TIME","venue":"多伦多体育场","source":"FIFA 官方","completed":true,"live":false},
@@ -714,7 +858,7 @@
         {"id":"M23","time":"2026-06-18 07:00","date":"2026-06-18","stage":"小组赛","group":"L组","home":"加纳","away":"巴拿马","homeScore":0,"awayScore":0,"score":"-","status":"未开赛","statusRaw":"TIMED","venue":"多伦多体育场","source":"FIFA 官方","completed":false,"live":false},
         {"id":"M24","time":"2026-06-18 10:00","date":"2026-06-18","stage":"小组赛","group":"K组","home":"乌兹别克斯坦","away":"哥伦比亚","homeScore":0,"awayScore":0,"score":"-","status":"未开赛","statusRaw":"TIMED","venue":"墨西哥城体育场","source":"FIFA 官方","completed":false,"live":false}
       ],
-      "standings": [
+      "standings":[
         {"group":"A组","team":"墨西哥","played":1,"won":1,"drawn":0,"lost":0,"goalsFor":2,"goalsAgainst":0,"goalDifference":2,"points":3},
         {"group":"A组","team":"韩国","played":1,"won":1,"drawn":0,"lost":0,"goalsFor":2,"goalsAgainst":1,"goalDifference":1,"points":3},
         {"group":"A组","team":"捷克","played":1,"won":0,"drawn":0,"lost":1,"goalsFor":1,"goalsAgainst":2,"goalDifference":-1,"points":0},
@@ -732,7 +876,7 @@
         {"group":"C组","team":"海地","played":0,"won":0,"drawn":0,"lost":0,"goalsFor":0,"goalsAgainst":0,"goalDifference":0,"points":0},
         {"group":"C组","team":"苏格兰","played":0,"won":0,"drawn":0,"lost":0,"goalsFor":0,"goalsAgainst":0,"goalDifference":0,"points":0}
       ],
-      "discipline": [
+      "discipline":[
         {"matchId":"M01","team":"墨西哥","player":"塞萨尔·蒙特斯","card":"红牌","minute":"90+2","reason":"严重犯规"},
         {"matchId":"M01","team":"墨西哥","player":"布赖恩·古铁雷斯","card":"黄牌","minute":"23","reason":"犯规"},
         {"matchId":"M01","team":"南非","player":"斯费赫洛·西托莱","card":"红牌","minute":"49","reason":"危险动作"},
@@ -752,8 +896,8 @@
         {"matchId":"M04","team":"巴拉圭","player":"胡尼奥尔·阿隆索","card":"黄牌","minute":"90+3","reason":"犯规"},
         {"matchId":"M04","team":"巴拉圭","player":"阿莱士·阿尔塞","card":"黄牌","minute":"88","reason":"犯规"}
       ],
-      "playerStats": {
-        "scorers": [
+      "playerStats":{
+        "scorers":[
           {"rank":1,"player":"弗拉林·巴洛贡","team":"美国","goals":2,"matches":1},
           {"rank":2,"player":"劳尔·希门尼斯","team":"墨西哥","goals":1,"matches":1},
           {"rank":3,"player":"胡利安·基尼奥内斯","team":"墨西哥","goals":1,"matches":1},
@@ -763,14 +907,14 @@
           {"rank":7,"player":"乔纳森·戴维","team":"加拿大","goals":1,"matches":1},
           {"rank":8,"player":"埃尔梅丁·德米罗维奇","team":"波黑","goals":1,"matches":1}
         ],
-        "assists": [
+        "assists":[
           {"rank":1,"player":"克里斯蒂安·普利西奇","team":"美国","assists":2,"matches":1},
           {"rank":2,"player":"埃德松·阿尔瓦雷斯","team":"墨西哥","assists":1,"matches":1},
           {"rank":3,"player":"孙兴慜","team":"韩国","assists":1,"matches":1},
           {"rank":4,"player":"阿方索·戴维斯","team":"加拿大","assists":1,"matches":1}
         ]
       },
-      "goalVideos": [
+      "goalVideos":[
         {"id":"GV01","matchId":"M01","player":"劳尔·希门尼斯","team":"墨西哥","minute":"15","type":"goal","description":"希门尼斯头球破门，墨西哥1:0领先","match":"墨西哥 vs 南非","query":"Mexico South Africa goal Jimenez"},
         {"id":"GV02","matchId":"M01","player":"胡利安·基尼奥内斯","team":"墨西哥","minute":"78","type":"goal","description":"基尼奥内斯远射破门，墨西哥2:0锁定胜局","match":"墨西哥 vs 南非","query":"Mexico South Africa Quinones goal"},
         {"id":"GV03","matchId":"M02","player":"黄仁范","team":"韩国","minute":"32","type":"goal","description":"黄仁范禁区外远射得分","match":"韩国 vs 捷克","query":"South Korea Czech Hwang In-Beom goal"},
@@ -789,701 +933,298 @@
     // ============ 数据处理 ============
     let DATA = null;
     let dataSource = '内联数据';
+    const $ = id => document.getElementById(id);
+    function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+    function escA(s){return esc(s).replace(/`/g,'&#96;')}
+    function sgn(v){const n=Number(v||0);return n>0?`+${n}`:String(n)}
 
-    async function loadDataFromNetwork() {
-      const log = (msg) => { if (DATA_CONFIG.debug) console.log(`[数据] ${msg}`); };
-      try {
-        log(`从API加载: ${DATA_CONFIG.apiUrl}`);
-        const response = await fetch(`${DATA_CONFIG.apiUrl}?t=${Date.now()}`, {
-          cache: 'no-store',
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          log('API加载成功');
-          return data;
-        }
-      } catch (err) {
-        log(`API失败: ${err.message}`);
-      }
-      try {
-        log(`从备用地址加载: ${DATA_CONFIG.fallbackUrl}`);
-        const response = await fetch(`${DATA_CONFIG.fallbackUrl}?t=${Date.now()}`, {
-          cache: 'no-store',
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          log('备用地址加载成功');
-          return data;
-        }
-      } catch (err) {
-        log(`备用地址失败: ${err.message}`);
-      }
+    async function loadDataFromNetwork(){
+      const log=msg=>{if(DATA_CONFIG.debug)console.log(`[数据] ${msg}`)};
+      try{log(`从API加载: ${DATA_CONFIG.apiUrl}`);const r=await fetch(`${DATA_CONFIG.apiUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}});if(r.ok){log('API加载成功');return await r.json()}}catch(e){log(`API失败: ${e.message}`)}
+      try{log(`从备用地址加载: ${DATA_CONFIG.fallbackUrl}`);const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}});if(r.ok){log('备用地址加载成功');return await r.json()}}catch(e){log(`备用地址失败: ${e.message}`)}
       return null;
     }
 
-    function processData(rawData) {
-      if (rawData.matches) {
-        rawData.matches.sort((a, b) => new Date(a.time) - new Date(b.time));
-      }
-      if (rawData.standings) {
-        rawData.standings.sort((a, b) => {
-          if (b.points !== a.points) return b.points - a.points;
-          return b.goalDifference - a.goalDifference;
-        });
-      }
-      // 确保中文数据
-      if (rawData.matches) {
-        rawData.matches.forEach(m => {
-          m.home = zhName(m.home);
-          m.away = zhName(m.away);
-          if (m.venue) m.venue = zhVenue(m.venue);
-        });
-      }
-      if (rawData.standings) {
-        rawData.standings.forEach(s => {
-          s.team = zhName(s.team);
-        });
-      }
-      if (rawData.discipline) {
-        rawData.discipline.forEach(d => {
-          d.team = zhName(d.team);
-        });
-      }
-      if (rawData.playerStats) {
-        ['scorers','assists'].forEach(k => {
-          if (rawData.playerStats[k]) {
-            rawData.playerStats[k].forEach(p => { p.team = zhName(p.team); });
-          }
-        });
-      }
-      return rawData;
+    function processData(raw){
+      if(raw.matches){raw.matches.sort((a,b)=>new Date(a.time)-new Date(b.time))}
+      if(raw.standings){raw.standings.sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference)}
+      if(raw.matches){raw.matches.forEach(m=>{m.home=zhName(m.home);m.away=zhName(m.away);if(m.venue)m.venue=zhVenue(m.venue)})}
+      if(raw.standings){raw.standings.forEach(s=>{s.team=zhName(s.team)})}
+      if(raw.discipline){raw.discipline.forEach(d=>{d.team=zhName(d.team)})}
+      if(raw.playerStats){['scorers','assists'].forEach(k=>{if(raw.playerStats[k])raw.playerStats[k].forEach(p=>{p.team=zhName(p.team)})})}
+      return raw;
     }
 
-    async function initData() {
-      const networkData = await loadDataFromNetwork();
-      if (networkData) {
-        DATA = processData(networkData);
-        dataSource = '网络数据';
-      } else {
-        DATA = processData(JSON.parse(JSON.stringify(INLINE_DATA)));
-        dataSource = '内联备用数据';
-      }
-      updateDataSourceIndicator();
-      renderAll();
-      setupAutoRefresh();
-      setupCountdown();
+    async function initData(){
+      const nd=await loadDataFromNetwork();
+      if(nd){DATA=processData(nd);dataSource='网络数据'}else{DATA=processData(JSON.parse(JSON.stringify(INLINE_DATA)));dataSource='内联备用数据'}
+      updateDataBar();renderAll();setupAutoRefresh();setupCountdown();
     }
 
-    function updateDataSourceIndicator() {
-      const indicator = document.getElementById('data-source-indicator');
-      const text = document.getElementById('data-source-text');
-      const time = document.getElementById('data-update-time');
-      const auto = document.getElementById('auto-refresh-info');
-      if (indicator && text) {
-        text.textContent = dataSource;
-        indicator.style.display = 'block';
-        if (time && DATA && DATA.meta && DATA.meta.generatedAt) {
-          time.textContent = '更新时间: ' + DATA.meta.generatedAt;
-        }
-        if (auto) {
-          auto.textContent = '每15分钟自动刷新';
-        }
-      }
+    function updateDataBar(){
+      $('dataSourceText').textContent='数据来源: '+dataSource;
+      $('dataBar').style.display='flex';
+      if(DATA&&DATA.meta&&DATA.meta.generatedAt)$('dataUpdateTime').textContent='更新时间: '+DATA.meta.generatedAt;
+      $('autoRefreshInfo').textContent='每15分钟自动刷新';
+      const dot=$('dataDot');
+      if(dataSource.includes('网络')){dot.className='dot'}else if(dataSource.includes('备用')){dot.className='dot stale'}else{dot.className='dot offline'}
     }
 
-    // ============ 15分钟自动刷新 + 倒计时 ============
-    let refreshTimer = null;
-    let countdownTimer = null;
-
-    function setupAutoRefresh() {
-      if (refreshTimer) clearInterval(refreshTimer);
-      refreshTimer = setInterval(async () => {
-        const newData = await loadDataFromNetwork();
-        if (newData) {
-          DATA = processData(newData);
-          dataSource = '网络数据（自动刷新）';
-          updateDataSourceIndicator();
-          renderAll();
-          if (DATA_CONFIG.debug) console.log('[自动刷新] 数据已更新');
-        }
+    // ============ 15分钟倒计时 ============
+    let refreshTimer=null,countdownTimer=null;
+    function setupAutoRefresh(){
+      if(refreshTimer)clearInterval(refreshTimer);
+      refreshTimer=setInterval(async()=>{
+        const nd=await loadDataFromNetwork();
+        if(nd){DATA=processData(nd);dataSource='网络数据（自动刷新）';updateDataBar();renderAll();if(DATA_CONFIG.debug)console.log('[自动刷新] 数据已更新')}
         resetCountdown();
-      }, DATA_CONFIG.autoRefreshInterval);
+      },DATA_CONFIG.autoRefreshInterval);
+    }
+    function setupCountdown(){resetCountdown()}
+    function resetCountdown(){
+      if(countdownTimer)clearInterval(countdownTimer);
+      let rem=Math.floor(DATA_CONFIG.autoRefreshInterval/1000);
+      const el=$('countdownTimer');
+      countdownTimer=setInterval(()=>{
+        rem--;if(rem<=0)rem=Math.floor(DATA_CONFIG.autoRefreshInterval/1000);
+        const m=Math.floor(rem/60),s=rem%60;
+        if(el)el.textContent=`下次刷新: ${m}:${String(s).padStart(2,'0')}`;
+      },1000);
     }
 
-    function setupCountdown() {
-      resetCountdown();
-    }
-
-    function resetCountdown() {
-      if (countdownTimer) clearInterval(countdownTimer);
-      let remaining = Math.floor(DATA_CONFIG.autoRefreshInterval / 1000);
-      const el = document.getElementById('countdownTimer');
-      countdownTimer = setInterval(() => {
-        remaining--;
-        if (remaining <= 0) remaining = Math.floor(DATA_CONFIG.autoRefreshInterval / 1000);
-        const min = Math.floor(remaining / 60);
-        const sec = remaining % 60;
-        if (el) el.textContent = `下次刷新: ${min}:${String(sec).padStart(2,'0')}`;
-      }, 1000);
-    }
-
-    // ============ 工具函数 ============
-    const $ = (id) => document.getElementById(id);
-    function escapeHtml(value) {
-      return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-    }
-    function escapeAttr(value) {
-      return escapeHtml(value).replace(/`/g, '&#96;');
-    }
-    function signed(value) {
-      const num = Number(value || 0);
-      return num > 0 ? `+${num}` : String(num);
-    }
-
-    function matchCard(m) {
-      const score = m.completed ? `${m.homeScore ?? ''}:${m.awayScore ?? ''}` : 'VS';
-      const statusClass = m.live ? 'live' : (m.completed ? 'finished' : 'scheduled');
-      return `<article class="match-card ${m.live ? 'live' : ''}">
-        <div class="match-meta"><span>${escapeHtml(m.time || '时间待定')}</span><span>${escapeHtml([m.stage, m.group].filter(Boolean).join(' · '))}</span></div>
-        <div class="scoreline"><span class="team">${escapeHtml(m.home)}</span><strong class="score">${escapeHtml(score)}</strong><span class="team">${escapeHtml(m.away)}</span></div>
-        <div><span class="pill ${statusClass}">${escapeHtml(m.status || '待定')}</span></div>
-        <div class="venue">球场：${escapeHtml(m.venue || '待定')}</div>
+    // ============ 卡片构建 ============
+    function matchCard(m){
+      let scoreHtml,statusClass;
+      if(m.live){scoreHtml=`${m.homeScore??''}:${m.awayScore??''}`;statusClass='live'}
+      else if(m.completed){scoreHtml=`${m.homeScore??''}:${m.awayScore??''}`;statusClass='done'}
+      else{scoreHtml='VS';statusClass='upcoming'}
+      const statusLabel=m.live?'&#9679; 进行中':(m.completed?'已完赛':(m.status||'未开赛'));
+      const liveClass=m.live?' live-card':'';
+      return `<article class="match-card${liveClass}">
+        <div class="match-card-head">
+          <span>${esc(m.time||'待定')}</span>
+          <span>${esc([m.stage,m.group].filter(Boolean).join(' · '))}</span>
+        </div>
+        <div class="match-teams">
+          <div class="match-team"><div class="match-team-name">${esc(m.home)}</div></div>
+          <div class="match-score ${statusClass}">${esc(scoreHtml)}</div>
+          <div class="match-team"><div class="match-team-name">${esc(m.away)}</div></div>
+        </div>
+        <div style="text-align:center;margin-top:8px"><span class="pill ${statusClass}">${statusLabel}</span></div>
+        <div class="match-venue">${esc(m.venue||'待定')}</div>
       </article>`;
     }
 
-    // ============ 渲染函数 ============
-    function renderAll() {
-      if (!DATA) return;
+    function rankClass(i){if(i===1)return'';if(i===2)return' silver';if(i===3)return' bronze';return' silver'}
 
-      $('leadText').textContent = '数据日期：' + DATA.meta.reportDate + '。生成时间：' + DATA.meta.generatedAt + '。时区：北京时间。';
-
+    // ============ 主渲染 ============
+    function renderAll(){
+      if(!DATA)return;
+      $('leadText').textContent='数据日期：'+DATA.meta.reportDate+'。生成时间：'+DATA.meta.generatedAt+'。时区：北京时间。';
       // 热点
-      $('hotspotTitle').textContent = DATA.hotspot.title;
-      $('hotspotBody').textContent = DATA.hotspot.body;
-      $('hotspotChips').innerHTML = (DATA.hotspot.chips || []).map(label => '<span class="pill" style="margin-right:6px;">' + escapeHtml(label) + '</span>').join('');
-
+      $('hotspotTitle').textContent=DATA.hotspot.title;
+      $('hotspotBody').textContent=DATA.hotspot.body;
+      $('hotspotChips').innerHTML=(DATA.hotspot.chips||[]).map(l=>'<span class="pill default-pill">'+esc(l)+'</span>').join('');
       // 指标
-      const m = DATA.metrics;
-      $('metrics').innerHTML = [
-        ['累计比赛', m.totalMatches],
-        ['已完赛', m.completedMatches],
-        ['进行中', m.liveMatches],
-        ['积分记录', m.standingsRows],
-        ['红黄牌', m.disciplineEvents],
-        ['次日赛事', m.tomorrowFixtures],
-      ].map(([label, value]) => '<div class="metric"><b>' + value + '</b><span>' + label + '</span></div>').join('');
-
-      // Hero板块
-      const latest = [...DATA.matches].filter(m => m.completed).sort((a, b) => String(b.time || '').localeCompare(String(a.time || '')))[0];
-      const next = [...DATA.matches].filter(m => !m.completed).sort((a, b) => String(a.time || '').localeCompare(String(b.time || '')))[0];
-      const leader = [...DATA.standings].sort((a, b) => b.points - a.points || b.goalDifference - a.goalDifference)[0];
-      const tiles = [
-        latest ? ['最近完赛', latest.home + ' ' + (latest.homeScore ?? '') + ':' + (latest.awayScore ?? '') + ' ' + latest.away, latest.time || '时间待定'] : ['最近完赛', '暂无完赛比分', '等待数据写入'],
-        next ? ['下一场', next.home + ' vs ' + next.away, next.time || '时间待定'] : ['下一场', '暂无待赛赛程', '等待数据写入'],
-        leader ? ['积分领跑', leader.team + ' ' + leader.points + '分', leader.group + ' · 净胜球 ' + signed(leader.goalDifference)] : ['积分领跑', '暂无积分数据', '等待数据写入'],
+      const mt=DATA.metrics;
+      const metricItems=[
+        ['累计比赛',mt.totalMatches,'gold'],
+        ['已完赛',mt.completedMatches,'green'],
+        ['进行中',mt.liveMatches,'red'],
+        ['积分记录',mt.standingsRows,'cyan'],
+        ['红黄牌',mt.disciplineEvents,'red'],
+        ['次日赛事',mt.tomorrowFixtures,'gold']
       ];
-      $('heroBoard').innerHTML = tiles.map(([label, title, detail]) => '<div class="hero-tile"><span>' + escapeHtml(label) + '</span><b>' + escapeHtml(title) + '</b><small>' + escapeHtml(detail) + '</small></div>').join('');
-
-      // 次日赛程
-      const tomorrow = DATA.matches.filter(m => !m.completed && m.date === DATA.meta.tomorrowDate);
-      $('tomorrowNote').textContent = '次日赛程日期：' + DATA.meta.tomorrowDate;
-      $('tomorrowGrid').innerHTML = tomorrow.length ? tomorrow.map(matchCard).join('') : '<div class="empty">暂无次日赛程。</div>';
-
-      // 焦点比赛
-      const focus = DATA.matches.filter(m => m.live || m.date === DATA.meta.reportDate);
-      $('focusGrid').innerHTML = focus.length ? focus.map(matchCard).join('') : DATA.matches.slice(0, 4).map(matchCard).join('');
-
+      $('metrics').innerHTML=metricItems.map(([l,v,c])=>'<div class="metric-item"><div class="metric-value '+c+'">'+v+'</div><div class="metric-label">'+l+'</div></div>').join('');
+      // Hero
+      const latest=[...DATA.matches].filter(m=>m.completed).sort((a,b)=>String(b.time||'').localeCompare(String(a.time||'')))[0];
+      const next=[...DATA.matches].filter(m=>!m.completed).sort((a,b)=>String(a.time||'').localeCompare(String(b.time||'')))[0];
+      const leader=[...DATA.standings].sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference)[0];
+      const tiles=[
+        ['最新战报','card-latest',latest?latest.home+' '+(latest.homeScore??'')+':'+(latest.awayScore??'')+' '+latest.away:'暂无完赛比分',latest?latest.time||'':'等待数据写入'],
+        ['下一场比赛','card-next',next?next.home+' vs '+next.away:'暂无待赛赛程',next?next.time||'':'等待数据写入'],
+        ['积分领跑','card-leader',leader?leader.team+' '+leader.points+'分':'暂无积分数据',leader?leader.group+' · 净胜球 '+sgn(leader.goalDifference):'等待数据写入']
+      ];
+      $('heroBoard').innerHTML=tiles.map(([lbl,cls,title,det])=>'<div class="hero-card '+cls+'"><div class="hero-card-label">'+esc(lbl)+'</div><div class="hero-card-title">'+esc(title)+'</div><div class="hero-card-detail">'+esc(det)+'</div></div>').join('');
+      // 次日
+      const tomorrow=DATA.matches.filter(m=>!m.completed&&m.date===DATA.meta.tomorrowDate);
+      $('tomorrowNote').textContent='次日赛程日期：'+DATA.meta.tomorrowDate;
+      $('tomorrowGrid').innerHTML=tomorrow.length?tomorrow.map(matchCard).join(''):'<div class="empty-state"><div class="icon">&#128197;</div><div>暂无次日赛程。</div></div>';
+      // 焦点
+      const focus=DATA.matches.filter(m=>m.live||m.date===DATA.meta.reportDate);
+      $('focusGrid').innerHTML=focus.length?focus.map(matchCard).join(''):DATA.matches.slice(0,4).map(matchCard).join('');
       // 全部赛程
       renderMatches();
-
-      // 积分榜 - 领跑者
-      const leaders = [...DATA.standings].sort((a, b) => b.points - a.points || b.goalDifference - a.goalDifference).slice(0, 6);
-      $('leaders').innerHTML = leaders.map(row => 
-        '<div class="leader"><b>' + escapeHtml(row.team) + '</b><span>' + escapeHtml(row.group) + ' · ' + row.points + '分 · 净胜球 ' + signed(row.goalDifference) + '</span></div>'
-      ).join('');
-
-      // 积分榜 - 完整表格
-      const rows = [...DATA.standings].sort((a, b) =>
-        String(a.group).localeCompare(String(b.group), 'zh-CN') || b.points - a.points || b.goalDifference - a.goalDifference
-      );
-      $('standingsTable').innerHTML = '<table><thead><tr>' +
-        '<th>小组</th><th>球队</th><th>场次</th><th>胜</th><th>平</th><th>负</th><th>进球</th><th>失球</th><th>净胜球</th><th>积分</th>' +
-        '</tr></thead><tbody>' + rows.map(r => '<tr><td>' + escapeHtml(r.group) + '</td><td>' + escapeHtml(r.team) + '</td><td>' + r.played + '</td><td>' + r.won + '</td><td>' + r.drawn + '</td><td>' + r.lost + '</td><td>' + r.goalsFor + '</td><td>' + r.goalsAgainst + '</td><td>' + signed(r.goalDifference) + '</td><td><strong>' + r.points + '</strong></td></tr>').join('') + '</tbody></table>';
-
+      // 领跑者
+      const leaders=[...DATA.standings].sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference).slice(0,6);
+      $('leaders').innerHTML=leaders.map(r=>'<div class="leader-item"><b>'+esc(r.team)+'</b><span style="color:var(--text-muted);font-size:.8rem">'+esc(r.group)+' · '+r.points+'分 · 净胜球 '+sgn(r.goalDifference)+'</span></div>').join('');
+      // 积分表
+      const srows=[...DATA.standings].sort((a,b)=>String(a.group).localeCompare(String(b.group),'zh-CN')||b.points-a.points||b.goalDifference-a.goalDifference);
+      $('standingsTable').innerHTML='<table><thead><tr><th>小组</th><th>球队</th><th>场</th><th>胜</th><th>平</th><th>负</th><th>进球</th><th>失球</th><th>净胜</th><th>积分</th></tr></thead><tbody>'+srows.map(r=>'<tr><td>'+esc(r.group)+'</td><td><strong>'+esc(r.team)+'</strong></td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td><td>'+r.goalsFor+'</td><td>'+r.goalsAgainst+'</td><td>'+sgn(r.goalDifference)+'</td><td><strong>'+r.points+'</strong></td></tr>').join('')+'</tbody></table>';
       // 红黄牌
-      $('disciplineTable').innerHTML = '<table><thead><tr>' +
-        '<th>比赛ID</th><th>球队</th><th>球员</th><th>牌类</th><th>分钟</th><th>原因</th>' +
-        '</tr></thead><tbody>' + DATA.discipline.map(r => '<tr><td>' + escapeHtml(r.matchId) + '</td><td>' + escapeHtml(r.team) + '</td><td>' + escapeHtml(r.player) + '</td><td><span class="pill ' + (String(r.card).includes('红') ? 'live' : 'scheduled') + '">' + escapeHtml(r.card) + '</span></td><td>' + escapeHtml(r.minute) + '</td><td>' + escapeHtml(r.reason || '-') + '</td></tr>').join('') + '</tbody></table>';
-
+      $('disciplineTable').innerHTML='<table><thead><tr><th>比赛</th><th>球队</th><th>球员</th><th>牌类</th><th>分钟</th><th>原因</th></tr></thead><tbody>'+DATA.discipline.map(r=>'<tr><td>'+esc(r.matchId)+'</td><td>'+esc(r.team)+'</td><td>'+esc(r.player)+'</td><td><span class="pill '+(String(r.card).includes('红')?'live':'upcoming')+'">'+esc(r.card)+'</span></td><td>'+esc(r.minute)+'</td><td>'+esc(r.reason||'-')+'</td></tr>').join('')+'</tbody></table>';
       // 筛选器
-      const statuses = [...new Set(DATA.matches.map(m => m.status).filter(Boolean))].sort();
-      const groups = [...new Set(DATA.matches.map(m => m.group).filter(Boolean))].sort();
-      const dates = [...new Set(DATA.matches.map(m => m.date).filter(Boolean))].sort();
-      
-      fillSelect('statusFilter', statuses, '全部状态');
-      fillSelect('groupFilter', groups, '全部小组');
-      fillSelect('dateFilter', dates, '全部日期');
-
-      $('refreshState').textContent = '已加载 ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
-
-      // 球员统计
+      const statuses=[...new Set(DATA.matches.map(m=>m.status).filter(Boolean))].sort();
+      const groups=[...new Set(DATA.matches.map(m=>m.group).filter(Boolean))].sort();
+      const dates=[...new Set(DATA.matches.map(m=>m.date).filter(Boolean))].sort();
+      fillSelect('statusFilter',statuses,'全部状态');
+      fillSelect('groupFilter',groups,'全部小组');
+      fillSelect('dateFilter',dates,'全部日期');
+      $('refreshState').textContent='已加载 '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
+      // 子渲染
       renderPlayerStats('scorers');
-      // 进球视频
       renderGoalVideos();
-      // 视频直播/回放
       renderVideos();
     }
 
-    function fillSelect(id, values, firstText) {
-      const select = $(id);
-      const current = select.value;
-      select.innerHTML = '<option value="">' + firstText + '</option>' + values.map(v => '<option value="' + escapeAttr(v) + '">' + escapeHtml(v) + '</option>').join('');
-      if (values.includes(current)) select.value = current;
+    function fillSelect(id,vals,first){
+      const sel=$(id);const cur=sel.value;
+      sel.innerHTML='<option value="">'+first+'</option>'+vals.map(v=>'<option value="'+escA(v)+'">'+esc(v)+'</option>').join('');
+      if(vals.includes(cur))sel.value=cur;
     }
 
-    function renderMatches() {
-      const q = $('searchBox').value.trim().toLowerCase();
-      const status = $('statusFilter').value;
-      const group = $('groupFilter').value;
-      const date = $('dateFilter').value;
-      const rows = DATA.matches.filter(m => {
-        const haystack = [m.home, m.away, m.venue, m.stage, m.group, m.status, m.time].join(' ').toLowerCase();
-        return (!q || haystack.includes(q)) && (!status || m.status === status) && (!group || m.group === group) && (!date || m.date === date);
+    function renderMatches(){
+      const q=$('searchBox').value.trim().toLowerCase();
+      const status=$('statusFilter').value,group=$('groupFilter').value,date=$('dateFilter').value;
+      const rows=DATA.matches.filter(m=>{
+        const h=[m.home,m.away,m.venue,m.stage,m.group,m.status,m.time].join(' ').toLowerCase();
+        return (!q||h.includes(q))&&(!status||m.status===status)&&(!group||m.group===group)&&(!date||m.date===date);
       });
-      $('matchGrid').innerHTML = rows.length ? rows.map(matchCard).join('') : '<div class="empty">没有匹配的比赛。</div>';
+      $('matchGrid').innerHTML=rows.length?rows.map(matchCard).join(''):'<div class="empty-state"><div class="icon">&#9873;</div><div>没有匹配的比赛。</div></div>';
     }
 
     // ============ 球员统计 ============
-    function renderPlayerStats(tab) {
-      const container = $('playerStatsContainer');
-      if (!container) return;
-
-      let data = [];
-      if (tab === 'scorers' && DATA.playerStats && DATA.playerStats.scorers) {
-        data = DATA.playerStats.scorers;
-        container.innerHTML = data.map(p => 
-          '<div class="player-card">' +
-            '<div class="player-rank">' + p.rank + '</div>' +
-            '<div class="player-info">' +
-              '<div class="player-name">' + escapeHtml(p.player) + '</div>' +
-              '<div class="player-team">' + escapeHtml(p.team) + ' · ' + p.matches + '场</div>' +
-            '</div>' +
-            '<div style="text-align:center;">' +
-              '<div class="player-stat">' + p.goals + '</div>' +
-              '<div class="player-stat-label">进球</div>' +
-            '</div>' +
-          '</div>'
-        ).join('');
-      } else if (tab === 'assists' && DATA.playerStats && DATA.playerStats.assists) {
-        data = DATA.playerStats.assists;
-        container.innerHTML = data.map(p => 
-          '<div class="player-card">' +
-            '<div class="player-rank">' + p.rank + '</div>' +
-            '<div class="player-info">' +
-              '<div class="player-name">' + escapeHtml(p.player) + '</div>' +
-              '<div class="player-team">' + escapeHtml(p.team) + ' · ' + (p.matches||1) + '场</div>' +
-            '</div>' +
-            '<div style="text-align:center;">' +
-              '<div class="player-stat">' + p.assists + '</div>' +
-              '<div class="player-stat-label">助攻</div>' +
-            '</div>' +
-          '</div>'
-        ).join('');
-      } else if (tab === 'cards' && DATA.discipline) {
-        const cardMap = {};
-        DATA.discipline.forEach(d => {
-          const key = d.player + '|' + d.team;
-          if (!cardMap[key]) cardMap[key] = { player: d.player, team: d.team, yellow: 0, red: 0 };
-          if (d.card.includes('红')) cardMap[key].red++;
-          else cardMap[key].yellow++;
-        });
-        data = Object.values(cardMap).sort((a, b) => b.red - a.red || b.yellow - a.yellow).slice(0, 15);
-        container.innerHTML = data.map((p, i) => 
-          '<div class="player-card">' +
-            '<div class="player-rank">' + (i + 1) + '</div>' +
-            '<div class="player-info">' +
-              '<div class="player-name">' + escapeHtml(p.player) + '</div>' +
-              '<div class="player-team">' + escapeHtml(p.team) + '</div>' +
-            '</div>' +
-            '<div style="text-align:center;display:flex;gap:12px;">' +
-              '<div><span style="color:var(--red);font-weight:700;">' + p.red + '</span><div class="player-stat-label">红牌</div></div>' +
-              '<div><span style="color:var(--gold);font-weight:700;">' + p.yellow + '</span><div class="player-stat-label">黄牌</div></div>' +
-            '</div>' +
-          '</div>'
-        ).join('');
+    function renderPlayerStats(tab){
+      const c=$('playerStatsContainer');if(!c)return;
+      if(tab==='scorers'&&DATA.playerStats&&DATA.playerStats.scorers){
+        c.innerHTML=DATA.playerStats.scorers.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+p.matches+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-gold)">'+p.goals+'</div><div class="player-stat-lbl">进球</div></div></div>').join('')
+      }else if(tab==='assists'&&DATA.playerStats&&DATA.playerStats.assists){
+        c.innerHTML=DATA.playerStats.assists.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+(p.matches||1)+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-cyan)">'+p.assists+'</div><div class="player-stat-lbl">助攻</div></div></div>').join('')
+      }else if(tab==='cards'&&DATA.discipline){
+        const cm={};DATA.discipline.forEach(d=>{const k=d.player+'|'+d.team;if(!cm[k])cm[k]={player:d.player,team:d.team,yellow:0,red:0};if(d.card.includes('红'))cm[k].red++;else cm[k].yellow++});
+        const data=Object.values(cm).sort((a,b)=>b.red-a.red||b.yellow-a.yellow).slice(0,15);
+        c.innerHTML=data.map((p,i)=>'<div class="player-card"><div class="player-rank silver">'+(i+1)+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+'</div></div><div style="display:flex;gap:12px"><div><div class="player-stat-val" style="color:var(--wc-accent)">'+p.red+'</div><div class="player-stat-lbl">红牌</div></div><div><div class="player-stat-val" style="color:var(--wc-gold)">'+p.yellow+'</div><div class="player-stat-lbl">黄牌</div></div></div></div>').join('')
       }
     }
 
     // ============ 进球视频 ============
-    function renderGoalVideos(matchFilter) {
-      const grid = $('goalVideoGrid');
-      const empty = $('goalVideoEmpty');
-      if (!grid) return;
-
-      let videos = DATA.goalVideos || [];
-      if (matchFilter) {
-        videos = videos.filter(v => v.matchId === matchFilter);
+    function renderGoalVideos(mf){
+      const grid=$('goalVideoGrid'),empty=$('goalVideoEmpty');if(!grid)return;
+      let videos=DATA.goalVideos||[];if(mf)videos=videos.filter(v=>v.matchId===mf);
+      const fs=$('goalVideoMatchFilter');
+      if(fs&&fs.options.length<=1){
+        const matches=[...new Set((DATA.goalVideos||[]).map(v=>v.match))];
+        fs.innerHTML='<option value="">全部比赛</option>'+matches.map(m=>'<option value="'+escA((DATA.goalVideos||[]).find(v=>v.match===m)?.matchId||'')+'">'+esc(m)+'</option>').join('');
       }
-
-      // 更新筛选下拉
-      const filterSelect = $('goalVideoMatchFilter');
-      if (filterSelect && filterSelect.options.length <= 1) {
-        const matches = [...new Set((DATA.goalVideos || []).map(v => v.match))];
-        filterSelect.innerHTML = '<option value="">全部比赛</option>' +
-          matches.map(m => '<option value="' + escapeAttr((DATA.goalVideos || []).find(v => v.match === m)?.matchId || '') + '">' + escapeHtml(m) + '</option>').join('');
-      }
-
-      if (videos.length === 0) {
-        grid.innerHTML = '';
-        if (empty) empty.style.display = 'block';
-        return;
-      }
-      if (empty) empty.style.display = 'none';
-
-      grid.innerHTML = videos.map(v => 
-        '<div class="goal-video-card">' +
-          '<div class="goal-video-thumb" onclick="searchGoalVideo(\'' + escapeAttr(v.query) + '\')">' +
-            '<div class="goal-video-thumb-inner">⚽</div>' +
-          '</div>' +
-          '<div class="goal-video-info">' +
-            '<div class="goal-video-match">' + escapeHtml(v.match) + '</div>' +
-            '<div class="goal-video-player">' + escapeHtml(v.player) + ' (' + escapeHtml(v.team) + ')</div>' +
-            '<div class="goal-video-minute">第' + escapeHtml(v.minute) + '分钟 · ' + escapeHtml(v.description) + '</div>' +
-          '</div>' +
-        '</div>'
-      ).join('');
+      if(!videos.length){grid.innerHTML='';if(empty)empty.style.display='block';return}
+      if(empty)empty.style.display='none';
+      grid.innerHTML=videos.map(v=>'<div class="goal-card" onclick="searchGoalVideo(\''+escA(v.query)+'\')"><div class="goal-thumb"><div class="goal-play">&#9654;</div></div><div class="goal-info"><div class="goal-match">'+esc(v.match)+'</div><div class="goal-player">'+esc(v.player)+' ('+esc(v.team)+')</div><div class="goal-detail">第'+esc(v.minute)+'分钟 · '+esc(v.description)+'</div></div></div>').join('');
     }
 
-    function searchGoalVideo(query) {
-      const url = 'https://www.baidu.com/s?wd=' + encodeURIComponent(query + ' 世界杯 进球视频');
-      window.open(url, '_blank');
-    }
+    function searchGoalVideo(q){window.open('https://www.baidu.com/s?wd='+encodeURIComponent(q+' 世界杯 进球视频'),'_blank')}
 
     // ============ 视频直播/回放 ============
-    function renderVideos() {
-      const liveMatchSelect = $('liveMatchSelect');
-      const liveWindow = $('liveVideoWindow');
-      const liveMeta = $('liveVideoMeta');
-      const liveHighlights = $('liveHighlightsList');
-
-      // 构建所有未开赛比赛的列表 + 进行中比赛
-      const upcomingMatches = DATA.matches.filter(m => !m.completed && !m.live).slice(0, 10);
-      const liveMatch = DATA.matches.find(m => m.live);
-
-      // 填充直播选择下拉
-      if (liveMatchSelect) {
-        const currentVal = liveMatchSelect.value;
-        let options = '<option value="">自动选择（进行中比赛优先）</option>';
-        if (liveMatch) {
-          options += '<option value="' + escapeAttr(liveMatch.id) + '" selected>' + escapeHtml(liveMatch.home) + ' vs ' + escapeHtml(liveMatch.away) + ' （进行中）</option>';
+    function renderVideos(){
+      const lms=$('liveMatchSelect'),lw=$('liveVideoWindow'),lm=$('liveVideoMeta'),lh=$('liveHighlightsList');
+      const upcoming=DATA.matches.filter(m=>!m.completed&&!m.live).slice(0,10);
+      const liveMatch=DATA.matches.find(m=>m.live);
+      if(lms){
+        let opts='<option value="">自动选择（进行中比赛优先）</option>';
+        if(liveMatch)opts+='<option value="'+escA(liveMatch.id)+'" selected>'+esc(liveMatch.home)+' vs '+esc(liveMatch.away)+' （进行中）</option>';
+        opts+='<optgroup label="未来比赛">';
+        upcoming.forEach(m=>{opts+='<option value="'+escA(m.id)+'">'+esc(m.home)+' vs '+esc(m.away)+' ('+esc(m.time)+')</option>'});
+        opts+='</optgroup>';lms.innerHTML=opts;
+      }
+      if(liveMatch){
+        if(lw)lw.innerHTML='<div style="text-align:center;padding:30px 20px;color:var(--text-primary)"><div style="font-size:1.1rem;font-weight:700;margin-bottom:12px">'+esc(liveMatch.home)+' vs '+esc(liveMatch.away)+'</div><div style="font-size:.85rem;color:var(--text-dim);margin-bottom:16px">'+esc(liveMatch.time)+' | '+esc(liveMatch.venue)+'</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button onclick="openVideoSource(\''+escA(liveMatch.id)+'\',\'live\')" class="btn btn-primary" style="background:var(--wc-accent);font-size:.85rem;padding:10px 20px">&#128250; 观看直播</button><button onclick="searchMatchNews(\''+escA(liveMatch.home)+'\',\''+escA(liveMatch.away)+'\')" class="btn" style="font-size:.85rem;padding:10px 20px">&#128196; 比赛详情</button></div></div>';
+        if(lm)lm.innerHTML='<div style="color:var(--live);font-weight:700">&#9679; LIVE 进行中</div><div>'+esc(liveMatch.home)+' '+(liveMatch.homeScore??0)+' : '+(liveMatch.awayScore??0)+' '+esc(liveMatch.away)+'</div><div style="font-size:.75rem;color:var(--text-dim)">'+esc(liveMatch.venue)+'</div>';
+      }else if(lw){
+        const y=new Date();y.setDate(y.getDate()-1);const ys=y.toISOString().split('T')[0];
+        const ym=DATA.matches.filter(m=>m.completed&&m.date===ys);
+        if(ym.length){
+          lw.innerHTML='<div style="text-align:center;padding:30px 20px;color:var(--text-primary)"><div style="font-size:1rem;font-weight:700;margin-bottom:8px">暂无进行中的比赛</div><div style="font-size:.8rem;color:var(--text-dim);margin-bottom:16px">可观看昨日（'+ys+'）进球集锦</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">'+ym.map(m=>'<button onclick="searchGoalVideo(\''+escA(m.home+' '+m.away+' goal highlights')+'\')" class="btn" style="font-size:.75rem">'+esc(m.home)+' vs '+esc(m.away)+'</button>').join('')+'</div><div style="margin-top:12px"><button onclick="searchGoalVideo(\'World Cup 2026 highlights '+ys+'\')" class="btn">查看所有昨日集锦</button></div></div>';
+        }else{
+          lw.innerHTML='<div style="text-align:center;padding:40px 20px;color:var(--text-dim)"><div style="font-size:3rem;margin-bottom:12px;opacity:.5">&#128250;</div><div>暂无进行中的比赛</div><div style="font-size:.75rem;margin-top:8px">请选择下方未来比赛查看直播预告，或等待比赛开始</div></div>';
         }
-        options += '<optgroup label="未来比赛">';
-        upcomingMatches.forEach(m => {
-          options += '<option value="' + escapeAttr(m.id) + '"' + (currentVal === m.id ? ' selected' : '') + '>' + escapeHtml(m.home) + ' vs ' + escapeHtml(m.away) + ' (' + escapeHtml(m.time) + ')</option>';
-        });
-        options += '</optgroup>';
-        liveMatchSelect.innerHTML = options;
+        if(lm)lm.innerHTML='<div style="color:var(--text-dim)">等待比赛开始...</div>';
       }
+      if(lh&&!liveMatch){
+        const pd=DATA.matches.filter(m=>m.completed).slice(-4);
+        lh.innerHTML='<div style="padding:8px 0;font-size:.78rem;color:var(--text-muted);font-weight:600">已完赛比赛进球集锦：</div>'+pd.map(m=>'<div class="video-list-item" onclick="searchGoalVideo(\''+escA(m.home+' '+m.away+' all goals highlights')+'\')"><div style="font-weight:700">'+esc(m.home)+' '+(m.homeScore??'')+':'+(m.awayScore??'')+' '+esc(m.away)+'</div><div style="font-size:.7rem;color:var(--text-dim)">'+esc(m.time)+' | 点击查看进球视频</div></div>').join('');
+      }else if(lh&&liveMatch){lh.innerHTML=''}
 
-      // 直播窗口
-      if (liveMatch) {
-        // 有进行中比赛
-        if (liveWindow) {
-          liveWindow.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#000;color:var(--ink);">' +
-            '<div style="text-align:center;padding:20px;">' +
-              '<div style="font-size:18px;font-weight:700;margin-bottom:12px;">⚽ ' + escapeHtml(liveMatch.home) + ' vs ' + escapeHtml(liveMatch.away) + '</div>' +
-              '<div style="font-size:14px;color:var(--dim);margin-bottom:16px;">' + escapeHtml(liveMatch.time) + ' | ' + escapeHtml(liveMatch.venue) + '</div>' +
-              '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
-                '<button onclick="openVideoSource(\'' + escapeAttr(liveMatch.id) + '\', \'live\')" style="padding:10px 20px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;">📡 观看直播</button>' +
-                '<button onclick="searchMatchNews(\'' + escapeAttr(liveMatch.home) + '\', \'' + escapeAttr(liveMatch.away) + '\')" style="padding:10px 20px;background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;">📋 比赛详情</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        }
-        if (liveMeta) {
-          liveMeta.innerHTML = '<div style="color:var(--green);font-weight:700;">● LIVE 进行中</div>' +
-            '<div>' + escapeHtml(liveMatch.home) + ' ' + (liveMatch.homeScore ?? 0) + ' : ' + (liveMatch.awayScore ?? 0) + ' ' + escapeHtml(liveMatch.away) + '</div>' +
-            '<div style="color:var(--dim);font-size:12px;">' + escapeHtml(liveMatch.venue) + '</div>';
-        }
-      } else if (liveWindow) {
-        // 没有进行中比赛 - 显示前一天进球集锦
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayStr = yesterday.toISOString().split('T')[0];
-        const yesterdayMatches = DATA.matches.filter(m => m.completed && m.date === yesterdayStr);
-
-        if (yesterdayMatches.length > 0) {
-          liveWindow.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#000;color:var(--ink);">' +
-            '<div style="text-align:center;padding:20px;">' +
-              '<div style="font-size:16px;font-weight:700;margin-bottom:12px;">暂无进行中的比赛</div>' +
-              '<div style="font-size:13px;color:var(--dim);margin-bottom:16px;">可观看昨日（' + yesterdayStr + '）进球集锦</div>' +
-              '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
-                yesterdayMatches.map(m => '<button onclick="searchGoalVideo(\'' + escapeAttr(m.home + ' ' + m.away + ' goal highlights') + '\')" style="padding:8px 16px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;">' + escapeHtml(m.home) + ' vs ' + escapeHtml(m.away) + '</button>').join('') +
-              '</div>' +
-              '<div style="margin-top:12px;">' +
-                '<button onclick="searchGoalVideo(\'World Cup 2026 highlights ' + yesterdayStr + '\')" style="padding:8px 16px;background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;">查看所有昨日集锦</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        } else {
-          liveWindow.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#000;color:var(--dim);">' +
-            '<div style="text-align:center;">' +
-              '<div style="font-size:48px;margin-bottom:16px;">📺</div>' +
-              '<div>暂无进行中的比赛</div>' +
-              '<div style="font-size:12px;margin-top:8px;">请选择下方未来比赛查看直播预告，或等待比赛开始</div>' +
-            '</div>' +
-          '</div>';
-        }
-        if (liveMeta) liveMeta.innerHTML = '<div style="color:var(--dim);">等待比赛开始...</div>';
-      }
-
-      // 下方高亮列表 - 前一天集锦
-      if (liveHighlights && !liveMatch) {
-        const prevDay = DATA.matches.filter(m => m.completed).slice(-4);
-        liveHighlights.innerHTML = '<div style="padding:8px 0;font-size:13px;color:var(--muted);">已完赛比赛进球集锦：</div>' +
-          prevDay.map(m => '<div class="video-list-item" onclick="searchGoalVideo(\'' + escapeAttr(m.home + ' ' + m.away + ' all goals highlights') + '\')" style="cursor:pointer;">' +
-            '<div style="font-weight:700;">⚽ ' + escapeHtml(m.home) + ' ' + (m.homeScore??'') + ':' + (m.awayScore??'') + ' ' + escapeHtml(m.away) + '</div>' +
-            '<div style="font-size:12px;color:var(--dim);">' + escapeHtml(m.time) + ' | 点击查看进球视频</div>' +
-          '</div>').join('');
-      } else if (liveHighlights && liveMatch) {
-        liveHighlights.innerHTML = '';
-      }
-
-      // 完赛回放
-      const replaySelect = $('replaySelect');
-      const completedMatches = DATA.matches.filter(m => m.completed);
-      
-      if (replaySelect) {
-        const current = replaySelect.value;
-        replaySelect.innerHTML = '<option value="">选择已完赛比赛</option>' + 
-          completedMatches.map(m => '<option value="' + escapeAttr(m.id) + '">' + escapeHtml(m.home) + ' vs ' + escapeHtml(m.away) + ' (' + escapeHtml(m.time) + ')</option>').join('');
-        if (completedMatches.find(m => m.id === current)) replaySelect.value = current;
-        
-        replaySelect.onchange = function() {
-          if (this.value) showReplay(this.value);
-        };
-      }
-
-      // 默认显示最新完赛比赛
-      if (completedMatches.length > 0 && replaySelect && !replaySelect.value) {
-        showReplay(completedMatches[completedMatches.length - 1].id);
-        if (replaySelect) replaySelect.value = completedMatches[completedMatches.length - 1].id;
-      }
+      const rs=$('replaySelect'),cm=DATA.matches.filter(m=>m.completed);
+      if(rs){rs.innerHTML='<option value="">选择已完赛比赛</option>'+cm.map(m=>'<option value="'+escA(m.id)+'">'+esc(m.home)+' vs '+esc(m.away)+' ('+esc(m.time)+')</option>').join('');rs.onchange=function(){if(this.value)showReplay(this.value)}}
+      if(cm.length&&rs&&!rs.value){showReplay(cm[cm.length-1].id);rs.value=cm[cm.length-1].id}
     }
 
-    // 直播选择变更事件
-    document.addEventListener('change', function(e) {
-      if (e.target && e.target.id === 'liveMatchSelect') {
-        const matchId = e.target.value;
-        if (matchId) {
-          const match = DATA.matches.find(m => m.id === matchId);
-          if (match && !match.live) {
-            showLivePreview(match);
-          }
-        } else {
-          renderVideos();
-        }
-      }
-    });
+    document.addEventListener('change',function(e){if(e.target&&e.target.id==='liveMatchSelect'){const mid=e.target.value;if(mid){const m=DATA.matches.find(mm=>mm.id===mid);if(m&&!m.live)showLivePreview(m)}else renderVideos()}});
 
-    function showLivePreview(match) {
-      const liveWindow = $('liveVideoWindow');
-      const liveMeta = $('liveVideoMeta');
-      if (!match || !liveWindow) return;
-
-      liveWindow.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#000;color:var(--ink);">' +
-        '<div style="text-align:center;padding:20px;">' +
-          '<div style="font-size:18px;font-weight:700;margin-bottom:12px;">📅 ' + escapeHtml(match.home) + ' vs ' + escapeHtml(match.away) + '</div>' +
-          '<div style="font-size:14px;color:var(--dim);margin-bottom:8px;">' + escapeHtml(match.time) + ' | ' + escapeHtml(match.venue) + '</div>' +
-          '<div style="font-size:13px;color:var(--gold);margin-bottom:16px;">⏰ 比赛尚未开始，预计直播将在开赛前30分钟上线</div>' +
-          '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
-            '<button onclick="window.open(\'https://tv.cctv.com/live/\', \'_blank\')" style="padding:10px 20px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;">📺 CCTV5 直播</button>' +
-            '<button onclick="window.open(\'https://sports.qq.com/\', \'_blank\')" style="padding:10px 20px;background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;">腾讯体育</button>' +
-          '</div>' +
-          '<div style="margin-top:16px;">' +
-            '<button onclick="searchGoalVideo(\'' + escapeAttr('yesterday World Cup highlights') + '\')" style="padding:8px 16px;background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;">查看前一天进球集锦</button>' +
-          '</div>' +
-        '</div>' +
-      '</div>';
-      if (liveMeta) {
-        liveMeta.innerHTML = '<div style="color:var(--blue);font-weight:700;">⏳ 未开赛</div>' +
-          '<div>' + escapeHtml(match.home) + ' vs ' + escapeHtml(match.away) + '</div>' +
-          '<div style="color:var(--dim);font-size:12px;">' + escapeHtml(match.time) + ' · ' + escapeHtml(match.venue) + '</div>';
-      }
+    function showLivePreview(match){
+      const lw=$('liveVideoWindow'),lm=$('liveVideoMeta');if(!match||!lw)return;
+      lw.innerHTML='<div style="text-align:center;padding:30px 20px;color:var(--text-primary)"><div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">'+esc(match.home)+' vs '+esc(match.away)+'</div><div style="font-size:.85rem;color:var(--text-dim);margin-bottom:8px">'+esc(match.time)+' | '+esc(match.venue)+'</div><div style="font-size:.78rem;color:var(--wc-gold);margin-bottom:16px">&#9200; 比赛尚未开始，预计直播将在开赛前30分钟上线</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button onclick="window.open(\'https://tv.cctv.com/live/\',\'_blank\')" class="btn btn-primary" style="background:var(--wc-blue);font-size:.85rem;padding:10px 20px">&#128250; CCTV5 直播</button><button onclick="window.open(\'https://sports.qq.com/\',\'_blank\')" class="btn" style="font-size:.85rem;padding:10px 20px">腾讯体育</button></div><div style="margin-top:16px"><button onclick="searchGoalVideo(\'yesterday World Cup highlights\')" class="btn" style="font-size:.75rem">查看前一天进球集锦</button></div></div>';
+      if(lm)lm.innerHTML='<div style="color:var(--upcoming);font-weight:700">&#9200; 未开赛</div><div>'+esc(match.home)+' vs '+esc(match.away)+'</div><div style="font-size:.75rem;color:var(--text-dim)">'+esc(match.time)+' · '+esc(match.venue)+'</div>';
     }
 
-    function showReplay(matchId) {
-      const match = DATA.matches.find(m => m.id === matchId);
-      if (!match) return;
-
-      const window = $('replayVideoWindow');
-      const meta = $('replayVideoMeta');
-      const list = $('replayList');
-
-      if (window) {
-        window.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#000;color:var(--ink);">' +
-          '<div style="text-align:center;padding:20px;">' +
-            '<div style="font-size:18px;font-weight:700;margin-bottom:12px;">🏆 ' + escapeHtml(match.home) + ' ' + (match.homeScore??'') + ' : ' + (match.awayScore??'') + ' ' + escapeHtml(match.away) + '</div>' +
-            '<div style="font-size:14px;color:var(--dim);margin-bottom:16px;">' + escapeHtml(match.time) + ' | ' + escapeHtml(match.venue) + '</div>' +
-            '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
-              '<button onclick="openVideoSource(\'' + escapeAttr(match.id) + '\', \'replay\')" style="padding:10px 20px;background:var(--blue);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;">🎬 观看回放</button>' +
-              '<button onclick="searchGoalVideo(\'' + escapeAttr(match.home + ' ' + match.away + ' all goals highlights') + '\')" style="padding:10px 20px;background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;">⚽ 进球集锦</button>' +
-              '<button onclick="searchMatchNews(\'' + escapeAttr(match.home) + '\', \'' + escapeAttr(match.away) + '\')" style="padding:10px 20px;background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;">📰 相关新闻</button>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      }
-
-      if (meta) {
-        meta.innerHTML = '<div style="color:var(--green);font-weight:700;">✅ 已完赛</div>' +
-          '<div>最终比分：' + (match.homeScore??'?') + ' : ' + (match.awayScore??'?') + '</div>' +
-          '<div style="color:var(--dim);font-size:12px;">' + escapeHtml(match.venue) + '</div>';
-      }
-
-      if (list) {
-        const completedMatches = DATA.matches.filter(m => m.completed && m.id !== matchId);
-        list.innerHTML = completedMatches.map(m => 
-          '<div class="video-list-item' + (m.id === matchId ? ' active' : '') + '" onclick="showReplay(\'' + escapeAttr(m.id) + '\')">' +
-            '<div style="font-weight:700;">' + escapeHtml(m.home) + ' vs ' + escapeHtml(m.away) + '</div>' +
-            '<div style="font-size:12px;color:var(--dim);">' + escapeHtml(m.time) + ' · ' + (m.homeScore??'?') + ':' + (m.awayScore??'?') + '</div>' +
-          '</div>'
-        ).join('');
-      }
+    function showReplay(matchId){
+      const match=DATA.matches.find(m=>m.id===matchId);if(!match)return;
+      const w=$('replayVideoWindow'),m=$('replayVideoMeta'),l=$('replayList');
+      if(w)w.innerHTML='<div style="text-align:center;padding:30px 20px;color:var(--text-primary)"><div style="font-size:1.1rem;font-weight:700;margin-bottom:12px">'+esc(match.home)+' '+(match.homeScore??'')+' : '+(match.awayScore??'')+' '+esc(match.away)+'</div><div style="font-size:.85rem;color:var(--text-dim);margin-bottom:16px">'+esc(match.time)+' | '+esc(match.venue)+'</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button onclick="openVideoSource(\''+escA(match.id)+'\',\'replay\')" class="btn btn-primary" style="background:var(--wc-blue);font-size:.85rem;padding:10px 20px">&#127902; 观看回放</button><button onclick="searchGoalVideo(\''+escA(match.home+' '+match.away+' all goals highlights')+'\')" class="btn" style="font-size:.85rem;padding:10px 20px">&#9917; 进球集锦</button><button onclick="searchMatchNews(\''+escA(match.home)+'\',\''+escA(match.away)+'\')" class="btn" style="font-size:.85rem;padding:10px 20px">&#128240; 相关新闻</button></div></div>';
+      if(m)m.innerHTML='<div style="color:var(--done);font-weight:700">&#10003; 已完赛</div><div>最终比分：'+(match.homeScore??'?')+' : '+(match.awayScore??'?')+'</div><div style="font-size:.75rem;color:var(--text-dim)">'+esc(match.venue)+'</div>';
+      if(l){const cm=DATA.matches.filter(mm=>mm.completed&&mm.id!==matchId);l.innerHTML=cm.map(mm=>'<div class="video-list-item'+(mm.id===matchId?' active':'')+'" onclick="showReplay(\''+escA(mm.id)+'\')"><div style="font-weight:700">'+esc(mm.home)+' vs '+esc(mm.away)+'</div><div style="font-size:.7rem;color:var(--text-dim)">'+esc(mm.time)+' · '+(mm.homeScore??'?')+':'+(mm.awayScore??'?')+'</div></div>').join('')}
     }
 
-    function openVideoSource(matchId, type) {
-      const match = DATA.matches.find(m => m.id === matchId);
-      if (!match) return;
-
-      const modal = $('sourceModal');
-      const title = $('sourceTitle');
-      const subtitle = $('sourceSubtitle');
-      const grid = $('sourceGrid');
-
-      if (title) title.textContent = (type === 'live' ? '直播' : '回放') + '来源 - ' + match.home + ' vs ' + match.away;
-      if (subtitle) subtitle.textContent = match.time + ' | ' + match.venue;
-
-      const sources = [
-        { name: '央视频 (CCTV)', url: 'https://wap.yangshipin.cn/live/detail.html?pid=' + match.id, desc: '官方直播/回放' },
-        { name: '央视影音', url: 'https://tv.cctv.com/live/', desc: 'CCTV5 体育频道' },
-        { name: '腾讯体育', url: 'https://sports.qq.com/', desc: '可能需要会员' },
-        { name: '咪咕视频', url: 'https://www.migu.cn/', desc: '中国移动旗下' },
-        { name: '新浪体育', url: 'https://sports.sina.com.cn/', desc: '文字直播/战报' },
-        { name: '百度搜索', url: 'https://www.baidu.com/s?wd=' + encodeURIComponent(match.home + ' vs ' + match.away + ' ' + (match.time||'').split(' ')[0] + ' 直播'), desc: '搜索最新直播链接' },
-        { name: 'Google 搜索', url: 'https://www.google.com/search?q=' + encodeURIComponent(match.home + ' vs ' + match.away + ' live stream'), desc: '搜索国际直播链接' }
+    function openVideoSource(matchId,type){
+      const match=DATA.matches.find(m=>m.id===matchId);if(!match)return;
+      const modal=$('sourceModal'),title=$('sourceTitle'),sub=$('sourceSubtitle'),grid=$('sourceGrid');
+      if(title)title.textContent=(type==='live'?'直播':'回放')+'来源 - '+match.home+' vs '+match.away;
+      if(sub)sub.textContent=match.time+' | '+match.venue;
+      const sources=[
+        {name:'央视频 (CCTV)',url:'https://wap.yangshipin.cn/live/detail.html?pid='+match.id,desc:'官方直播/回放'},
+        {name:'央视影音',url:'https://tv.cctv.com/live/',desc:'CCTV5 体育频道'},
+        {name:'腾讯体育',url:'https://sports.qq.com/',desc:'可能需要会员'},
+        {name:'咪咕视频',url:'https://www.migu.cn/',desc:'中国移动旗下'},
+        {name:'新浪体育',url:'https://sports.sina.com.cn/',desc:'文字直播/战报'},
+        {name:'百度搜索',url:'https://www.baidu.com/s?wd='+encodeURIComponent(match.home+' vs '+match.away+' '+((match.time||'').split(' ')[0])+' 直播'),desc:'搜索最新直播链接'},
+        {name:'Google 搜索',url:'https://www.google.com/search?q='+encodeURIComponent(match.home+' vs '+match.away+' live stream'),desc:'搜索国际直播链接'}
       ];
-
-      if (grid) {
-        grid.innerHTML = sources.map(s => 
-          '<div class="source-item" onclick="window.open(\'' + escapeAttr(s.url) + '\', \'_blank\')">' +
-            '<div style="font-weight:700;margin-bottom:6px;">' + escapeHtml(s.name) + '</div>' +
-            '<div style="font-size:12px;color:var(--dim);">' + escapeHtml(s.desc) + '</div>' +
-          '</div>'
-        ).join('');
-      }
-
-      if (modal) {
-        modal.style.display = 'flex';
-        modal.setAttribute('aria-hidden', 'false');
-      }
+      if(grid)grid.innerHTML=sources.map(s=>'<div class="source-item" onclick="window.open(\''+escA(s.url)+'\',\'_blank\')"><div class="src-name">'+esc(s.name)+'</div><div class="src-desc">'+esc(s.desc)+'</div></div>').join('');
+      if(modal)modal.classList.add('open');
     }
 
-    function searchMatchNews(home, away) {
-      const query = home + ' vs ' + away + ' 世界杯';
-      const url = 'https://www.baidu.com/s?wd=' + encodeURIComponent(query);
-      window.open(url, '_blank');
-    }
+    function searchMatchNews(home,away){window.open('https://www.baidu.com/s?wd='+encodeURIComponent(home+' vs '+away+' 世界杯'),'_blank')}
 
     // ============ 事件监听 ============
-    document.addEventListener('click', (event) => {
-      const jumpBtn = event.target.closest('[data-jump]');
-      if (jumpBtn) {
-        document.querySelectorAll('[data-jump]').forEach(b => b.classList.remove('active'));
-        jumpBtn.classList.add('active');
-        const target = document.getElementById(jumpBtn.dataset.jump);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.addEventListener('click',function(e){
+      const jb=e.target.closest('[data-jump]');
+      if(jb){
+        document.querySelectorAll('[data-jump]').forEach(b=>b.classList.remove('active'));
+        jb.classList.add('active');
+        const t=document.getElementById(jb.dataset.jump);
+        if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+        // Mobile: close menu
+        if(window.innerWidth<=600){const nl=$('navLinks');if(nl)nl.style.display='none'}
       }
-
-      // 球员统计标签
-      const tabBtn = event.target.closest('#playerTabs .tab-btn');
-      if (tabBtn) {
-        document.querySelectorAll('#playerTabs .tab-btn').forEach(b => b.classList.remove('active'));
-        tabBtn.classList.add('active');
-        renderPlayerStats(tabBtn.dataset.tab);
-      }
+      const tb=e.target.closest('#playerTabs .tab-btn');
+      if(tb){document.querySelectorAll('#playerTabs .tab-btn').forEach(b=>b.classList.remove('active'));tb.classList.add('active');renderPlayerStats(tb.dataset.tab)}
     });
 
-    ['searchBox', 'statusFilter', 'groupFilter', 'dateFilter'].forEach(id => {
-      $(id).addEventListener('input', renderMatches);
-    });
+    ['searchBox','statusFilter','groupFilter','dateFilter'].forEach(id=>{$(id).addEventListener('input',renderMatches)});
+    $('resetFilters').addEventListener('click',()=>{['searchBox','statusFilter','groupFilter','dateFilter'].forEach(id=>{$(id).value=''});renderMatches()});
+    $('refreshBtn').addEventListener('click',async()=>{$('refreshState').textContent='刷新中...';const nd=await loadDataFromNetwork();if(nd){DATA=processData(nd);dataSource='网络数据（手动刷新）';updateDataBar();renderAll();resetCountdown();$('refreshState').textContent='已刷新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}else{renderAll();$('refreshState').textContent='已刷新（使用缓存） '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}});
+    $('refreshLiveBtn').addEventListener('click',()=>{renderVideos()});
+    $('searchReplayBtn').addEventListener('click',()=>{const s=$('replaySelect');if(s&&s.value)showReplay(s.value)});
+    $('goalVideoMatchFilter').addEventListener('change',function(){renderGoalVideos(this.value)});
 
-    $('resetFilters').addEventListener('click', () => {
-      ['searchBox', 'statusFilter', 'groupFilter', 'dateFilter'].forEach(id => { $(id).value = ''; });
-      renderMatches();
-    });
+    const sc=$('sourceClose');if(sc)sc.onclick=function(){$('sourceModal').classList.remove('open')};
+    const sm=$('sourceModal');if(sm)sm.addEventListener('click',function(e){if(e.target===sm)sm.classList.remove('open')});
 
-    $('refreshBtn').addEventListener('click', async () => {
-      $('refreshState').textContent = '刷新中...';
-      const newData = await loadDataFromNetwork();
-      if (newData) {
-        DATA = processData(newData);
-        dataSource = '网络数据（手动刷新）';
-        updateDataSourceIndicator();
-        renderAll();
-        resetCountdown();
-        $('refreshState').textContent = '已刷新 ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
-      } else {
-        renderAll();
-        $('refreshState').textContent = '已刷新（使用缓存） ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
-      }
-    });
-
-    $('refreshLiveBtn').addEventListener('click', () => {
-      renderVideos();
-    });
-
-    $('searchReplayBtn').addEventListener('click', () => {
-      const select = $('replaySelect');
-      if (select && select.value) {
-        showReplay(select.value);
-      }
-    });
-
-    // 进球视频筛选
-    $('goalVideoMatchFilter').addEventListener('change', function() {
-      renderGoalVideos(this.value);
-    });
-
-    // 来源弹窗关闭
-    const sourceClose = $('sourceClose');
-    if (sourceClose) {
-      sourceClose.onclick = function() {
-        const modal = $('sourceModal');
-        if (modal) {
-          modal.style.display = 'none';
-          modal.setAttribute('aria-hidden', 'true');
-        }
-      };
-    }
-
-    const sourceModal = $('sourceModal');
-    if (sourceModal) {
-      sourceModal.addEventListener('click', (e) => {
-        if (e.target === sourceModal) {
-          sourceModal.style.display = 'none';
-          sourceModal.setAttribute('aria-hidden', 'true');
-        }
-      });
-    }
+    // Mobile menu toggle
+    const mb=$('mobileMenuBtn'),nl=$('navLinks');
+    if(mb&&nl){mb.addEventListener('click',function(){nl.style.display=nl.style.display==='flex'?'none':'flex'})}
 
     // ============ 初始化 ============
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initData);
-    } else {
-      initData();
-    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initData)}else{initData()}
   </script>
 </body>
 </html>
