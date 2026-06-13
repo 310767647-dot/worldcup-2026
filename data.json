@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "title": "2026 世界杯实时战报中心",
+    "reportDate": "2026-06-13",
+    "resultsDate": "2026-06-13",
+    "tomorrowDate": "2026-06-14",
+    "generatedAt": "2026-06-13 19:22:27",
+    "timezone": "Asia/Shanghai"
+  },
+  "metrics": {
+    "totalMatches": 104,
+    "completedMatches": 4,
+    "liveMatches": 0,
+    "standingsRows": 12,
+    "disciplineEvents": 18,
+    "tomorrowFixtures": 4
+  },
+  "hotspot": {
+    "image": "assets/daily-hotspot.png",
+    "title": "2026-06-13 完赛焦点：2 场比分已入库",
+    "body": "加拿大:波黑=1:1；美国:巴拉圭=4:1",
+    "chips": ["完赛比分", "次日赛程", "积分走势"]
+  },
+  "matches": [
+    {"id": "760415", "time": "2026-06-12 03:00", "date": "2026-06-12", "stage": "小组赛", "group": "A组", "home": "墨西哥", "away": "南非", "homeScore": 2, "awayScore": 0, "score": "墨西哥:南非=2:0", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "巴诺特球场", "source": "ESPN 公开数据源", "completed": true, "live": false},
+    {"id": "760414", "time": "2026-06-12 10:00", "date": "2026-06-12", "stage": "小组赛", "group": "A组", "home": "韩国", "away": "捷克", "homeScore": 2, "awayScore": 1, "score": "韩国:捷克=2:1", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "阿克伦球场", "source": "ESPN 公开数据源", "completed": true, "live": false},
+    {"id": "760416", "time": "2026-06-13 03:00", "date": "2026-06-13", "stage": "小组赛", "group": "B组", "home": "加拿大", "away": "波黑", "homeScore": 1, "awayScore": 1, "score": "加拿大:波黑=1:1", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "BMO 球场", "source": "ESPN 公开数据源", "completed": true, "live": false},
+    {"id": "760417", "time": "2026-06-13 09:00", "date": "2026-06-13", "stage": "小组赛", "group": "D组", "home": "美国", "away": "巴拉圭", "homeScore": 4, "awayScore": 1, "score": "美国:巴拉圭=4:1", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "SoFi 体育场", "source": "ESPN 公开数据源", "completed": true, "live": false},
+    {"id": "760420", "time": "2026-06-14 03:00", "date": "2026-06-14", "stage": "小组赛", "group": "B组", "home": "卡塔尔", "away": "瑞士", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "李维斯体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760419", "time": "2026-06-14 06:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "巴西", "away": "摩洛哥", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "大都会人寿体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760418", "time": "2026-06-14 09:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "海地", "away": "苏格兰", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "吉列体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760421", "time": "2026-06-14 12:00", "date": "2026-06-14", "stage": "小组赛", "group": "D组", "home": "澳大利亚", "away": "土耳其", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "卑诗体育馆", "source": "ESPN 公开数据源", "completed": false, "live": false}
+  ],
+  "completedToday": [
+    {"id": "760416", "time": "2026-06-13 03:00", "date": "2026-06-13", "stage": "小组赛", "group": "B组", "home": "加拿大", "away": "波黑", "homeScore": 1, "awayScore": 1, "score": "加拿大:波黑=1:1", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "BMO 球场", "source": "ESPN 公开数据源", "completed": true, "live": false},
+    {"id": "760417", "time": "2026-06-13 09:00", "date": "2026-06-13", "stage": "小组赛", "group": "D组", "home": "美国", "away": "巴拉圭", "homeScore": 4, "awayScore": 1, "score": "美国:巴拉圭=4:1", "status": "已完赛", "statusRaw": "FULL_TIME", "venue": "SoFi 体育场", "source": "ESPN 公开数据源", "completed": true, "live": false}
+  ],
+  "tomorrowFixtures": [
+    {"id": "760420", "time": "2026-06-14 03:00", "date": "2026-06-14", "stage": "小组赛", "group": "B组", "home": "卡塔尔", "away": "瑞士", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "李维斯体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760419", "time": "2026-06-14 06:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "巴西", "away": "摩洛哥", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "大都会人寿体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760418", "time": "2026-06-14 09:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "海地", "away": "苏格兰", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "吉列体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760421", "time": "2026-06-14 12:00", "date": "2026-06-14", "stage": "小组赛", "group": "D组", "home": "澳大利亚", "away": "土耳其", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "卑诗体育馆", "source": "ESPN 公开数据源", "completed": false, "live": false}
+  ],
+  "standings": [
+    {"group": "A组", "team": "墨西哥", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 2, "points": 3},
+    {"group": "A组", "team": "韩国", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 1, "points": 3},
+    {"group": "A组", "team": "捷克", "played": 1, "won": 0, "drawn": 0, "lost": 1, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": -1, "points": 0},
+    {"group": "A组", "team": "南非", "played": 1, "won": 0, "drawn": 0, "lost": 1, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": -2, "points": 0},
+    {"group": "B组", "team": "波黑", "played": 1, "won": 0, "drawn": 1, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 1},
+    {"group": "B组", "team": "加拿大", "played": 1, "won": 0, "drawn": 1, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 1},
+    {"group": "B组", "team": "卡塔尔", "played": 0, "won": 0, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 0},
+    {"group": "B组", "team": "瑞士", "played": 0, "won": 0, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 0},
+    {"group": "D组", "team": "美国", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 3, "points": 3},
+    {"group": "D组", "team": "澳大利亚", "played": 0, "won": 0, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 0},
+    {"group": "D组", "team": "土耳其", "played": 0, "won": 0, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 0},
+    {"group": "D组", "team": "巴拉圭", "played": 1, "won": 0, "drawn": 0, "lost": 1, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": -3, "points": 0}
+  ],
+  "discipline": [
+    {"matchId": "760414", "team": "韩国", "player": "李基赫", "card": "黄牌", "minute": "90+6", "reason": "犯规"},
+    {"matchId": "760415", "team": "墨西哥", "player": "布赖恩·古铁雷斯", "card": "黄牌", "minute": "23", "reason": "犯规"},
+    {"matchId": "760415", "team": "墨西哥", "player": "塞萨尔·蒙特斯", "card": "红牌", "minute": "90+2", "reason": ""},
+    {"matchId": "760415", "team": "南非", "player": "恩科西纳蒂·西比西", "card": "黄牌", "minute": "74", "reason": "犯规"},
+    {"matchId": "760415", "team": "南非", "player": "斯费赫洛·西托莱", "card": "红牌", "minute": "49", "reason": ""},
+    {"matchId": "760415", "team": "南非", "player": "特博霍·莫科埃纳", "card": "黄牌", "minute": "17", "reason": "犯规"},
+    {"matchId": "760415", "team": "南非", "player": "滕巴·兹瓦内", "card": "红牌", "minute": "84", "reason": ""},
+    {"matchId": "760416", "team": "波黑", "player": "埃尔梅丁·德米罗维奇", "card": "黄牌", "minute": "45", "reason": "犯规"},
+    {"matchId": "760416", "team": "波黑", "player": "约沃·卢基奇", "card": "黄牌", "minute": "45+1", "reason": "犯规"},
+    {"matchId": "760416", "team": "波黑", "player": "尼古拉·卡蒂奇", "card": "黄牌", "minute": "90+3", "reason": "犯规"},
+    {"matchId": "760416", "team": "加拿大", "player": "阿利斯泰尔·约翰斯顿", "card": "黄牌", "minute": "11", "reason": "犯规"},
+    {"matchId": "760416", "team": "加拿大", "player": "吕克·德·富热罗勒", "card": "黄牌", "minute": "53", "reason": "犯规"},
+    {"matchId": "760417", "team": "巴拉圭", "player": "阿莱士·阿尔塞", "card": "黄牌", "minute": "88", "reason": "犯规"},
+    {"matchId": "760417", "team": "巴拉圭", "player": "迭戈·戈麦斯", "card": "黄牌", "minute": "79", "reason": "犯规"},
+    {"matchId": "760417", "team": "巴拉圭", "player": "胡安·何塞·卡塞雷斯", "card": "黄牌", "minute": "10", "reason": "犯规"},
+    {"matchId": "760417", "team": "巴拉圭", "player": "胡尼奥尔·阿隆索", "card": "黄牌", "minute": "90+3", "reason": "犯规"},
+    {"matchId": "760417", "team": "巴拉圭", "player": "米格尔·阿尔米隆", "card": "黄牌", "minute": "53", "reason": ""},
+    {"matchId": "760417", "team": "美国", "player": "泰勒·亚当斯", "card": "黄牌", "minute": "59", "reason": "犯规"}
+  ],
+  "focus": [
+    {"id": "760420", "time": "2026-06-14 03:00", "date": "2026-06-14", "stage": "小组赛", "group": "B组", "home": "卡塔尔", "away": "瑞士", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "李维斯体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760419", "time": "2026-06-14 06:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "巴西", "away": "摩洛哥", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "大都会人寿体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760418", "time": "2026-06-14 09:00", "date": "2026-06-14", "stage": "小组赛", "group": "C组", "home": "海地", "away": "苏格兰", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "吉列体育场", "source": "ESPN 公开数据源", "completed": false, "live": false},
+    {"id": "760421", "time": "2026-06-14 12:00", "date": "2026-06-14", "stage": "小组赛", "group": "D组", "home": "澳大利亚", "away": "土耳其", "homeScore": 0, "awayScore": 0, "score": "0-0", "status": "未开赛", "statusRaw": "TIMED", "venue": "卑诗体育馆", "source": "ESPN 公开数据源", "completed": false, "live": false}
+  ],
+  "leaders": [
+    {"group": "D组", "team": "美国", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 3, "points": 3},
+    {"group": "A组", "team": "墨西哥", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 2, "points": 3},
+    {"group": "A组", "team": "韩国", "played": 1, "won": 1, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 1, "points": 3},
+    {"group": "B组", "team": "波黑", "played": 1, "won": 0, "drawn": 1, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 1},
+    {"group": "B组", "team": "加拿大", "played": 1, "won": 0, "drawn": 1, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 1},
+    {"group": "D组", "team": "澳大利亚", "played": 0, "won": 0, "drawn": 0, "lost": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "points": 0}
+  ]
+}
