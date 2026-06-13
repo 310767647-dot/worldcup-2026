@@ -455,11 +455,11 @@
   <script>
     // ============ 数据加载配置 ============
     const DATA_CONFIG = {
-      // 网络API地址（你需要部署一个API服务来提供最新数据）
-      apiUrl: 'https://your-api-server.com/worldcup-data.json', // 替换为你的API地址
+      // GitHub Pages 托管的数据文件地址（自动更新）
+      apiUrl: 'https://310767647-dot.github.io/worldcup-2026/data.json',
       
-      // 备用：如果API不可用，也可以从一个公开的JSON文件地址加载
-      fallbackUrl: 'https://raw.githubusercontent.com/your-repo/your-repo/main/data.json',
+      // 备用：GitHub原始数据地址
+      fallbackUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
       
       // 自动刷新间隔（毫秒），设置为0禁用自动刷新
       autoRefreshInterval: 5 * 60 * 1000, // 5分钟
