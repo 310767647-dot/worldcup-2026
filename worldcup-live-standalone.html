@@ -555,7 +555,9 @@
       .brand{width:100%;justify-content:space-between}
       .brand-icon{width:30px;height:30px}
       .brand-text .title{font-size:.8rem}
-      .nav-links{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+      .nav-mobile-toggle{display:block}
+      .nav-links{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;-webkit-overflow-scrolling:touch;display:none}
+      .nav-links.open{display:flex}
       .nav-links button{flex-shrink:0;font-size:.68rem;padding:5px 10px}
       .nav-status{width:100%;justify-content:center;font-size:.65rem}
       .data-bar{padding:4px 14px;gap:var(--gap-sm);font-size:.65rem}
@@ -1201,9 +1203,11 @@
         document.querySelectorAll('[data-jump]').forEach(b=>b.classList.remove('active'));
         jb.classList.add('active');
         const t=document.getElementById(jb.dataset.jump);
-        if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
-        // Mobile: close menu
-        if(window.innerWidth<=600){const nl=$('navLinks');if(nl)nl.style.display='none'}
+        if(t){
+          const headerH=document.querySelector('header')?.offsetHeight||60;
+          const top=t.getBoundingClientRect().top+window.pageYOffset-headerH-8;
+          window.scrollTo({top,behavior:'smooth'});
+        }
       }
       const tb=e.target.closest('#playerTabs .tab-btn');
       if(tb){document.querySelectorAll('#playerTabs .tab-btn').forEach(b=>b.classList.remove('active'));tb.classList.add('active');renderPlayerStats(tb.dataset.tab)}
@@ -1221,7 +1225,9 @@
 
     // Mobile menu toggle
     const mb=$('mobileMenuBtn'),nl=$('navLinks');
-    if(mb&&nl){mb.addEventListener('click',function(){nl.style.display=nl.style.display==='flex'?'none':'flex'})}
+    if(mb&&nl){mb.addEventListener('click',function(e){e.stopPropagation();nl.classList.toggle('open')})}
+    // Close mobile menu when tapping outside
+    document.addEventListener('click',function(e){if(nl&&!e.target.closest('header')&&window.innerWidth<=600){nl.classList.remove('open')}})
 
     // ============ 初始化 ============
     if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initData)}else{initData()}
