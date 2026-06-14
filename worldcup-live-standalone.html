@@ -831,6 +831,83 @@
     };
     function zhName(n){return n?(TEAM_NAMES_ZH[n]||n):''}
     function zhVenue(v){return v?(VENUE_NAMES_ZH[v]||v):''}
+    // 球员名中英文映射（openfootball 数据中的英文名 → 中文名）
+    const PLAYER_NAMES_ZH={
+      // 美国
+      'Folarin Balogun':'弗拉林·巴洛贡','Flo Balogun':'弗拉林·巴洛贡','Christian Pulisic':'克里斯蒂安·普利西奇','Giovanni Reyna':'乔瓦尼·雷纳','Josh Sargent':'乔希·萨金特','Antonee Robinson':'安东尼·罗宾逊','Yunus Musah':'尤努斯·穆萨',
+      // 巴西
+      'Vinicius':'维尼修斯','Vinicius Jr':'维尼修斯','Vinícius':'维尼修斯','Vinícius Jr':'维尼修斯','Vinícius Júnior':'维尼修斯','Vinicius Junior':'维尼修斯','Rodrygo':'罗德里戈','Raphinha':'拉菲尼亚','Endrick':'恩德里克','Neymar':'内马尔','Gabriel Jesus':'热苏斯','Gabriel':'加布里埃尔',
+      // 墨西哥
+      'Raúl Jiménez':'劳尔·希门尼斯','Raul Jimenez':'劳尔·希门尼斯','Santiago Giménez':'圣地亚哥·希门尼斯','Julián Quiñones':'胡利安·基尼奥内斯','Julian Quinones':'胡利安·基尼奥内斯','Edson Álvarez':'埃德松·阿尔瓦雷斯','Edson Alvarez':'埃德松·阿尔瓦雷斯',
+      // 韩国
+      'Son Heung-Min':'孙兴慜','Hwang In-Beom':'黄仁范','Oh Hyeon-Gyu':'吴贤揆','Lee Kang-In':'李刚仁','Kim Min-Jae':'金玟哉','Cho Gue-Sung':'曹圭成',
+      // 捷克
+      'Ladislav Krejčí':'拉迪斯拉夫·克雷伊奇','Ladislav Krejci':'拉迪斯拉夫·克雷伊奇','Patrik Schick':'帕特里克·希克','Tomáš Souček':'托马斯·绍切克','Tomas Soucek':'托马斯·绍切克','Pavel Šulc':'帕维尔·舒尔茨',
+      // 加拿大
+      'Jonathan David':'乔纳森·戴维','Alphonso Davies':'阿方索·戴维斯','Cyle Larin':'赛尔·拉林','Tajon Buchanan':'塔扬·布坎南',
+      // 波黑
+      'Ermedin Demirović':'埃尔梅丁·德米罗维奇','Ermedin Demirovic':'埃尔梅丁·德米罗维奇','Edin Džeko':'埃丁·哲科','Edin Dzeko':'埃丁·哲科','Miralem Pjanić':'米拉莱姆·皮亚尼奇','Miralem Pjanic':'米拉莱姆·皮亚尼奇',
+      // 巴拉圭
+      'Alex Arce':'阿莱士·阿尔塞','Miguel Almirón':'米格尔·阿尔米隆','Miguel Almiron':'米格尔·阿尔米隆','Julio Enciso':'胡利奥·恩西索',
+      // 卡塔尔
+      'Akram Afif':'阿克拉姆·阿菲夫','Almoez Ali':'阿尔莫兹·阿里','Hassan Al-Haydos':'哈桑·海多斯',
+      // 瑞士
+      'Breel Embolo':'布雷尔·恩博洛','Xherdan Shaqiri':'谢尔丹·沙奇里','Granit Xhaka':'格拉尼特·扎卡','Manuel Akanji':'曼努埃尔·阿坎吉','Ruben Vargas':'鲁本·巴尔加斯','Noah Okafor':'诺亚·奥卡福尔','Zeki Amdouni':'泽基·阿姆杜尼',
+      // 摩洛哥
+      'Achraf Hakimi':'阿什拉夫·哈基米','Noussair Mazraoui':'努赛尔·马兹拉维','Hakim Ziyech':'哈基姆·齐耶赫','Sofiane Boufal':'索菲扬·布法尔','Youssouf En-Nesyri':'优素福·恩内西里',
+      // 苏格兰
+      'John McGinn':'约翰·麦金','Che Adams':'切·亚当斯','Scott McTominay':'斯科特·麦克托米奈','Andrew Robertson':'安德鲁·罗伯逊','Lewis Ferguson':'刘易斯·弗格森','Lyndon Dykes':'林登·戴克斯',
+      // 澳大利亚
+      'Mitchell Duke':'米切尔·杜克','Harry Souttar':'哈里·苏塔','Mathew Ryan':'马修·瑞安','Craig Goodwin':'克雷格·古德温','Riley McGree':'赖利·麦格里','Jackson Irvine':'杰克逊·欧文',
+      // 土耳其
+      'Barış Yılmaz':'巴里什·伊尔马兹','Baris Yilmaz':'巴里什·伊尔马兹','Hakan Çalhanoğlu':'哈坎·恰尔汗奥卢','Hakan Calhanoglu':'哈坎·恰尔汗奥卢','Arda Güler':'阿尔达·居莱尔','Arda Guler':'阿尔达·居莱尔','Kenan Yıldız':'凯南·伊尔迪兹','Kerem Aktürkoğlu':'克雷姆·阿克图尔科格鲁',
+      // 德国
+      'Jamal Musiala':'贾马尔·穆西亚拉','Florian Wirtz':'弗洛里安·维尔茨','Kai Havertz':'凯·哈弗茨','Leroy Sané':'勒鲁瓦·萨内','Serge Gnabry':'塞尔吉·格纳布里','Thomas Müller':'托马斯·穆勒','Joshua Kimmich':'约书亚·基米希',
+      // 荷兰
+      'Memphis Depay':'孟菲斯·德佩','Cody Gakpo':'科迪·加克波','Xavi Simons':'哈维·西蒙斯','Denzel Dumfries':'登泽尔·邓弗里斯','Virgil van Dijk':'维吉尔·范戴克','Frenkie de Jong':'弗伦基·德容',
+      // 日本
+      'Takefusa Kubo':'久保建英','Takumi Minamino':'南野拓实','Kaoru Mitoma':'三笘薫','Daichi Kamada':'镰田大地','Wataru Endo':'远藤航','Hiroki Ito':'伊藤洋辉',
+      // 阿根廷
+      'Lionel Messi':'里奥·梅西','Julián Álvarez':'胡利安·阿尔瓦雷斯','Julian Alvarez':'胡利安·阿尔瓦雷斯','Lautaro Martínez':'劳塔罗·马丁内斯','Lautaro Martinez':'劳塔罗·马丁内斯','Ángel Di María':'安赫尔·迪马利亚','Angel Di Maria':'安赫尔·迪马利亚',
+      // 法国
+      'Kylian Mbappé':'基利安·姆巴佩','Kylian Mbappe':'基利安·姆巴佩','Antoine Griezmann':'安托万·格列兹曼','Ousmane Dembélé':'奥斯曼·登贝莱','Olivier Giroud':'奥利维耶·吉鲁','Kingsley Coman':'金斯利·科曼',
+      // 英格兰
+      'Harry Kane':'哈里·凯恩','Jude Bellingham':'裘德·贝林厄姆','Phil Foden':'菲尔·福登','Bukayo Saka':'布卡约·萨卡','Cole Palmer':'科尔·帕尔默','Declan Rice':'德克兰·赖斯',
+      // 西班牙
+      'Alvaro Morata':'阿尔瓦罗·莫拉塔','Lamine Yamal':'拉明·亚马尔','Pedri':'佩德里','Gavi':'加维','Rodri':'罗德里','Dani Olmo':'达尼·奥尔莫','Nico Williams':'尼科·威廉姆斯',
+      // 葡萄牙
+      'Cristiano Ronaldo':'克里斯蒂亚诺·罗纳尔多','Bruno Fernandes':'布鲁诺·费尔南德斯','Rafael Leão':'拉斐尔·莱奥','Rafael Leao':'拉斐尔·莱奥','Bernardo Silva':'伯纳多·席尔瓦','João Félix':'若昂·费利克斯','Joao Felix':'若昂·费利克斯',
+      // 哥伦比亚
+      'Luis Díaz':'路易斯·迪亚斯','Luis Diaz':'路易斯·迪亚斯','James Rodríguez':'哈梅斯·罗德里格斯','James Rodriguez':'哈梅斯·罗德里格斯','Jhon Durán':'约翰·杜兰',
+      // 埃及
+      'Mohamed Salah':'穆罕默德·萨拉赫','Omar Marmoush':'奥马尔·马穆什','Trézéguet':'特雷泽盖','Mostafa Mohamed':'穆斯塔法·穆罕默德',
+      // 意大利
+      'Federico Chiesa':'费代里科·基耶萨','Nicolò Barella':'尼科洛·巴雷拉','Nicolo Barella':'尼科洛·巴雷拉','Mateo Retegui':'马特奥·雷特吉','Giacomo Raspadori':'贾科莫·拉斯帕多里',
+      // 比利时
+      'Romelu Lukaku':'罗梅卢·卢卡库','Kevin De Bruyne':'凯文·德布劳内','Jérémy Doku':'热雷米·多库','Jeremy Doku':'热雷米·多库','Leandro Trossard':'莱安德罗·特罗萨德',
+      // 塞内加尔
+      'Sadio Mané':'萨迪奥·马内','Nicolas Jackson':'尼古拉斯·杰克逊','Ismaïla Sarr':'伊斯梅拉·萨尔',
+      // 克罗地亚
+      'Luka Modrić':'卢卡·莫德里奇','Luka Modric':'卢卡·莫德里奇','Joško Gvardiol':'约什科·格瓦迪奥尔','Josko Gvardiol':'约什科·格瓦迪奥尔','Ivan Perišić':'伊万·佩里西奇','Ivan Perisic':'伊万·佩里西奇',
+      // 乌拉圭
+      'Federico Valverde':'费德里科·巴尔韦德','Darwin Núñez':'达尔文·努涅斯','Darwin Nunez':'达尔文·努涅斯','Luis Suárez':'路易斯·苏亚雷斯','Luis Suarez':'路易斯·苏亚雷斯',
+      // 其他
+      'Victor Osimhen':'维克托·奥斯梅恩','Rasmus Højlund':'拉斯穆斯·霍伊伦','Rasmus Hojlund':'拉斯穆斯·霍伊伦','Erling Haaland':'埃尔林·哈兰德','Alexander Isak':'亚历山大·伊萨克','Dusan Vlahović':'杜尚·弗拉霍维奇',
+      'Dusan Vlahovic':'杜尚·弗拉霍维奇','Khvicha Kvaratskhelia':'赫维恰·克瓦拉茨赫利亚','Rafael Leão':'拉斐尔·莱奥',
+      // 海地
+      'Frantzdy Pierrot':'弗兰茨迪·皮埃罗','Duckens Nazon':'杜肯·纳宗','Carlens Arcus':'卡伦斯·阿尔库斯',
+      // 巴拿马
+      'Michael Murillo':'迈克尔·穆里略','José Fajardo':'何塞·法哈多','Adalberto Carrasquilla':'阿达尔韦托·卡拉斯基亚',
+      // 哥斯达黎加
+      'Joel Campbell':'乔尔·坎贝尔','Manfred Ugalde':'曼弗雷德·乌加尔德',
+      // 新疆西兰
+      'Chris Wood':'克里斯·伍德','Sarpreet Singh':'萨尔普里特·辛格',
+      // 南非
+      'Percy Tau':'珀西·陶','Themba Zwane':'滕巴·兹瓦内','Lyle Foster':'莱尔·福斯特',
+      // 通用英文→中文尝试（模糊匹配用）
+      'goal scorer':'进球者','own goal':'乌龙球'
+    };
+    function zhPlayerName(n){return n?(PLAYER_NAMES_ZH[n]||n):''}
 
     // ============ 内联数据 ============
     const INLINE_DATA = {
@@ -1101,9 +1178,9 @@
           }catch(e){}
         }
 
-        // 进球者信息
-        const homeScorers=(m.goals1||[]).map(g=>({name:g.name,minute:g.minute}));
-        const awayScorers=(m.goals2||[]).map(g=>({name:g.name,minute:g.minute}));
+        // 进球者信息（使用中文名）
+        const homeScorers=(m.goals1||[]).map(g=>({name:zhPlayerName(g.name),minute:g.minute,assist:g.assist?zhPlayerName(g.assist):null}));
+        const awayScorers=(m.goals2||[]).map(g=>({name:zhPlayerName(g.name),minute:g.minute,assist:g.assist?zhPlayerName(g.assist):null}));
 
         return {
           id:'M'+String(m.num||(i+1)).padStart(2,'0'),
@@ -1182,7 +1259,7 @@
         discipline:[],
         playerStats:{
           scorers:extractTopScorers(matches),
-          assists:[]
+          assists:extractAssists(matches, data)
         }
       };
     }
@@ -1228,14 +1305,16 @@
         const homeTeam=zhName(m.home);
         const awayTeam=zhName(m.away);
         (m.homeScorers||[]).forEach(s=>{
-          const key=s.name;
-          if(!scorerMap[key])scorerMap[key]={name:s.name,team:homeTeam,goals:0,matches:new Set()};
+          const cnName=zhPlayerName(s.name);
+          const key=cnName;
+          if(!scorerMap[key])scorerMap[key]={name:cnName,team:homeTeam,goals:0,matches:new Set()};
           scorerMap[key].goals++;
           scorerMap[key].matches.add(m.id);
         });
         (m.awayScorers||[]).forEach(s=>{
-          const key=s.name;
-          if(!scorerMap[key])scorerMap[key]={name:s.name,team:awayTeam,goals:0,matches:new Set()};
+          const cnName=zhPlayerName(s.name);
+          const key=cnName;
+          if(!scorerMap[key])scorerMap[key]={name:cnName,team:awayTeam,goals:0,matches:new Set()};
           scorerMap[key].goals++;
           scorerMap[key].matches.add(m.id);
         });
@@ -1246,13 +1325,53 @@
         .map((p,i)=>({rank:i+1,player:p.player||p.name,team:p.team,goals:p.goals,matches:p.matches.size}));
     }
 
+    // 提取助攻榜（从比赛进球助攻数据中提取）
+    function extractAssists(matches, rawData){
+      const assistMap={};
+      // 如果原始数据中有 goalVideos 且包含 assist 字段则使用
+      if(rawData&&rawData.goalVideos){
+        rawData.goalVideos.forEach(v=>{
+          if(v.assistPlayer&&v.assistPlayer!=='未知'){
+            const cnName=zhPlayerName(v.assistPlayer);
+            const team=zhName(v.team);
+            const key=cnName;
+            if(!assistMap[key])assistMap[key]={name:cnName,team:team,assists:0,matches:new Set()};
+            assistMap[key].assists++;
+            assistMap[key].matches.add(v.matchId);
+          }
+        });
+      }
+      // 从比赛进球者中提取助攻信息（如果 goals 中包含 assist 字段）
+      matches.filter(m=>m.completed).forEach(m=>{
+        const homeTeam=zhName(m.home);
+        const awayTeam=zhName(m.away);
+        const processScorers=(scorers,team)=>{
+          (scorers||[]).forEach(s=>{
+            if(s.assist&&s.assist!=='未知'){
+              const cnName=zhPlayerName(s.assist);
+              const key=cnName;
+              if(!assistMap[key])assistMap[key]={name:cnName,team:team,assists:0,matches:new Set()};
+              assistMap[key].assists++;
+              assistMap[key].matches.add(m.id);
+            }
+          });
+        };
+        processScorers(m.homeScorers||[],homeTeam);
+        processScorers(m.awayScorers||[],awayTeam);
+      });
+      return Object.values(assistMap)
+        .sort((a,b)=>b.assists-a.assists)
+        .slice(0,15)
+        .map((p,i)=>({rank:i+1,player:p.name,team:p.team,assists:p.assists,matches:p.matches.size}));
+    }
+
     function processData(raw){
       if(raw.matches){raw.matches.sort((a,b)=>new Date(a.time)-new Date(b.time))}
       if(raw.standings){raw.standings.sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference)}
       if(raw.matches){raw.matches.forEach(m=>{m.home=zhName(m.home);m.away=zhName(m.away);if(m.venue)m.venue=zhVenue(m.venue)})}
       if(raw.standings){raw.standings.forEach(s=>{s.team=zhName(s.team)})}
-      if(raw.discipline){raw.discipline.forEach(d=>{d.team=zhName(d.team)})}
-      if(raw.playerStats){['scorers','assists'].forEach(k=>{if(raw.playerStats[k])raw.playerStats[k].forEach(p=>{p.team=zhName(p.team)})})}
+      if(raw.discipline){raw.discipline.forEach(d=>{d.team=zhName(d.team);d.player=zhPlayerName(d.player)})}
+      if(raw.playerStats){['scorers','assists'].forEach(k=>{if(raw.playerStats[k])raw.playerStats[k].forEach(p=>{p.team=zhName(p.team);p.player=zhPlayerName(p.player)})})}
       return raw;
     }
 
@@ -1396,7 +1515,13 @@
       const srows=[...DATA.standings].sort((a,b)=>String(a.group).localeCompare(String(b.group),'zh-CN')||b.points-a.points||b.goalDifference-a.goalDifference);
       $('standingsTable').innerHTML='<table><thead><tr><th>小组</th><th>球队</th><th>场</th><th>胜</th><th>平</th><th>负</th><th>进球</th><th>失球</th><th>净胜</th><th>积分</th></tr></thead><tbody>'+srows.map(r=>'<tr><td>'+esc(r.group)+'</td><td><strong>'+esc(r.team)+'</strong></td><td>'+r.played+'</td><td>'+r.won+'</td><td>'+r.drawn+'</td><td>'+r.lost+'</td><td>'+r.goalsFor+'</td><td>'+r.goalsAgainst+'</td><td>'+sgn(r.goalDifference)+'</td><td><strong>'+r.points+'</strong></td></tr>').join('')+'</tbody></table>';
       // 红黄牌
-      $('disciplineTable').innerHTML='<table><thead><tr><th>比赛</th><th>球队</th><th>球员</th><th>牌类</th><th>分钟</th><th>原因</th></tr></thead><tbody>'+DATA.discipline.map(r=>'<tr><td>'+esc(r.matchId)+'</td><td>'+esc(r.team)+'</td><td>'+esc(r.player)+'</td><td><span class="pill '+(String(r.card).includes('红')?'live':'upcoming')+'">'+esc(r.card)+'</span></td><td>'+esc(r.minute)+'</td><td>'+esc(r.reason||'-')+'</td></tr>').join('')+'</tbody></table>';
+      const disc=DATA.discipline||[];
+      if(disc.length){
+        const mById={};(DATA.matches||[]).forEach(m=>{mById[m.id]=m});
+        $('disciplineTable').innerHTML='<table><thead><tr><th>比赛</th><th>球队</th><th>球员</th><th>牌类</th><th>分钟</th><th>原因</th></tr></thead><tbody>'+disc.map(r=>{const ma=mById[r.matchId];const mn=ma?(ma.home+' vs '+ma.away):r.matchId;return'<tr><td>'+esc(mn)+'</td><td>'+esc(r.team)+'</td><td>'+esc(r.player)+'</td><td><span class="pill '+(String(r.card).includes('红')?'live':'upcoming')+'">'+esc(r.card)+'</span></td><td>'+esc(r.minute)+'</td><td>'+esc(r.reason||'-')+'</td></tr>'}).join('')+'</tbody></table>';
+      }else{
+        $('disciplineTable').innerHTML='<div class="empty-state"><div class="icon">&#127991;</div><div>暂无红黄牌数据</div></div>';
+      }
       // 筛选器
       const statuses=[...new Set(DATA.matches.map(m=>m.status).filter(Boolean))].sort();
       const groups=[...new Set(DATA.matches.map(m=>m.group).filter(Boolean))].sort();
@@ -1431,11 +1556,17 @@
     function renderPlayerStats(tab){
       const c=$('playerStatsContainer');if(!c)return;
       if(tab==='scorers'&&DATA.playerStats&&DATA.playerStats.scorers){
-        c.innerHTML=DATA.playerStats.scorers.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+p.matches+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-gold)">'+p.goals+'</div><div class="player-stat-lbl">进球</div></div></div>').join('')
+        const list=DATA.playerStats.scorers;
+        if(!list.length){c.innerHTML='<div class="empty-state"><div class="icon">&#9917;</div><div>暂无射手榜数据</div></div>';return}
+        c.innerHTML=list.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+p.matches+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-gold)">'+p.goals+'</div><div class="player-stat-lbl">进球</div></div></div>').join('')
       }else if(tab==='assists'&&DATA.playerStats&&DATA.playerStats.assists){
-        c.innerHTML=DATA.playerStats.assists.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+(p.matches||1)+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-cyan)">'+p.assists+'</div><div class="player-stat-lbl">助攻</div></div></div>').join('')
-      }else if(tab==='cards'&&DATA.discipline){
-        const cm={};DATA.discipline.forEach(d=>{const k=d.player+'|'+d.team;if(!cm[k])cm[k]={player:d.player,team:d.team,yellow:0,red:0};if(d.card.includes('红'))cm[k].red++;else cm[k].yellow++});
+        const list=DATA.playerStats.assists;
+        if(!list.length){c.innerHTML='<div class="empty-state"><div class="icon">&#127919;</div><div>暂无助攻榜数据</div></div>';return}
+        c.innerHTML=list.map((p,i)=>'<div class="player-card"><div class="player-rank'+rankClass(i+1)+'">'+p.rank+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+' · '+(p.matches||1)+'场</div></div><div><div class="player-stat-val" style="color:var(--wc-cyan)">'+p.assists+'</div><div class="player-stat-lbl">助攻</div></div></div>').join('')
+      }else if(tab==='cards'){
+        const disc=DATA.discipline;
+        if(!disc||!disc.length){c.innerHTML='<div class="empty-state"><div class="icon">&#127991;</div><div>暂无红黄牌数据</div></div>';return}
+        const cm={};disc.forEach(d=>{const k=d.player+'|'+d.team;if(!cm[k])cm[k]={player:d.player,team:d.team,yellow:0,red:0};if(String(d.card).includes('红'))cm[k].red++;else cm[k].yellow++});
         const data=Object.values(cm).sort((a,b)=>b.red-a.red||b.yellow-a.yellow).slice(0,15);
         c.innerHTML=data.map((p,i)=>'<div class="player-card"><div class="player-rank silver">'+(i+1)+'</div><div class="player-info"><div class="player-name">'+esc(p.player)+'</div><div class="player-team">'+esc(p.team)+'</div></div><div style="display:flex;gap:12px"><div><div class="player-stat-val" style="color:var(--wc-accent)">'+p.red+'</div><div class="player-stat-lbl">红牌</div></div><div><div class="player-stat-val" style="color:var(--wc-gold)">'+p.yellow+'</div><div class="player-stat-lbl">黄牌</div></div></div></div>').join('')
       }
