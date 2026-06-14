@@ -4,21 +4,21 @@
     "reportDate": "2026-06-14",
     "resultsDate": "2026-06-14",
     "tomorrowDate": "2026-06-15",
-    "generatedAt": "2026-06-14 15:30:53",
+    "generatedAt": "2026-06-14 20:48:00",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 8,
+    "completedMatches": 9,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-14 今日赛事",
-    "body": "德国 vs 库拉索 | 科特迪瓦 vs 厄瓜多尔 | 荷兰 vs 日本 | 瑞典 vs 突尼斯",
+    "title": "2026-06-14 完赛焦点：德国7:1库拉索",
+    "body": "德国7:1库拉索 | 比利时 vs 埃及 | 伊朗 vs 新西兰 | 西班牙 vs 佛得角 | 沙特阿拉伯 vs 乌拉圭",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -300,17 +300,51 @@
       "group": "E组",
       "home": "德国",
       "away": "库拉索",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 7,
+      "awayScore": 1,
+      "score": "7:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Felix Nmecha",
+          "minute": "6"
+        },
+        {
+          "name": "Nico Schlotterbeck",
+          "minute": "38"
+        },
+        {
+          "name": "Kai Havertz",
+          "minute": "45+5"
+        },
+        {
+          "name": "Kai Havertz",
+          "minute": "88"
+        },
+        {
+          "name": "Jamal Musiala",
+          "minute": "47"
+        },
+        {
+          "name": "Nathaniel Brown",
+          "minute": "68"
+        },
+        {
+          "name": "Deniz Undav",
+          "minute": "78"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Livano Comenencia",
+          "minute": "21"
+        }
+      ],
       "_homeEn": "Germany",
       "_awayEn": "Curaçao"
     },
@@ -2407,6 +2441,18 @@
   ],
   "standings": [
     {
+      "team": "德国",
+      "played": 1,
+      "won": 1,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 1,
+      "points": 3,
+      "goalDifference": 6,
+      "group": "E组"
+    },
+    {
       "team": "美国",
       "played": 1,
       "won": 1,
@@ -2537,30 +2583,6 @@
       "points": 1,
       "goalDifference": 0,
       "group": "C组"
-    },
-    {
-      "team": "德国",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "E组"
-    },
-    {
-      "team": "库拉索",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "E组"
     },
     {
       "team": "科特迪瓦",
@@ -2981,6 +3003,18 @@
       "points": 0,
       "goalDifference": -3,
       "group": "D组"
+    },
+    {
+      "team": "库拉索",
+      "played": 1,
+      "won": 0,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "points": 0,
+      "goalDifference": -6,
+      "group": "E组"
     }
   ],
   "discipline": [
