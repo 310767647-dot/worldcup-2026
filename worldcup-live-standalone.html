@@ -764,12 +764,14 @@
   <script>
     // ============ 配置 ============
     const DATA_CONFIG = {
-      // 1. 优先使用 worldcup26.ir 免费实时API（无需API key，数据每场更新）
+      // 主数据源：openfootball/worldcup.json (GitHub Raw, 支持CORS, 社区维护)
+      primaryUrl: 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json',
+      // 实时API：worldcup26.ir（免费，但国内可能被墙）
       liveApiUrl: 'https://worldcup26.ir/get/games',
       liveStandingsUrl: 'https://worldcup26.ir/get/groups',
-      // 2. 备用：GitHub上的静态 data.json
+      // 备用：本项目自己的静态 data.json
       fallbackUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
-      autoRefreshInterval: 5 * 60 * 1000, // 缩短到5分钟，因为真实API支持频繁刷新
+      autoRefreshInterval: 5 * 60 * 1000, // 5分钟
       debug: true
     };
 
@@ -945,32 +947,245 @@
 
     async function loadDataFromNetwork(){
       const log=msg=>{if(DATA_CONFIG.debug)console.log(`[数据] ${msg}`)};
-      // === 策略1：优先从 worldcup26.ir 免费实时API获取 ===
+      const now=Date.now();
+
+      // === 策略1：openfootball GitHub 数据（主源，稳定可靠，支持CORS） ===
       try{
-        const [gamesResp, groupsResp] = await Promise.all([
-          fetch(`${DATA_CONFIG.liveApiUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}}),
-          fetch(`${DATA_CONFIG.liveStandingsUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}})
-        ]);
-        if(gamesResp.ok && groupsResp.ok){
-          const games = await gamesResp.json();
-          const groups = await groupsResp.json();
+        log(`从主源加载: openfootball/worldcup.json`);
+        const r=await fetch(`${DATA_CONFIG.primaryUrl}?t=${now}`,{
+          cache:'no-store', headers:{'Accept':'application/json'}
+        });
+        if(r.ok){
+          const data=await r.json();
+          log('主源加载成功，共'+(data.matches||[]).length+'场比赛');
+          return convertOpenFootballData(data);
+        }else{
+          log('主源返回状态:'+r.status);
+        }
+      }catch(e){log(`主源失败: ${e.message}`)}
+
+      // === 策略2：worldcup26.ir 实时API（辅助，可能被墙） ===
+      try{
+        log(`尝试实时API: ${DATA_CONFIG.liveApiUrl}`);
+        const r=await fetch(`${DATA_CONFIG.liveApiUrl}?t=${now}`,{
+          cache:'no-store', headers:{'Accept':'application/json'}, mode:'cors'
+        });
+        if(r.ok){
+          let groupsData=null;
+          try{
+            const gr=await fetch(`${DATA_CONFIG.liveStandingsUrl}?t=${now}`,{
+              cache:'no-store', headers:{'Accept':'application/json'}, mode:'cors'
+            });
+            if(gr.ok) groupsData=await gr.json();
+          }catch(eg){log('积分榜API获取失败，继续')}
+          const data=await r.json();
           log('实时API加载成功');
-          return convertWorldcup26Data(games, groups);
+          return convertWorldcup26Data(data, groupsData);
         }
       }catch(e){log(`实时API失败: ${e.message}`)}
-      // === 策略2：备用静态数据 ===
-      try{log(`从备用地址加载: ${DATA_CONFIG.fallbackUrl}`);const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${Date.now()}`,{cache:'no-store'});if(r.ok){log('备用加载成功');return await r.json()}}catch(e){log(`备用失败: ${e.message}`)}
+
+      // === 策略3：本项目备用静态数据 ===
+      try{
+        log(`从备用加载: data.json`);
+        const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${now}`,{cache:'no-store'});
+        if(r.ok){log('备用加载成功');return await r.json()}
+      }catch(e){log(`备用失败: ${e.message}`)}
+
       return null;
     }
 
-    // 将 worldcup26.ir 的数据格式转换为页面所需格式
-    function convertWorldcup26Data(rawGames, rawGroups){
-      const now = new Date();
-      let completedCount=0, liveCount=0, upcomingToday=0;
+    // 将 openfootball/worldcup.json 格式转为页面格式
+    function convertOpenFootballData(data){
+      const now=new Date();
+      let completedCount=0, liveCount=0;
       const todayStr=now.toISOString().slice(0,10);
 
-      // 转换比赛数据
-      const matches=(rawGames||[]).map((g,i)=>{
+      const roundMap={
+        'Matchday 1':'小组赛第1轮','Matchday 2':'小组赛第2轮','Matchday 3':'小组赛第3轮',
+        'Matchday 4':'小组赛第1轮','Matchday 5':'小组赛第2轮','Matchday 6':'小组赛第3轮',
+        'Matchday 7':'小组赛第1轮','Matchday 8':'小组赛第2轮','Matchday 9':'小组赛第3轮',
+        'Matchday 10':'小组赛第2轮','Matchday 11':'小组赛第3轮','Matchday 12':'小组赛第2轮',
+        'Matchday 13':'小组赛第3轮','Matchday 14':'小组赛第3轮',
+        'Round of 32':'32强赛','Round of 16':'16强赛',
+        'Quarter-final':'1/4决赛','Semi-final':'半决赛',
+        'Match for third place':'三四名决赛','Final':'决赛'
+      };
+
+      const groupMap={'Group A':'A组','Group B':'B组','Group C':'C组','Group D':'D组',
+        'Group E':'E组','Group F':'F组','Group G':'G组','Group H':'H组',
+        'Group I':'I组','Group J':'J组','Group K':'K组','Group L':'L组'};
+
+      // 队名映射到中文显示
+      const teamNameMap={
+        'Mexico':'墨西哥','South Africa':'南非','South Korea':'韩国','Czech Republic':'捷克',
+        'Canada':'加拿大','Bosnia & Herzegovina':'波黑','Qatar':'卡塔尔','Switzerland':'瑞士',
+        'Brazil':'巴西','Morocco':'摩洛哥','Haiti':'海地','Scotland':'苏格兰',
+        'USA':'美国','Paraguay':'巴拉圭','Australia':'澳大利亚','Turkey':'土耳其',
+        'Germany':'德国','Curaçao':'库拉索','Ivory Coast':'科特迪瓦','Ecuador':'厄瓜多尔',
+        'Netherlands':'荷兰','Japan':'日本','Sweden':'瑞典','Tunisia':'突尼斯',
+        'Belgium':'比利时','Egypt':'埃及','Iran':'伊朗','New Zealand':'新西兰',
+        'Spain':'西班牙','Cape Verde':'佛得角','Saudi Arabia':'沙特阿拉伯','Uruguay':'乌拉圭',
+        'France':'法国','Senegal':'塞内加尔','Iraq':'伊拉克','Norway':'挪威',
+        'Argentina':'阿根廷','Algeria':'阿尔及利亚','Austria':'奥地利','Jordan':'约旦',
+        'Portugal':'葡萄牙','DR Congo':'刚果(金)','Uzbekistan':'乌兹别克斯坦','Colombia':'哥伦比亚',
+        'England':'英格兰','Croatia':'克罗地亚','Ghana':'加纳','Panama':'巴拿马'
+      };
+
+      const matches=(data.matches||[]).map((m,i)=>{
+        const hasScore=m.score&&m.score.ft;
+        const isFinished=!!hasScore;
+        if(isFinished)completedCount++;
+        const homeScore=hasScore?(m.score.ft[0]||0):0;
+        const awayScore=hasScore?(m.score.ft[1]||0):0;
+        const homeTeam=m.team1||'?';
+        const awayTeam=m.team2||'?';
+
+        // 解析时间 "13:00 UTC-6" -> 提取时间部分并转北京时间
+        let timeStr='待定';
+        if(m.time){
+          try{
+            timeStr=m.time.split(' ')[0]; // 取 "13:00"
+          }catch(e){}
+        }
+
+        // 进球者信息
+        const homeScorers=(m.goals1||[]).map(g=>({name:g.name,minute:g.minute}));
+        const awayScorers=(m.goals2||[]).map(g=>({name:g.name,minute:g.minute}));
+
+        return {
+          id:'M'+String(m.num||(i+1)).padStart(2,'0'),
+          time:timeStr,
+          date:m.date||'',
+          stage:roundMap[m.round]||m.round||'小组赛',
+          group:groupMap[m.group]||(m.group||''),
+          home:homeTeam,
+          away:awayTeam,
+          homeScore:homeScore,
+          awayScore:awayScore,
+          score:isFinished?homeScore+':'+awayScore:'-',
+          status:isFinished?'已完赛':'未开赛',
+          statusRaw:isFinished?'FULL_TIME':'TIMED',
+          venue:m.ground||'',
+          source:'OpenFootball 社区数据',
+          completed:isFinished,
+          live:false,
+          homeScorers:homeScorers,
+          awayScorers:awayScorers,
+          // 保留原始队名用于中英文映射
+          _homeEn:homeTeam,
+          _awayEn:awayTeam
+        };
+      });
+
+      // 统计今日/明日赛事
+      const todayMatches=matches.filter(m=>m.date===todayStr);
+      const finishedToday=todayMatches.filter(m=>m.completed);
+      const tomorrowStr=new Date(Date.now()+86400000).toISOString().slice(0,10);
+      const tomorrowMatches=matches.filter(m=>m.date===tomorrowStr);
+
+      // 构建积分榜（根据比赛结果计算）
+      const standings=buildStandings(matches, groupMap, teamNameMap);
+
+      // 热点信息
+      let hotspotTitle='', hotspotBody='';
+      if(finishedToday.length>0){
+        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.slice(0,4).map(m=>m.home+':'+m.homeScore+' '+m.away+':'+m.awayScore).join(' | ');
+      }else{
+        hotspotTitle=todayStr+' 今日赛事';
+      }
+      const parts=[];
+      finishedToday.slice(0,4).forEach(m=>{parts.push(m.home+(m.homeScore||0)+':'+m.away+(m.awayScore||0))});
+      tomorrowMatches.slice(0,4).forEach(m=>{parts.push(m.home+' vs '+m.away)});
+      hotspotBody=parts.join(' | ') || '暂无赛事';
+
+      // 更新TEAM_NAMES_ZH映射表
+      Object.keys(teamNameMap).forEach(en=>{
+        if(!TEAM_NAMES_ZH[en]&&!TEAM_NAMES_ZH[teamNameMap[en]]){
+          TEAM_NAMES_ZH[en]=teamNameMap[en];
+        }
+      });
+
+      return {
+        meta:{
+          title:'2026 世界杯实时战报中心',
+          reportDate:todayStr,
+          resultsDate:todayStr,
+          tomorrowDate:tomorrowStr,
+          generatedAt:new Date(now.getTime()+8*3600000).toISOString().slice(0,19).replace('T',' '),
+          timezone:'Asia/Shanghai',
+          source:'openfootball/worldcup.json (GitHub)'
+        },
+        metrics:{
+          totalMatches:matches.length,
+          completedMatches:completedCount,
+          liveMatches:liveCount,
+          standingsRows:standings.length,
+          disciplineEvents:0,
+          tomorrowFixtures:tomorrowMatches.length
+        },
+        hotspot:{title:hotspotTitle,body:hotspotBody,chips:['完赛比分','次日赛程','积分走势']},
+        matches:matches,
+        standings:standings,
+        discipline:[],
+        playerStats:{
+          scorers:extractTopScorers(matches),
+          assists:[]
+        }
+      };
+    }
+
+    // 根据比赛结果计算积分榜
+    function buildStandings(matches, groupMap, teamNameMap){
+      // 只处理有结果的比赛
+      const table={};
+      matches.filter(m=>m.completed&&m.group).forEach(m=>{
+        ['home','away'].forEach(side=>{
+          const teamKey=m['_'+side+'En'];
+          const grp=m.group;
+          const key=grp+'|'+teamKey;
+          if(!table[key]){
+            table[key]={group:grp,teamEn:teamKey,played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0};
+          }
+          const row=table[key];
+          row.played++;
+          const goalsFor=(side==='home')?m.homeScore:m.awayScore;
+          const goalsAgainst=(side==='home')?m.awayScore:m.homeScore;
+          row.gf+=goalsFor; row.ga+=goalsAgainst; row.gd=row.gf-row.ga;
+          if(goalsFor>goalsAgainst){row.won++;row.pts+=3}
+          else if(goalsFor===goalsAgainst){row.drawn++;row.pts++}
+          else{row.lost++}
+        });
+      });
+
+      const result=Object.values(table)
+        .map(row=>({
+          team:teamNameMap[row.teamEn]||row.teamEn,
+          played:row.played,won:row.won,drawn:row.drawn,lost:row.lost,
+          goalsFor:row.gf,goalsAgainst:row.ga,
+          goalDifference:row.gd,points:row.pts,group:row.group
+        }))
+        .sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference);
+      return result;
+    }
+
+    // 提取射手榜
+    function extractTopScorers(matches){
+      const scorerMap={};
+      matches.filter(m=>m.completed).forEach(m=>{
+        (m.homeScorers||[]).forEach(s=>{
+          if(!scorerMap[s.name])scorerMap[s.name]={name:s.name,team:m.home,count:0};
+          scorerMap[s.name].count++;
+        });
+        (m.awayScorers||[]).forEach(s=>{
+          if(!scorerMap[s.name])scorerMap[s.name]={name:s.name,team:m.away,count:0};
+          scorerMap[s.name].count++;
+        });
+      });
+      return Object.values(scorerMap).sort((a,b)=>b.count-a.count).slice(0,20);
+    }
+
+    // 将 worldcup26.ir 的数据格式转换为页面所需格式（保留作为辅助）
+    function convertWorldcup26Data(rawGames, rawGroups){
         const isFinished=g.finished==='TRUE';
         const isLive=!isFinished && g.time_elapsed!=='notstarted' && g.time_elapsed!=='finished';
         if(isFinished)completedCount++;
@@ -1018,10 +1233,12 @@
       // 统计今日赛事
       matches.forEach(m=>{if(m.date===todayStr&&!m.completed)upcomingToday++});
 
-      // 转换积分榜数据
+      // 转换积分榜数据（兼容 { groups: [...] } 或直接数组）
       let standings=[];
-      if(rawGroups&&rawGroups.groups){
-        rawGroups.groups.forEach(grp=>{
+      const groupsArray = (rawGroups && rawGroups.groups) ? rawGroups.groups :
+                          (Array.isArray(rawGroups) ? rawGroups : []);
+      if(groupsArray.length>0){
+        groupsArray.forEach(grp=>{
           (grp.teams||[]).forEach(t=>{
             standings.push({
               team:String(t.team_id), // 先用ID，后面processData会转中文名
