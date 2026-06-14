@@ -1,0 +1,27 @@
+{
+  "name": "fifa-world-cup-2026_buddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-data": "node scripts/auto-update-data.js",
+    "dev": "npx http-server . -p 8080 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/310767647-dot/worldcup-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/310767647-dot/worldcup-2026/issues"
+  },
+  "homepage": "https://github.com/310767647-dot/worldcup-2026#readme",
+  "dependencies": {
+    "axios": "^1.17.0",
+    "espn-api": "^1.0.1"
+  }
+}

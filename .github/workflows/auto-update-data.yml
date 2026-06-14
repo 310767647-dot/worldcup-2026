@@ -1,0 +1,56 @@
+name: 自动更新世界杯赛事数据
+
+on:
+  schedule:
+    # 每30分钟运行一次
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/auto-update-data.js'
+      - '.github/workflows/auto-update-data.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 拉取 openfootball 数据并更新 data.json
+        id: update
+        run: node scripts/auto-update-data.js
+
+      - name: 检查变更
+        id: check
+        run: |
+          if git diff --quiet data.json; then
+            echo "数据无变化"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "检测到数据更新"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 提交并推送
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git commit -m "🤖 自动更新世界杯数据 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M CST')"
+          git push
+          echo "✅ 数据已推送"

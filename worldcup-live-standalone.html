@@ -764,14 +764,13 @@
   <script>
     // ============ 配置 ============
     const DATA_CONFIG = {
-      // 主数据源：openfootball/worldcup.json (GitHub Raw, 支持CORS, 社区维护)
-      primaryUrl: 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json',
-      // 实时API：worldcup26.ir（免费，但国内可能被墙）
-      liveApiUrl: 'https://worldcup26.ir/get/games',
-      liveStandingsUrl: 'https://worldcup26.ir/get/groups',
-      // 备用：本项目自己的静态 data.json
-      fallbackUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
-      autoRefreshInterval: 5 * 60 * 1000, // 5分钟
+      // ★ 主数据源：data.json（GitHub Action 每30分钟从 openfootball 拉取最新数据自动更新）
+      primaryUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
+      // 辅助实时源：openfootball 社区数据（有实时比分，作为补充）
+      openfootballUrl: 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json',
+      autoRefreshInterval: 3 * 60 * 1000, // 3分钟自动刷新
+      fetchTimeout: 10000, // 单个请求超时10秒
+      debug: true
       debug: true
     };
 
@@ -979,54 +978,73 @@
     function escA(s){return esc(s).replace(/`/g,'&#96;')}
     function sgn(v){const n=Number(v||0);return n>0?`+${n}`:String(n)}
 
+    // ★ 核心：带超时的 fetch
+    async function fetchWithTimeout(url, opts={}, timeout=DATA_CONFIG.fetchTimeout){
+      const ctrl=new AbortController();
+      const timer=setTimeout(()=>ctrl.abort(),timeout);
+      try{
+        const r=await fetch(url,{...opts,signal:ctrl.signal});
+        clearTimeout(timer);
+        return r;
+      }catch(e){
+        clearTimeout(timer);
+        throw e;
+      }
+    }
+
+    // ★ 主数据加载：data.json → openfootball → 内联后备
+    // data.json 由 GitHub Action 每30分钟从 openfootball + ESPN 拉取自动更新
+    // 页面加载时优先取 data.json（最可靠），openfootball 作为辅助校验
     async function loadDataFromNetwork(){
       const log=msg=>{if(DATA_CONFIG.debug)console.log(`[数据] ${msg}`)};
       const now=Date.now();
 
-      // === 策略1：本项目 data.json 主数据源（赛果+球员统计+进球视频最完整） ===
+      // ═══ 策略1：data.json（GitHub Action 每30分钟自动更新，最可靠） ═══
       try{
-        log(`从主源加载: data.json`);
-        const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${now}`,{cache:'no-store'});
-        if(r.ok){
-          const localData=await r.json();
-          log('主源加载成功，共'+(localData.matches||[]).length+'场比赛，'+(localData.playerStats?.scorers||[]).length+'名进球者');
-          return localData;
-        }
-      }catch(e){log(`主源失败: ${e.message}`)}
-
-      // === 策略2：openfootball GitHub 数据（社区数据，完整赛程） ===
-      try{
-        log(`尝试 openfootball/worldcup.json`);
-        const r=await fetch(`${DATA_CONFIG.primaryUrl}?t=${now}`,{
-          cache:'no-store', headers:{'Accept':'application/json'}
-        });
+        log('▶ 策略1: data.json');
+        const cacheBust=`t=${now}&_=${Math.random().toString(36).slice(2,8)}`;
+        const r=await fetchWithTimeout(
+          DATA_CONFIG.primaryUrl+'?'+cacheBust,
+          {cache:'no-store',headers:{
+            'Cache-Control':'no-cache,no-store,max-age=0',
+            'Pragma':'no-cache'
+          }}
+        );
         if(r.ok){
           const data=await r.json();
-          log('openfootball 加载成功，共'+(data.matches||[]).length+'场比赛');
-          return convertOpenFootballData(data);
+          if(data&&data.matches&&data.matches.length>0){
+            log('✓ data.json 成功 ('+data.matches.length+'场比赛, '+data.metrics?.completedMatches+'场已完赛)');
+            return data;
+          }
+          log('data.json 无有效比赛数据');
+        }else{
+          log('data.json HTTP '+r.status);
         }
-      }catch(e){log(`openfootball失败: ${e.message}`)}
+      }catch(e){log('data.json 失败: '+e.message)}
 
-      // === 策略3：worldcup26.ir 实时API（辅助，可能被墙） ===
+      // ═══ 策略2：openfootball 社区数据（有实时比分，直接转换） ═══
       try{
-        log(`尝试实时API: ${DATA_CONFIG.liveApiUrl}`);
-        const r=await fetch(`${DATA_CONFIG.liveApiUrl}?t=${now}`,{
-          cache:'no-store', headers:{'Accept':'application/json'}, mode:'cors'
-        });
+        log('▶ 策略2: openfootball 社区数据');
+        const r=await fetchWithTimeout(
+          DATA_CONFIG.openfootballUrl+'?t='+now,
+          {cache:'no-store',headers:{'Accept':'application/json'}}
+        );
         if(r.ok){
-          let groupsData=null;
-          try{
-            const gr=await fetch(`${DATA_CONFIG.liveStandingsUrl}?t=${now}`,{
-              cache:'no-store', headers:{'Accept':'application/json'}, mode:'cors'
-            });
-            if(gr.ok) groupsData=await gr.json();
-          }catch(eg){log('积分榜API获取失败，继续')}
           const data=await r.json();
-          log('实时API加载成功');
-          return convertWorldcup26Data(data, groupsData);
+          if(data&&(data.matches||data.rounds)){
+            log('✓ openfootball 成功');
+            const converted=convertOpenFootballData(data);
+            if(converted&&converted.matches&&converted.matches.length>0){
+              return converted;
+            }
+          }
+          log('openfootball 数据为空');
+        }else{
+          log('openfootball HTTP '+r.status);
         }
-      }catch(e){log(`实时API失败: ${e.message}`)}
+      }catch(e){log('openfootball 失败: '+e.message)}
 
+      log('✗ 所有网络源失败，使用内联后备数据');
       return null;
     }
 
@@ -1229,138 +1247,6 @@
         .map((p,i)=>({rank:i+1,player:p.player||p.name,team:p.team,goals:p.goals,matches:p.matches.size}));
     }
 
-    // 将 worldcup26.ir 的数据格式转换为页面所需格式（保留作为辅助）
-    function convertWorldcup26Data(rawGames, rawGroups){
-      const now=new Date();
-      let completedCount=0, liveCount=0, upcomingToday=0;
-      const todayStr=now.toISOString().slice(0,10);
-
-      // 兼容两种返回格式：{ games: [...] } 或直接 [...]
-      const gamesArray = (rawGames && rawGames.games) ? rawGames.games :
-                         (Array.isArray(rawGames) ? rawGames : []);
-
-      // 转换比赛数据
-      const matches=gamesArray.map((g,i)=>{
-        const isFinished=g.finished==='TRUE';
-        const isLive=!isFinished && g.time_elapsed!=='notstarted' && g.time_elapsed!=='finished';
-        if(isFinished)completedCount++;
-        if(isLive)liveCount++;
-
-        // 解析时间：local_date 格式如 "06/11/2026 13:00" 或 "06/14/2026 03:00"
-        let timeStr='待定', dateStr='';
-        if(g.local_date){
-          try{
-            const [datePart,timePart]=g.local_date.split(' ');
-            const [mm,dd,yyyy]=datePart.split('/');
-            dateStr=`${yyyy}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}`;
-            if(timePart)timeStr=timePart;
-            else timeStr=dateStr;
-          }catch(e){}
-        }
-
-        // 比赛阶段映射
-        const stageMap={'group':'小组赛','r32':'32强赛','r16':'16强赛','qf':'1/4决赛','sf':'半决赛','final':'决赛'};
-        const stage=stageMap[g.type]||'小组赛';
-
-        return {
-          id:'M'+String(i+1).padStart(2,'0'),
-          time:timeStr,
-          date:dateStr,
-          stage:stage,
-          group:(g.group?g.group+'组':'') || '',
-          home:g.home_team_name_en||g.home_team_label||'?',
-          away:g.away_team_name_en||g.away_team_label||'?',
-          homeScore:Number(g.home_score)||0,
-          awayScore:Number(g.away_score)||0,
-          score:isFinished?(Number(g.home_score)+':'+Number(g.away_score)):'-',
-          status:isLive?'进行中':(isFinished?'已完赛':'未开赛'),
-          statusRaw:isLive?'IN_PROGRESS':(isFinished?'FULL_TIME':'TIMED'),
-          venue:'',// API不提供场馆名，由zhVenue兜底显示
-          source:'WorldCup26 实时API',
-          completed:isFinished,
-          live:isLive,
-          // 保留原始进球信息（如果有）
-          homeScorers:g.home_scorers||[],
-          awayScorers:g.away_scorers||[]
-        };
-      });
-
-      // 统计今日赛事
-      matches.forEach(m=>{if(m.date===todayStr&&!m.completed)upcomingToday++});
-
-      // 转换积分榜数据（兼容 { groups: [...] } 或直接数组）
-      let standings=[];
-      const groupsArray = (rawGroups && rawGroups.groups) ? rawGroups.groups :
-                          (Array.isArray(rawGroups) ? rawGroups : []);
-      if(groupsArray.length>0){
-        groupsArray.forEach(grp=>{
-          (grp.teams||[]).forEach(t=>{
-            standings.push({
-              team:String(t.team_id), // 先用ID，后面processData会转中文名
-              played:Number(t.mp)||0,
-              won:Number(t.w)||0,
-              drawn:Number(t.d)||0,
-              lost:Number(t.l)||0,
-              goalsFor:Number(t.gf)||0,
-              goalsAgainst:Number(t.ga)||0,
-              points:Number(t.pts)||0,
-              goalDifference:Number(t.gd)||0,
-              group:grp.name+'组'
-            });
-          });
-        });
-        // 按积分排序
-        standings.sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference);
-      }
-
-      // 构建热点信息
-      const todayMatches=matches.filter(m=>m.date===todayStr).slice(0,4);
-      const finishedToday=matches.filter(m=>m.completed && m.date===todayStr).slice(0,3);
-      const tomorrowStr=new Date(Date.now()+86400000).toISOString().slice(0,10);
-      const tomorrowMatches=matches.filter(m=>m.date===tomorrowStr).slice(0,4);
-
-      // 构建热点信息（使用中文队名）
-      let hotspotTitle='', hotspotBody='';
-      if(finishedToday.length>0){
-        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.map(m=>zhName(m.home)+':'+m.homeScore+' '+zhName(m.away)+':'+m.awayScore).join(' | ');
-      }else{
-        hotspotTitle=todayStr+' 今日赛事';
-      }
-      const focusParts=[];
-      finishedToday.forEach(m=>{focusParts.push(zhName(m.home)+(m.homeScore||0)+':'+zhName(m.away)+(m.awayScore||0))});
-      tomorrowMatches.forEach(m=>{focusParts.push(zhName(m.home)+' vs '+zhName(m.away))});
-      hotspotBody=focusParts.join(' | ') || '暂无赛事';
-
-      return {
-        meta:{
-          title:'2026 世界杯实时战报中心',
-          reportDate:todayStr,
-          resultsDate:todayStr,
-          tomorrowDate:tomorrowStr,
-          generatedAt:now.toISOString().slice(0,19).replace('T',' '),
-          timezone:'Asia/Shanghai',
-          source:'WorldCup26 实时API'
-        },
-        metrics:{
-          totalMatches:matches.length,
-          completedMatches:completedCount,
-          liveMatches:liveCount,
-          standingsRows:standings.length,
-          disciplineEvents:0,
-          tomorrowFixtures:tomorrowMatches.length
-        },
-        hotspot:{
-          title:hotspotTitle,
-          body:hotspotBody,
-          chips:['完赛比分','次日赛程','积分走势']
-        },
-        matches:matches,
-        standings:standings,
-        discipline:[],
-        playerStats:{scorers:extractTopScorers(matches),assists:[]}
-      };
-    }
-
     function processData(raw){
       if(raw.matches){raw.matches.sort((a,b)=>new Date(a.time)-new Date(b.time))}
       if(raw.standings){raw.standings.sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference)}
@@ -1372,34 +1258,60 @@
     }
 
     async function initData(){
+      console.log('[启动] 开始加载数据...');
       const nd=await loadDataFromNetwork();
       if(nd){
         DATA=processData(nd);
-        dataSource=nd.meta?nd.meta.source||'网络数据':'网络数据';
+        dataSource=nd.meta?nd.meta.source:'网络数据';
+        console.log('[启动] 数据加载完成: '+dataSource);
       }else{
+        console.log('[启动] 网络数据加载失败，使用内联后备数据');
         DATA=processData(JSON.parse(JSON.stringify(INLINE_DATA)));
-        dataSource='内联备用数据（离线）';
+        dataSource='内联后备数据 ⚠️ 离线';
       }
       updateDataBar();renderAll();setupAutoRefresh();setupCountdown();
     }
 
     function updateDataBar(){
-      $('dataSourceText').textContent='数据来源: '+dataSource;
+      // 数据来源显示（更直观）
+      const isLive=dataSource.includes('ESPN')||dataSource.includes('实时');
+      const isCached=dataSource.includes('data.json')||dataSource.includes('OpenFootball');
+      const isOffline=dataSource.includes('离线')||dataSource.includes('后备');
+      
+      let statusIcon='🟢', statusText='实时数据';
+      if(isOffline){statusIcon='🔴';statusText='离线数据';}
+      else if(isCached){statusIcon='🟡';statusText='缓存数据';}
+      else if(isLive){statusIcon='🟢';statusText='实时数据';}
+      
+      $('dataSourceText').textContent=`${statusIcon} ${statusText} · ${dataSource}`;
       $('dataBar').style.display='flex';
-      if(DATA&&DATA.meta&&DATA.meta.generatedAt)$('dataUpdateTime').textContent='更新时间: '+DATA.meta.generatedAt+' (北京时间)';
+      if(DATA&&DATA.meta&&DATA.meta.generatedAt)
+        $('dataUpdateTime').textContent='最后更新: '+DATA.meta.generatedAt+' (北京)';
       const mins=Math.floor(DATA_CONFIG.autoRefreshInterval/60000);
       $('autoRefreshInfo').textContent=`每${mins}分钟自动刷新`;
       const dot=$('dataDot');
-      if(dataSource.includes('实时')){dot.className='dot'}else if(dataSource.includes('备用')||dataSource.includes('离线')){dot.className='dot stale'}else{dot.className='dot offline'}
+      if(isOffline)dot.className='dot offline';
+      else if(isCached)dot.className='dot stale';
+      else dot.className='dot';
     }
 
-    // ============ 15分钟倒计时 ============
+    // ============ 自动刷新 ============
     let refreshTimer=null,countdownTimer=null;
     function setupAutoRefresh(){
       if(refreshTimer)clearInterval(refreshTimer);
       refreshTimer=setInterval(async()=>{
+        console.log('[自动刷新] 检查数据更新...');
         const nd=await loadDataFromNetwork();
-        if(nd){DATA=processData(nd);dataSource=nd.meta?nd.meta.source||'网络数据':'网络数据（自动刷新）';updateDataBar();renderAll();if(DATA_CONFIG.debug)console.log('[自动刷新] 数据已更新')}
+        if(nd){
+          const oldSrc=dataSource;
+          DATA=processData(nd);
+          dataSource=nd.meta?nd.meta.source:'网络数据';
+          if(oldSrc!==dataSource||DATA_CONFIG.debug)
+            console.log('[自动刷新] 数据已更新: '+dataSource);
+          updateDataBar();renderAll();
+        }else{
+          console.log('[自动刷新] 无新数据可用');
+        }
         resetCountdown();
       },DATA_CONFIG.autoRefreshInterval);
     }
