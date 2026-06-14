@@ -1186,6 +1186,16 @@
 
     // 将 worldcup26.ir 的数据格式转换为页面所需格式（保留作为辅助）
     function convertWorldcup26Data(rawGames, rawGroups){
+      const now=new Date();
+      let completedCount=0, liveCount=0, upcomingToday=0;
+      const todayStr=now.toISOString().slice(0,10);
+
+      // 兼容两种返回格式：{ games: [...] } 或直接 [...]
+      const gamesArray = (rawGames && rawGames.games) ? rawGames.games :
+                         (Array.isArray(rawGames) ? rawGames : []);
+
+      // 转换比赛数据
+      const matches=gamesArray.map((g,i)=>{
         const isFinished=g.finished==='TRUE';
         const isLive=!isFinished && g.time_elapsed!=='notstarted' && g.time_elapsed!=='finished';
         if(isFinished)completedCount++;
