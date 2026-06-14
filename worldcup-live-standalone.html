@@ -764,9 +764,12 @@
   <script>
     // ============ 配置 ============
     const DATA_CONFIG = {
-      apiUrl: 'https://310767647-dot.github.io/worldcup-2026/data.json',
+      // 1. 优先使用 worldcup26.ir 免费实时API（无需API key，数据每场更新）
+      liveApiUrl: 'https://worldcup26.ir/get/games',
+      liveStandingsUrl: 'https://worldcup26.ir/get/groups',
+      // 2. 备用：GitHub上的静态 data.json
       fallbackUrl: 'https://raw.githubusercontent.com/310767647-dot/worldcup-2026/main/data.json',
-      autoRefreshInterval: 15 * 60 * 1000,
+      autoRefreshInterval: 5 * 60 * 1000, // 缩短到5分钟，因为真实API支持频繁刷新
       debug: true
     };
 
@@ -942,9 +945,147 @@
 
     async function loadDataFromNetwork(){
       const log=msg=>{if(DATA_CONFIG.debug)console.log(`[数据] ${msg}`)};
-      try{log(`从API加载: ${DATA_CONFIG.apiUrl}`);const r=await fetch(`${DATA_CONFIG.apiUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}});if(r.ok){log('API加载成功');return await r.json()}}catch(e){log(`API失败: ${e.message}`)}
-      try{log(`从备用地址加载: ${DATA_CONFIG.fallbackUrl}`);const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}});if(r.ok){log('备用地址加载成功');return await r.json()}}catch(e){log(`备用地址失败: ${e.message}`)}
+      // === 策略1：优先从 worldcup26.ir 免费实时API获取 ===
+      try{
+        const [gamesResp, groupsResp] = await Promise.all([
+          fetch(`${DATA_CONFIG.liveApiUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}}),
+          fetch(`${DATA_CONFIG.liveStandingsUrl}?t=${Date.now()}`,{cache:'no-store',headers:{'Accept':'application/json'}})
+        ]);
+        if(gamesResp.ok && groupsResp.ok){
+          const games = await gamesResp.json();
+          const groups = await groupsResp.json();
+          log('实时API加载成功');
+          return convertWorldcup26Data(games, groups);
+        }
+      }catch(e){log(`实时API失败: ${e.message}`)}
+      // === 策略2：备用静态数据 ===
+      try{log(`从备用地址加载: ${DATA_CONFIG.fallbackUrl}`);const r=await fetch(`${DATA_CONFIG.fallbackUrl}?t=${Date.now()}`,{cache:'no-store'});if(r.ok){log('备用加载成功');return await r.json()}}catch(e){log(`备用失败: ${e.message}`)}
       return null;
+    }
+
+    // 将 worldcup26.ir 的数据格式转换为页面所需格式
+    function convertWorldcup26Data(rawGames, rawGroups){
+      const now = new Date();
+      let completedCount=0, liveCount=0, upcomingToday=0;
+      const todayStr=now.toISOString().slice(0,10);
+
+      // 转换比赛数据
+      const matches=(rawGames||[]).map((g,i)=>{
+        const isFinished=g.finished==='TRUE';
+        const isLive=!isFinished && g.time_elapsed!=='notstarted' && g.time_elapsed!=='finished';
+        if(isFinished)completedCount++;
+        if(isLive)liveCount++;
+
+        // 解析时间：local_date 格式如 "06/11/2026 13:00" 或 "06/14/2026 03:00"
+        let timeStr='待定', dateStr='';
+        if(g.local_date){
+          try{
+            const [datePart,timePart]=g.local_date.split(' ');
+            const [mm,dd,yyyy]=datePart.split('/');
+            dateStr=`${yyyy}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}`;
+            if(timePart)timeStr=timePart;
+            else timeStr=dateStr;
+          }catch(e){}
+        }
+
+        // 比赛阶段映射
+        const stageMap={'group':'小组赛','r32':'32强赛','r16':'16强赛','qf':'1/4决赛','sf':'半决赛','final':'决赛'};
+        const stage=stageMap[g.type]||'小组赛';
+
+        return {
+          id:'M'+String(i+1).padStart(2,'0'),
+          time:timeStr,
+          date:dateStr,
+          stage:stage,
+          group:(g.group?g.group+'组':'') || '',
+          home:g.home_team_name_en||g.home_team_label||'?',
+          away:g.away_team_name_en||g.away_team_label||'?',
+          homeScore:Number(g.home_score)||0,
+          awayScore:Number(g.away_score)||0,
+          score:isFinished?(Number(g.home_score)+':'+Number(g.away_score)):'-',
+          status:isLive?'进行中':(isFinished?'已完赛':'未开赛'),
+          statusRaw:isLive?'IN_PROGRESS':(isFinished?'FULL_TIME':'TIMED'),
+          venue:'',// API不提供场馆名，由zhVenue兜底显示
+          source:'WorldCup26 实时API',
+          completed:isFinished,
+          live:isLive,
+          // 保留原始进球信息（如果有）
+          homeScorers:g.home_scorers||[],
+          awayScorers:g.away_scorers||[]
+        };
+      });
+
+      // 统计今日赛事
+      matches.forEach(m=>{if(m.date===todayStr&&!m.completed)upcomingToday++});
+
+      // 转换积分榜数据
+      let standings=[];
+      if(rawGroups&&rawGroups.groups){
+        rawGroups.groups.forEach(grp=>{
+          (grp.teams||[]).forEach(t=>{
+            standings.push({
+              team:String(t.team_id), // 先用ID，后面processData会转中文名
+              played:Number(t.mp)||0,
+              won:Number(t.w)||0,
+              drawn:Number(t.d)||0,
+              lost:Number(t.l)||0,
+              goalsFor:Number(t.gf)||0,
+              goalsAgainst:Number(t.ga)||0,
+              points:Number(t.pts)||0,
+              goalDifference:Number(t.gd)||0,
+              group:grp.name+'组'
+            });
+          });
+        });
+        // 按积分排序
+        standings.sort((a,b)=>b.points-a.points||b.goalDifference-a.goalDifference);
+      }
+
+      // 构建热点信息
+      const todayMatches=matches.filter(m=>m.date===todayStr).slice(0,4);
+      const finishedToday=matches.filter(m=>m.completed && m.date===todayStr).slice(0,3);
+      const tomorrowStr=new Date(Date.now()+86400000).toISOString().slice(0,10);
+      const tomorrowMatches=matches.filter(m=>m.date===tomorrowStr).slice(0,4);
+
+      let hotspotTitle='', hotspotBody='';
+      if(finishedToday.length>0){
+        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.map(m=>m.home+':'+m.homeScore+' '+m.away+':'+m.awayScore).join(' | ');
+      }else{
+        hotspotTitle=todayStr+' 今日赛事';
+      }
+      const focusParts=[];
+      finishedToday.forEach(m=>{focusParts.push(m.home+(m.homeScore||0)+':'+m.away+(m.awayScore||0))});
+      tomorrowMatches.forEach(m=>{focusParts.push(m.home+'vs'+m.away)});
+      hotspotBody=focusParts.join(' | ') || '暂无赛事';
+
+      return {
+        meta:{
+          title:'2026 世界杯实时战报中心',
+          reportDate:todayStr,
+          resultsDate:todayStr,
+          tomorrowDate:tomorrowStr,
+          generatedAt:now.toISOString().slice(0,19).replace('T',' '),
+          timezone:'Asia/Shanghai',
+          source:'WorldCup26 实时API'
+        },
+        metrics:{
+          totalMatches:matches.length,
+          completedMatches:completedCount,
+          liveMatches:liveCount,
+          standingsRows:standings.length,
+          disciplineEvents:0,
+          tomorrowFixtures:tomorrowMatches.length
+        },
+        hotspot:{
+          title:hotspotTitle,
+          body:hotspotBody,
+          chips:['完赛比分','次日赛程','积分走势']
+        },
+        matches:matches,
+        standings:standings,
+        discipline:[],
+        playerStats:{scorers:[],assists:[]}
+      };
     }
 
     function processData(raw){
@@ -959,17 +1100,18 @@
 
     async function initData(){
       const nd=await loadDataFromNetwork();
-      if(nd){DATA=processData(nd);dataSource='网络数据'}else{DATA=processData(JSON.parse(JSON.stringify(INLINE_DATA)));dataSource='内联备用数据'}
+      if(nd){DATA=processData(nd);dataSource='WorldCup26 实时数据'}else{DATA=processData(JSON.parse(JSON.stringify(INLINE_DATA)));dataSource='内联备用数据（离线）'}
       updateDataBar();renderAll();setupAutoRefresh();setupCountdown();
     }
 
     function updateDataBar(){
       $('dataSourceText').textContent='数据来源: '+dataSource;
       $('dataBar').style.display='flex';
-      if(DATA&&DATA.meta&&DATA.meta.generatedAt)$('dataUpdateTime').textContent='更新时间: '+DATA.meta.generatedAt;
-      $('autoRefreshInfo').textContent='每15分钟自动刷新';
+      if(DATA&&DATA.meta&&DATA.meta.generatedAt)$('dataUpdateTime').textContent='更新时间: '+DATA.meta.generatedAt+' (北京时间)';
+      const mins=Math.floor(DATA_CONFIG.autoRefreshInterval/60000);
+      $('autoRefreshInfo').textContent=`每${mins}分钟自动刷新`;
       const dot=$('dataDot');
-      if(dataSource.includes('网络')){dot.className='dot'}else if(dataSource.includes('备用')){dot.className='dot stale'}else{dot.className='dot offline'}
+      if(dataSource.includes('实时')){dot.className='dot'}else if(dataSource.includes('备用')||dataSource.includes('离线')){dot.className='dot stale'}else{dot.className='dot offline'}
     }
 
     // ============ 15分钟倒计时 ============
@@ -978,7 +1120,7 @@
       if(refreshTimer)clearInterval(refreshTimer);
       refreshTimer=setInterval(async()=>{
         const nd=await loadDataFromNetwork();
-        if(nd){DATA=processData(nd);dataSource='网络数据（自动刷新）';updateDataBar();renderAll();if(DATA_CONFIG.debug)console.log('[自动刷新] 数据已更新')}
+        if(nd){DATA=processData(nd);dataSource='WorldCup26 实时数据（自动刷新）';updateDataBar();renderAll();if(DATA_CONFIG.debug)console.log('[自动刷新] 数据已更新')}
         resetCountdown();
       },DATA_CONFIG.autoRefreshInterval);
     }
@@ -1215,7 +1357,7 @@
 
     ['searchBox','statusFilter','groupFilter','dateFilter'].forEach(id=>{$(id).addEventListener('input',renderMatches)});
     $('resetFilters').addEventListener('click',()=>{['searchBox','statusFilter','groupFilter','dateFilter'].forEach(id=>{$(id).value=''});renderMatches()});
-    $('refreshBtn').addEventListener('click',async()=>{$('refreshState').textContent='刷新中...';const nd=await loadDataFromNetwork();if(nd){DATA=processData(nd);dataSource='网络数据（手动刷新）';updateDataBar();renderAll();resetCountdown();$('refreshState').textContent='已刷新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}else{renderAll();$('refreshState').textContent='已刷新（使用缓存） '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}});
+    $('refreshBtn').addEventListener('click',async()=>{$('refreshState').textContent='刷新中...';const nd=await loadDataFromNetwork();if(nd){DATA=processData(nd);dataSource='WorldCup26 实时数据（手动刷新）';updateDataBar();renderAll();resetCountdown();$('refreshState').textContent='已刷新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}else{renderAll();$('refreshState').textContent='刷新失败（使用本地缓存） '+new Date().toLocaleTimeString('zh-CN',{hour12:false})}});
     $('refreshLiveBtn').addEventListener('click',()=>{renderVideos()});
     $('searchReplayBtn').addEventListener('click',()=>{const s=$('replaySelect');if(s&&s.value)showReplay(s.value)});
     $('goalVideoMatchFilter').addEventListener('change',function(){renderGoalVideos(this.value)});
