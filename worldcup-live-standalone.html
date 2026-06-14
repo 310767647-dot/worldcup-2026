@@ -1086,16 +1086,16 @@
       // 构建积分榜（根据比赛结果计算）
       const standings=buildStandings(matches, groupMap, teamNameMap);
 
-      // 热点信息
+      // 热点信息（使用中文队名）
       let hotspotTitle='', hotspotBody='';
       if(finishedToday.length>0){
-        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.slice(0,4).map(m=>m.home+':'+m.homeScore+' '+m.away+':'+m.awayScore).join(' | ');
+        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.slice(0,4).map(m=>(teamNameMap[m._homeEn]||m.home)+':'+m.homeScore+' '+(teamNameMap[m._awayEn]||m.away)+':'+m.awayScore).join(' | ');
       }else{
         hotspotTitle=todayStr+' 今日赛事';
       }
       const parts=[];
-      finishedToday.slice(0,4).forEach(m=>{parts.push(m.home+(m.homeScore||0)+':'+m.away+(m.awayScore||0))});
-      tomorrowMatches.slice(0,4).forEach(m=>{parts.push(m.home+' vs '+m.away)});
+      finishedToday.slice(0,4).forEach(m=>{parts.push((teamNameMap[m._homeEn]||m.home)+(m.homeScore||0)+':'+(teamNameMap[m._awayEn]||m.away)+(m.awayScore||0))});
+      tomorrowMatches.slice(0,4).forEach(m=>{parts.push((teamNameMap[m._homeEn]||m.home)+' vs '+(teamNameMap[m._awayEn]||m.away))});
       hotspotBody=parts.join(' | ') || '暂无赛事';
 
       // 更新TEAM_NAMES_ZH映射表
@@ -1168,20 +1168,29 @@
       return result;
     }
 
-    // 提取射手榜
+    // 提取射手榜（返回与renderPlayerStats匹配的格式：{rank,player,team,goals,matches}）
     function extractTopScorers(matches){
       const scorerMap={};
       matches.filter(m=>m.completed).forEach(m=>{
+        const homeTeam=zhName(m.home);
+        const awayTeam=zhName(m.away);
         (m.homeScorers||[]).forEach(s=>{
-          if(!scorerMap[s.name])scorerMap[s.name]={name:s.name,team:m.home,count:0};
-          scorerMap[s.name].count++;
+          const key=s.name;
+          if(!scorerMap[key])scorerMap[key]={name:s.name,team:homeTeam,goals:0,matches:new Set()};
+          scorerMap[key].goals++;
+          scorerMap[key].matches.add(m.id);
         });
         (m.awayScorers||[]).forEach(s=>{
-          if(!scorerMap[s.name])scorerMap[s.name]={name:s.name,team:m.away,count:0};
-          scorerMap[s.name].count++;
+          const key=s.name;
+          if(!scorerMap[key])scorerMap[key]={name:s.name,team:awayTeam,goals:0,matches:new Set()};
+          scorerMap[key].goals++;
+          scorerMap[key].matches.add(m.id);
         });
       });
-      return Object.values(scorerMap).sort((a,b)=>b.count-a.count).slice(0,20);
+      return Object.values(scorerMap)
+        .sort((a,b)=>b.goals-a.goals)
+        .slice(0,20)
+        .map((p,i)=>({rank:i+1,player:p.player||p.name,team:p.team,goals:p.goals,matches:p.matches.size}));
     }
 
     // 将 worldcup26.ir 的数据格式转换为页面所需格式（保留作为辅助）
@@ -1274,15 +1283,16 @@
       const tomorrowStr=new Date(Date.now()+86400000).toISOString().slice(0,10);
       const tomorrowMatches=matches.filter(m=>m.date===tomorrowStr).slice(0,4);
 
+      // 构建热点信息（使用中文队名）
       let hotspotTitle='', hotspotBody='';
       if(finishedToday.length>0){
-        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.map(m=>m.home+':'+m.homeScore+' '+m.away+':'+m.awayScore).join(' | ');
+        hotspotTitle=todayStr+' 完赛焦点：'+finishedToday.map(m=>zhName(m.home)+':'+m.homeScore+' '+zhName(m.away)+':'+m.awayScore).join(' | ');
       }else{
         hotspotTitle=todayStr+' 今日赛事';
       }
       const focusParts=[];
-      finishedToday.forEach(m=>{focusParts.push(m.home+(m.homeScore||0)+':'+m.away+(m.awayScore||0))});
-      tomorrowMatches.forEach(m=>{focusParts.push(m.home+'vs'+m.away)});
+      finishedToday.forEach(m=>{focusParts.push(zhName(m.home)+(m.homeScore||0)+':'+zhName(m.away)+(m.awayScore||0))});
+      tomorrowMatches.forEach(m=>{focusParts.push(zhName(m.home)+' vs '+zhName(m.away))});
       hotspotBody=focusParts.join(' | ') || '暂无赛事';
 
       return {
@@ -1311,7 +1321,7 @@
         matches:matches,
         standings:standings,
         discipline:[],
-        playerStats:{scorers:[],assists:[]}
+        playerStats:{scorers:extractTopScorers(matches),assists:[]}
       };
     }
 
