@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-14",
-    "resultsDate": "2026-06-14",
-    "tomorrowDate": "2026-06-15",
-    "generatedAt": "2026-06-14 20:48:00",
+    "reportDate": "2026-06-15",
+    "resultsDate": "2026-06-15",
+    "tomorrowDate": "2026-06-16",
+    "generatedAt": "2026-06-15 16:24:27",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 9,
+    "completedMatches": 12,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-14 完赛焦点：德国7:1库拉索",
-    "body": "德国7:1库拉索 | 比利时 vs 埃及 | 伊朗 vs 新西兰 | 西班牙 vs 佛得角 | 沙特阿拉伯 vs 乌拉圭",
+    "title": "2026-06-15 今日赛事",
+    "body": "比利时 vs 埃及 | 伊朗 vs 新西兰 | 西班牙 vs 佛得角 | 沙特阿拉伯 vs 乌拉圭",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -356,17 +356,35 @@
       "group": "F组",
       "home": "荷兰",
       "away": "日本",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 2,
+      "score": "2:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Dallas (Arlington)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Virgil van Dijk",
+          "minute": "51"
+        },
+        {
+          "name": "Crysencio Summerville",
+          "minute": "64"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Keito Nakamura",
+          "minute": "57"
+        },
+        {
+          "name": "Daichi Kamada",
+          "minute": "88"
+        }
+      ],
       "_homeEn": "Netherlands",
       "_awayEn": "Japan"
     },
@@ -378,16 +396,21 @@
       "group": "E组",
       "home": "科特迪瓦",
       "away": "厄瓜多尔",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "1:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Philadelphia",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Amad Diallo",
+          "minute": "90"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Ivory Coast",
       "_awayEn": "Ecuador"
@@ -400,17 +423,43 @@
       "group": "F组",
       "home": "瑞典",
       "away": "突尼斯",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 5,
+      "awayScore": 1,
+      "score": "5:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Monterrey (Guadalupe)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Yasin Ayari",
+          "minute": "7"
+        },
+        {
+          "name": "Alexander Isak",
+          "minute": "30"
+        },
+        {
+          "name": "Viktor Gyökeres",
+          "minute": "59"
+        },
+        {
+          "name": "Mattias Svanberg",
+          "minute": "84"
+        },
+        {
+          "name": "Yasin Ayari",
+          "minute": "90+6"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Omar Rekik",
+          "minute": "43"
+        }
+      ],
       "_homeEn": "Sweden",
       "_awayEn": "Tunisia"
     },
@@ -2453,6 +2502,18 @@
       "group": "E组"
     },
     {
+      "team": "瑞典",
+      "played": 1,
+      "won": 1,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 1,
+      "points": 3,
+      "goalDifference": 4,
+      "group": "F组"
+    },
+    {
       "team": "美国",
       "played": 1,
       "won": 1,
@@ -2511,6 +2572,18 @@
       "points": 3,
       "goalDifference": 1,
       "group": "C组"
+    },
+    {
+      "team": "科特迪瓦",
+      "played": 1,
+      "won": 1,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 0,
+      "points": 3,
+      "goalDifference": 1,
+      "group": "E组"
     },
     {
       "team": "加拿大",
@@ -2585,74 +2658,26 @@
       "group": "C组"
     },
     {
-      "team": "科特迪瓦",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "E组"
-    },
-    {
-      "team": "厄瓜多尔",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "E组"
-    },
-    {
       "team": "荷兰",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 1,
       "goalDifference": 0,
       "group": "F组"
     },
     {
       "team": "日本",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "F组"
-    },
-    {
-      "team": "瑞典",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "F组"
-    },
-    {
-      "team": "突尼斯",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 1,
       "goalDifference": 0,
       "group": "F组"
     },
@@ -2969,6 +2994,18 @@
       "group": "C组"
     },
     {
+      "team": "厄瓜多尔",
+      "played": 1,
+      "won": 0,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 1,
+      "points": 0,
+      "goalDifference": -1,
+      "group": "E组"
+    },
+    {
       "team": "南非",
       "played": 1,
       "won": 0,
@@ -3003,6 +3040,18 @@
       "points": 0,
       "goalDifference": -3,
       "group": "D组"
+    },
+    {
+      "team": "突尼斯",
+      "played": 1,
+      "won": 0,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 5,
+      "points": 0,
+      "goalDifference": -4,
+      "group": "F组"
     },
     {
       "team": "库拉索",
