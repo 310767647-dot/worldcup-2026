@@ -4,21 +4,21 @@
     "reportDate": "2026-06-15",
     "resultsDate": "2026-06-15",
     "tomorrowDate": "2026-06-16",
-    "generatedAt": "2026-06-15 16:24:27",
+    "generatedAt": "2026-06-15 23:16:57",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 12,
+    "completedMatches": 14,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-15 今日赛事",
-    "body": "比利时 vs 埃及 | 伊朗 vs 新西兰 | 西班牙 vs 佛得角 | 沙特阿拉伯 vs 乌拉圭",
+    "title": "2026-06-15 完赛焦点：比利时1:1埃及 | 西班牙0:0佛得角",
+    "body": "比利时1:1埃及 | 西班牙0:0佛得角 | 法国 vs 塞内加尔 | 伊拉克 vs 挪威 | 阿根廷 vs 阿尔及利亚 | 奥地利 vs 约旦",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -471,17 +471,27 @@
       "group": "G组",
       "home": "比利时",
       "away": "埃及",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Seattle",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Mohamed Hany",
+          "minute": "66"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Emam Ashour",
+          "minute": "19"
+        }
+      ],
       "_homeEn": "Belgium",
       "_awayEn": "Egypt"
     },
@@ -495,12 +505,12 @@
       "away": "佛得角",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Atlanta",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
@@ -2683,27 +2693,51 @@
     },
     {
       "team": "比利时",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
       "goalDifference": 0,
       "group": "G组"
     },
     {
       "team": "埃及",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
+      "goalDifference": 0,
+      "group": "G组"
+    },
+    {
+      "team": "西班牙",
+      "played": 1,
+      "won": 0,
+      "drawn": 1,
       "lost": 0,
       "goalsFor": 0,
       "goalsAgainst": 0,
-      "points": 0,
+      "points": 1,
       "goalDifference": 0,
-      "group": "G组"
+      "group": "H组"
+    },
+    {
+      "team": "佛得角",
+      "played": 1,
+      "won": 0,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "points": 1,
+      "goalDifference": 0,
+      "group": "H组"
     },
     {
       "team": "伊朗",
@@ -2728,30 +2762,6 @@
       "points": 0,
       "goalDifference": 0,
       "group": "G组"
-    },
-    {
-      "team": "西班牙",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "H组"
-    },
-    {
-      "team": "佛得角",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "H组"
     },
     {
       "team": "沙特阿拉伯",
