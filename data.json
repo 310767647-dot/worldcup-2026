@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-15",
-    "resultsDate": "2026-06-15",
-    "tomorrowDate": "2026-06-16",
-    "generatedAt": "2026-06-15 23:16:57",
+    "reportDate": "2026-06-16",
+    "resultsDate": "2026-06-16",
+    "tomorrowDate": "2026-06-17",
+    "generatedAt": "2026-06-16 18:13:39",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 14,
+    "completedMatches": 16,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-15 完赛焦点：比利时1:1埃及 | 西班牙0:0佛得角",
-    "body": "比利时1:1埃及 | 西班牙0:0佛得角 | 法国 vs 塞内加尔 | 伊拉克 vs 挪威 | 阿根廷 vs 阿尔及利亚 | 奥地利 vs 约旦",
+    "title": "2026-06-16 今日赛事",
+    "body": "法国 vs 塞内加尔 | 伊拉克 vs 挪威 | 阿根廷 vs 阿尔及利亚 | 奥地利 vs 约旦",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -525,17 +525,35 @@
       "group": "G组",
       "home": "伊朗",
       "away": "新西兰",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 2,
+      "score": "2:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Los Angeles (Inglewood)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Ramin Rezaeian",
+          "minute": "32"
+        },
+        {
+          "name": "Mohammad Mohebbi",
+          "minute": "64"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Elijah Just",
+          "minute": "7"
+        },
+        {
+          "name": "Elijah Just",
+          "minute": "54"
+        }
+      ],
       "_homeEn": "Iran",
       "_awayEn": "New Zealand"
     },
@@ -547,17 +565,27 @@
       "group": "H组",
       "home": "沙特阿拉伯",
       "away": "乌拉圭",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Miami (Miami Gardens)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Abdulelah Al-Amri",
+          "minute": "41"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Maxi Araújo",
+          "minute": "80"
+        }
+      ],
       "_homeEn": "Saudi Arabia",
       "_awayEn": "Uruguay"
     },
@@ -2716,6 +2744,30 @@
       "group": "G组"
     },
     {
+      "team": "伊朗",
+      "played": 1,
+      "won": 0,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 1,
+      "goalDifference": 0,
+      "group": "G组"
+    },
+    {
+      "team": "新西兰",
+      "played": 1,
+      "won": 0,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 1,
+      "goalDifference": 0,
+      "group": "G组"
+    },
+    {
       "team": "西班牙",
       "played": 1,
       "won": 0,
@@ -2740,50 +2792,26 @@
       "group": "H组"
     },
     {
-      "team": "伊朗",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
-      "team": "新西兰",
-      "played": 0,
-      "won": 0,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
       "team": "沙特阿拉伯",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
       "goalDifference": 0,
       "group": "H组"
     },
     {
       "team": "乌拉圭",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
       "goalDifference": 0,
       "group": "H组"
     },
