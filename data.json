@@ -4,21 +4,21 @@
     "reportDate": "2026-06-17",
     "resultsDate": "2026-06-17",
     "tomorrowDate": "2026-06-18",
-    "generatedAt": "2026-06-17 13:02:10",
+    "generatedAt": "2026-06-17 21:24:47",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 20,
+    "completedMatches": 21,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-17 今日赛事",
-    "body": "葡萄牙 vs 刚果(金) | 乌兹别克斯坦 vs 哥伦比亚 | 英格兰 vs 克罗地亚 | 加纳 vs 巴拿马",
+    "title": "2026-06-17 完赛焦点：葡萄牙1:1刚果(金)",
+    "body": "葡萄牙1:1刚果(金) | 捷克 vs 南非 | 墨西哥 vs 韩国 | 瑞士 vs 波黑 | 加拿大 vs 卡塔尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -756,17 +756,27 @@
       "group": "K组",
       "home": "葡萄牙",
       "away": "刚果(金)",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "João Neves",
+          "minute": "6"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Yoane Wissa",
+          "minute": "45+5"
+        }
+      ],
       "_homeEn": "Portugal",
       "_awayEn": "DR Congo"
     },
@@ -2936,25 +2946,25 @@
     },
     {
       "team": "葡萄牙",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
       "goalDifference": 0,
       "group": "K组"
     },
     {
       "team": "刚果(金)",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "points": 1,
       "goalDifference": 0,
       "group": "K组"
     },
