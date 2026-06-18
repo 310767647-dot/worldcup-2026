@@ -4,21 +4,21 @@
     "reportDate": "2026-06-18",
     "resultsDate": "2026-06-18",
     "tomorrowDate": "2026-06-19",
-    "generatedAt": "2026-06-18 11:58:13",
+    "generatedAt": "2026-06-18 20:42:25",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 24,
+    "completedMatches": 25,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-18 今日赛事",
-    "body": "捷克 vs 南非 | 墨西哥 vs 韩国 | 瑞士 vs 波黑 | 加拿大 vs 卡塔尔",
+    "title": "2026-06-18 完赛焦点：捷克1:1南非",
+    "body": "捷克1:1南非 | 苏格兰 vs 摩洛哥 | 巴西 vs 海地 | 美国 vs 澳大利亚 | 土耳其 vs 巴拉圭",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -903,17 +903,27 @@
       "group": "A组",
       "home": "捷克",
       "away": "南非",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Atlanta",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Michal Sadílek",
+          "minute": "6"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Teboho Mokoena",
+          "minute": "83"
+        }
+      ],
       "_homeEn": "Czech Republic",
       "_awayEn": "South Africa"
     },
@@ -3055,14 +3065,26 @@
     },
     {
       "team": "捷克",
-      "played": 1,
+      "played": 2,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 3,
+      "points": 1,
+      "goalDifference": -1,
+      "group": "A组"
+    },
+    {
+      "team": "南非",
+      "played": 2,
+      "won": 0,
+      "drawn": 1,
       "lost": 1,
       "goalsFor": 1,
-      "goalsAgainst": 2,
-      "points": 0,
-      "goalDifference": -1,
+      "goalsAgainst": 3,
+      "points": 1,
+      "goalDifference": -2,
       "group": "A组"
     },
     {
@@ -3100,18 +3122,6 @@
       "points": 0,
       "goalDifference": -1,
       "group": "L组"
-    },
-    {
-      "team": "南非",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 0,
-      "goalsAgainst": 2,
-      "points": 0,
-      "goalDifference": -2,
-      "group": "A组"
     },
     {
       "team": "土耳其",
