@@ -4,21 +4,21 @@
     "reportDate": "2026-06-19",
     "resultsDate": "2026-06-19",
     "tomorrowDate": "2026-06-20",
-    "generatedAt": "2026-06-19 12:33:00",
+    "generatedAt": "2026-06-19 22:38:12",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 28,
+    "completedMatches": 29,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-19 今日赛事",
-    "body": "苏格兰 vs 摩洛哥 | 巴西 vs 海地 | 美国 vs 澳大利亚 | 土耳其 vs 巴拉圭",
+    "title": "2026-06-19 完赛焦点：美国2:0澳大利亚",
+    "body": "美国2:0澳大利亚 | 德国 vs 科特迪瓦 | 厄瓜多尔 vs 库拉索 | 荷兰 vs 瑞典 | 突尼斯 vs 日本",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1053,16 +1053,25 @@
       "group": "D组",
       "home": "美国",
       "away": "澳大利亚",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "2:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Seattle",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Cameron Burgess",
+          "minute": "11"
+        },
+        {
+          "name": "Alex Freeman",
+          "minute": "43"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "USA",
       "_awayEn": "Australia"
@@ -2720,6 +2729,18 @@
   ],
   "standings": [
     {
+      "team": "美国",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 1,
+      "points": 6,
+      "goalDifference": 5,
+      "group": "D组"
+    },
+    {
       "team": "墨西哥",
       "played": 2,
       "won": 2,
@@ -2780,18 +2801,6 @@
       "group": "F组"
     },
     {
-      "team": "美国",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 4,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 3,
-      "group": "D组"
-    },
-    {
       "team": "挪威",
       "played": 1,
       "won": 1,
@@ -2814,18 +2823,6 @@
       "points": 3,
       "goalDifference": 3,
       "group": "J组"
-    },
-    {
-      "team": "澳大利亚",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 0,
-      "points": 3,
-      "goalDifference": 2,
-      "group": "D组"
     },
     {
       "team": "法国",
@@ -2922,6 +2919,18 @@
       "points": 3,
       "goalDifference": 0,
       "group": "A组"
+    },
+    {
+      "team": "澳大利亚",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 3,
+      "goalDifference": 0,
+      "group": "D组"
     },
     {
       "team": "巴西",
