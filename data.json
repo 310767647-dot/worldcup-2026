@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-18",
-    "resultsDate": "2026-06-18",
-    "tomorrowDate": "2026-06-19",
-    "generatedAt": "2026-06-18 20:42:25",
+    "reportDate": "2026-06-19",
+    "resultsDate": "2026-06-19",
+    "tomorrowDate": "2026-06-20",
+    "generatedAt": "2026-06-19 12:33:00",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 25,
+    "completedMatches": 28,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-18 完赛焦点：捷克1:1南非",
-    "body": "捷克1:1南非 | 苏格兰 vs 摩洛哥 | 巴西 vs 海地 | 美国 vs 澳大利亚 | 土耳其 vs 巴拉圭",
+    "title": "2026-06-19 今日赛事",
+    "body": "苏格兰 vs 摩洛哥 | 巴西 vs 海地 | 美国 vs 澳大利亚 | 土耳其 vs 巴拉圭",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -935,17 +935,39 @@
       "group": "B组",
       "home": "瑞士",
       "away": "波黑",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 4,
+      "awayScore": 1,
+      "score": "4:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Los Angeles (Inglewood)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Johan Manzambi",
+          "minute": "74"
+        },
+        {
+          "name": "Rubén Vargas",
+          "minute": "84"
+        },
+        {
+          "name": "Johan Manzambi",
+          "minute": "90"
+        },
+        {
+          "name": "Granit Xhaka",
+          "minute": "90+7"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Ermin Mahmic",
+          "minute": "90+3"
+        }
+      ],
       "_homeEn": "Switzerland",
       "_awayEn": "Bosnia & Herzegovina"
     },
@@ -957,16 +979,41 @@
       "group": "B组",
       "home": "加拿大",
       "away": "卡塔尔",
-      "homeScore": 0,
+      "homeScore": 6,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "6:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Vancouver",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Cyle Larin",
+          "minute": "16"
+        },
+        {
+          "name": "Jonathan David",
+          "minute": "29"
+        },
+        {
+          "name": "Jonathan David",
+          "minute": "45+3"
+        },
+        {
+          "name": "Nathan Saliba",
+          "minute": "64"
+        },
+        {
+          "name": "Mohamed Manai",
+          "minute": "75"
+        },
+        {
+          "name": "Jonathan David",
+          "minute": "90+2"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Canada",
       "_awayEn": "Qatar"
@@ -979,16 +1026,21 @@
       "group": "A组",
       "home": "墨西哥",
       "away": "韩国",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "1:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Guadalajara (Zapopan)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Luis Romo",
+          "minute": "50"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Mexico",
       "_awayEn": "South Korea"
@@ -2668,6 +2720,42 @@
   ],
   "standings": [
     {
+      "team": "墨西哥",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 3,
+      "goalsAgainst": 0,
+      "points": 6,
+      "goalDifference": 3,
+      "group": "A组"
+    },
+    {
+      "team": "加拿大",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 1,
+      "points": 4,
+      "goalDifference": 6,
+      "group": "B组"
+    },
+    {
+      "team": "瑞士",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 2,
+      "points": 4,
+      "goalDifference": 3,
+      "group": "B组"
+    },
+    {
       "team": "德国",
       "played": 1,
       "won": 1,
@@ -2726,18 +2814,6 @@
       "points": 3,
       "goalDifference": 3,
       "group": "J组"
-    },
-    {
-      "team": "墨西哥",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 0,
-      "points": 3,
-      "goalDifference": 2,
-      "group": "A组"
     },
     {
       "team": "澳大利亚",
@@ -2800,18 +2876,6 @@
       "group": "L组"
     },
     {
-      "team": "韩国",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 1,
-      "group": "A组"
-    },
-    {
       "team": "苏格兰",
       "played": 1,
       "won": 1,
@@ -2848,52 +2912,16 @@
       "group": "L组"
     },
     {
-      "team": "加拿大",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
+      "team": "韩国",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 3,
       "goalDifference": 0,
-      "group": "B组"
-    },
-    {
-      "team": "波黑",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "B组"
-    },
-    {
-      "team": "卡塔尔",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "B组"
-    },
-    {
-      "team": "瑞士",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "B组"
+      "group": "A组"
     },
     {
       "team": "巴西",
@@ -3086,6 +3114,30 @@
       "points": 1,
       "goalDifference": -2,
       "group": "A组"
+    },
+    {
+      "team": "波黑",
+      "played": 2,
+      "won": 0,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 5,
+      "points": 1,
+      "goalDifference": -3,
+      "group": "B组"
+    },
+    {
+      "team": "卡塔尔",
+      "played": 2,
+      "won": 0,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "points": 1,
+      "goalDifference": -6,
+      "group": "B组"
     },
     {
       "team": "海地",
