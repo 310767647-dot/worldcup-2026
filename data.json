@@ -4,21 +4,21 @@
     "reportDate": "2026-06-20",
     "resultsDate": "2026-06-20",
     "tomorrowDate": "2026-06-21",
-    "generatedAt": "2026-06-20 10:15:36",
+    "generatedAt": "2026-06-20 20:51:51",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 32,
+    "completedMatches": 33,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-20 今日赛事",
-    "body": "德国 vs 科特迪瓦 | 厄瓜多尔 vs 库拉索 | 荷兰 vs 瑞典 | 突尼斯 vs 日本",
+    "title": "2026-06-20 完赛焦点：荷兰5:1瑞典",
+    "body": "荷兰5:1瑞典 | 比利时 vs 伊朗 | 新西兰 vs 埃及 | 西班牙 vs 沙特阿拉伯 | 乌拉圭 vs 佛得角",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -189,7 +189,7 @@
       "live": false,
       "homeScorers": [
         {
-          "name": "Boualem Khoukhi",
+          "name": "Miro Muheim",
           "minute": "90+4"
         }
       ],
@@ -1173,17 +1173,43 @@
       "group": "F组",
       "home": "荷兰",
       "away": "瑞典",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 5,
+      "awayScore": 1,
+      "score": "5:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Brian Brobbey",
+          "minute": "5"
+        },
+        {
+          "name": "Brian Brobbey",
+          "minute": "17"
+        },
+        {
+          "name": "Cody Gakpo",
+          "minute": "47"
+        },
+        {
+          "name": "Cody Gakpo",
+          "minute": "54"
+        },
+        {
+          "name": "Crysencio Summerville",
+          "minute": "89"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Anthony Elanga",
+          "minute": "59"
+        }
+      ],
       "_homeEn": "Netherlands",
       "_awayEn": "Sweden"
     },
@@ -2788,6 +2814,18 @@
       "group": "B组"
     },
     {
+      "team": "荷兰",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 3,
+      "points": 4,
+      "goalDifference": 4,
+      "group": "F组"
+    },
+    {
       "team": "瑞士",
       "played": 2,
       "won": 1,
@@ -2834,18 +2872,6 @@
       "points": 3,
       "goalDifference": 6,
       "group": "E组"
-    },
-    {
-      "team": "瑞典",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 5,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 4,
-      "group": "F组"
     },
     {
       "team": "挪威",
@@ -2980,6 +3006,18 @@
       "group": "D组"
     },
     {
+      "team": "瑞典",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 6,
+      "points": 3,
+      "goalDifference": 0,
+      "group": "F组"
+    },
+    {
       "team": "巴拉圭",
       "played": 2,
       "won": 1,
@@ -2990,18 +3028,6 @@
       "points": 3,
       "goalDifference": -2,
       "group": "D组"
-    },
-    {
-      "team": "荷兰",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "F组"
     },
     {
       "team": "日本",
