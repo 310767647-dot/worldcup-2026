@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-20",
-    "resultsDate": "2026-06-20",
-    "tomorrowDate": "2026-06-21",
-    "generatedAt": "2026-06-20 20:51:51",
+    "reportDate": "2026-06-21",
+    "resultsDate": "2026-06-21",
+    "tomorrowDate": "2026-06-22",
+    "generatedAt": "2026-06-21 10:45:31",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 33,
+    "completedMatches": 36,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-20 完赛焦点：荷兰5:1瑞典",
-    "body": "荷兰5:1瑞典 | 比利时 vs 伊朗 | 新西兰 vs 埃及 | 西班牙 vs 沙特阿拉伯 | 乌拉圭 vs 佛得角",
+    "title": "2026-06-21 今日赛事",
+    "body": "比利时 vs 伊朗 | 新西兰 vs 埃及 | 西班牙 vs 沙特阿拉伯 | 乌拉圭 vs 佛得角",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1221,17 +1221,31 @@
       "group": "E组",
       "home": "德国",
       "away": "科特迪瓦",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "score": "2:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Toronto",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Deniz Undav",
+          "minute": "68"
+        },
+        {
+          "name": "Deniz Undav",
+          "minute": "90+4"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Franck Kessié",
+          "minute": "30"
+        }
+      ],
       "_homeEn": "Germany",
       "_awayEn": "Ivory Coast"
     },
@@ -1245,12 +1259,12 @@
       "away": "库拉索",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Kansas City",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
@@ -1266,16 +1280,33 @@
       "home": "突尼斯",
       "away": "日本",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 4,
+      "score": "0:4",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Monterrey (Guadalupe)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Daichi Kamada",
+          "minute": "4"
+        },
+        {
+          "name": "Ayase Ueda",
+          "minute": "31"
+        },
+        {
+          "name": "Junya Ito",
+          "minute": "69"
+        },
+        {
+          "name": "Ayase Ueda",
+          "minute": "83"
+        }
+      ],
       "_homeEn": "Tunisia",
       "_awayEn": "Japan"
     },
@@ -2778,6 +2809,18 @@
   ],
   "standings": [
     {
+      "team": "德国",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 9,
+      "goalsAgainst": 2,
+      "points": 6,
+      "goalDifference": 7,
+      "group": "E组"
+    },
+    {
       "team": "美国",
       "played": 2,
       "won": 2,
@@ -2826,6 +2869,18 @@
       "group": "F组"
     },
     {
+      "team": "日本",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 2,
+      "points": 4,
+      "goalDifference": 4,
+      "group": "F组"
+    },
+    {
       "team": "瑞士",
       "played": 2,
       "won": 1,
@@ -2860,18 +2915,6 @@
       "points": 4,
       "goalDifference": 1,
       "group": "C组"
-    },
-    {
-      "team": "德国",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 7,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 6,
-      "group": "E组"
     },
     {
       "team": "挪威",
@@ -2946,18 +2989,6 @@
       "group": "L组"
     },
     {
-      "team": "科特迪瓦",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 0,
-      "points": 3,
-      "goalDifference": 1,
-      "group": "E组"
-    },
-    {
       "team": "加纳",
       "played": 1,
       "won": 1,
@@ -3006,6 +3037,18 @@
       "group": "D组"
     },
     {
+      "team": "科特迪瓦",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 3,
+      "goalDifference": 0,
+      "group": "E组"
+    },
+    {
       "team": "瑞典",
       "played": 2,
       "won": 1,
@@ -3028,18 +3071,6 @@
       "points": 3,
       "goalDifference": -2,
       "group": "D组"
-    },
-    {
-      "team": "日本",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "F组"
     },
     {
       "team": "比利时",
@@ -3174,6 +3205,18 @@
       "group": "A组"
     },
     {
+      "team": "厄瓜多尔",
+      "played": 2,
+      "won": 0,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 1,
+      "points": 1,
+      "goalDifference": -1,
+      "group": "E组"
+    },
+    {
       "team": "南非",
       "played": 2,
       "won": 0,
@@ -3210,15 +3253,15 @@
       "group": "B组"
     },
     {
-      "team": "厄瓜多尔",
-      "played": 1,
+      "team": "库拉索",
+      "played": 2,
       "won": 0,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 1,
-      "goalsFor": 0,
-      "goalsAgainst": 1,
-      "points": 0,
-      "goalDifference": -1,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "points": 1,
+      "goalDifference": -6,
       "group": "E组"
     },
     {
@@ -3331,27 +3374,15 @@
     },
     {
       "team": "突尼斯",
-      "played": 1,
+      "played": 2,
       "won": 0,
       "drawn": 0,
-      "lost": 1,
+      "lost": 2,
       "goalsFor": 1,
-      "goalsAgainst": 5,
+      "goalsAgainst": 9,
       "points": 0,
-      "goalDifference": -4,
+      "goalDifference": -8,
       "group": "F组"
-    },
-    {
-      "team": "库拉索",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 7,
-      "points": 0,
-      "goalDifference": -6,
-      "group": "E组"
     }
   ],
   "discipline": [
