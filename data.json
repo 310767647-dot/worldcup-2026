@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-21",
-    "resultsDate": "2026-06-21",
-    "tomorrowDate": "2026-06-22",
-    "generatedAt": "2026-06-21 21:00:25",
+    "reportDate": "2026-06-22",
+    "resultsDate": "2026-06-22",
+    "tomorrowDate": "2026-06-23",
+    "generatedAt": "2026-06-22 16:02:09",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 37,
+    "completedMatches": 40,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 4
   },
   "hotspot": {
-    "title": "2026-06-21 完赛焦点：西班牙4:0沙特阿拉伯",
-    "body": "西班牙4:0沙特阿拉伯 | 法国 vs 伊拉克 | 挪威 vs 塞内加尔 | 阿根廷 vs 奥地利 | 约旦 vs 阿尔及利亚",
+    "title": "2026-06-22 今日赛事",
+    "body": "法国 vs 伊拉克 | 挪威 vs 塞内加尔 | 阿根廷 vs 奥地利 | 约旦 vs 阿尔及利亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1320,12 +1320,12 @@
       "away": "伊朗",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Los Angeles (Inglewood)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
@@ -1379,17 +1379,35 @@
       "group": "G组",
       "home": "新西兰",
       "away": "埃及",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 3,
+      "score": "1:3",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Vancouver",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Finn Surman",
+          "minute": "15"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Mostafa Zico",
+          "minute": "58"
+        },
+        {
+          "name": "Mohamed Salah",
+          "minute": "67"
+        },
+        {
+          "name": "Trézéguet",
+          "minute": "82"
+        }
+      ],
       "_homeEn": "New Zealand",
       "_awayEn": "Egypt"
     },
@@ -1401,17 +1419,35 @@
       "group": "H组",
       "home": "乌拉圭",
       "away": "佛得角",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 2,
+      "score": "2:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Miami (Miami Gardens)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Maxi Araújo",
+          "minute": "44"
+        },
+        {
+          "name": "Agustín Cano",
+          "minute": "45+6"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Kevin Pina",
+          "minute": "21"
+        },
+        {
+          "name": "Hélio Varela",
+          "minute": "61"
+        }
+      ],
       "_homeEn": "Uruguay",
       "_awayEn": "Cape Verde"
     },
@@ -2169,7 +2205,7 @@
       "date": "2026-06-29",
       "stage": "32强赛",
       "group": "",
-      "home": "1E",
+      "home": "德国",
       "away": "3A/B/C/D/F",
       "homeScore": 0,
       "awayScore": 0,
@@ -2182,7 +2218,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1E",
+      "_homeEn": "Germany",
       "_awayEn": "3A/B/C/D/F"
     },
     {
@@ -2257,7 +2293,7 @@
       "date": "2026-06-30",
       "stage": "32强赛",
       "group": "",
-      "home": "1A",
+      "home": "墨西哥",
       "away": "3C/E/F/H/I",
       "homeScore": 0,
       "awayScore": 0,
@@ -2270,7 +2306,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1A",
+      "_homeEn": "Mexico",
       "_awayEn": "3C/E/F/H/I"
     },
     {
@@ -2323,7 +2359,7 @@
       "date": "2026-07-01",
       "stage": "32强赛",
       "group": "",
-      "home": "1D",
+      "home": "美国",
       "away": "3B/E/F/I/J",
       "homeScore": 0,
       "awayScore": 0,
@@ -2336,7 +2372,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1D",
+      "_homeEn": "USA",
       "_awayEn": "3B/E/F/I/J"
     },
     {
@@ -2934,6 +2970,18 @@
       "group": "C组"
     },
     {
+      "team": "埃及",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 4,
+      "goalsAgainst": 2,
+      "points": 4,
+      "goalDifference": 2,
+      "group": "G组"
+    },
+    {
       "team": "摩洛哥",
       "played": 2,
       "won": 1,
@@ -3103,73 +3151,49 @@
     },
     {
       "team": "比利时",
-      "played": 1,
+      "played": 2,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 0,
       "goalsFor": 1,
       "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
-      "team": "埃及",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
+      "points": 2,
       "goalDifference": 0,
       "group": "G组"
     },
     {
       "team": "伊朗",
-      "played": 1,
+      "played": 2,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 0,
       "goalsFor": 2,
       "goalsAgainst": 2,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
-      "team": "新西兰",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 1,
+      "points": 2,
       "goalDifference": 0,
       "group": "G组"
     },
     {
       "team": "佛得角",
-      "played": 1,
+      "played": 2,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 0,
-      "goalsFor": 0,
-      "goalsAgainst": 0,
-      "points": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 2,
       "goalDifference": 0,
       "group": "H组"
     },
     {
       "team": "乌拉圭",
-      "played": 1,
+      "played": 2,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 3,
+      "points": 2,
       "goalDifference": 0,
       "group": "H组"
     },
@@ -3232,6 +3256,18 @@
       "points": 1,
       "goalDifference": -2,
       "group": "A组"
+    },
+    {
+      "team": "新西兰",
+      "played": 2,
+      "won": 0,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 5,
+      "points": 1,
+      "goalDifference": -2,
+      "group": "G组"
     },
     {
       "team": "波黑",
