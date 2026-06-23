@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-22",
-    "resultsDate": "2026-06-22",
-    "tomorrowDate": "2026-06-23",
-    "generatedAt": "2026-06-22 22:27:58",
+    "reportDate": "2026-06-23",
+    "resultsDate": "2026-06-23",
+    "tomorrowDate": "2026-06-24",
+    "generatedAt": "2026-06-23 10:47:53",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 41,
+    "completedMatches": 44,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 4
+    "tomorrowFixtures": 6
   },
   "hotspot": {
-    "title": "2026-06-22 完赛焦点：阿根廷2:0奥地利",
-    "body": "阿根廷2:0奥地利 | 葡萄牙 vs 乌兹别克斯坦 | 哥伦比亚 vs 刚果(金) | 英格兰 vs 加纳 | 巴拿马 vs 克罗地亚",
+    "title": "2026-06-23 今日赛事",
+    "body": "葡萄牙 vs 乌兹别克斯坦 | 哥伦比亚 vs 刚果(金) | 英格兰 vs 加纳 | 巴拿马 vs 克罗地亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1490,16 +1490,29 @@
       "group": "I组",
       "home": "法国",
       "away": "伊拉克",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "3:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Philadelphia",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Kylian Mbappé",
+          "minute": "14"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "minute": "54"
+        },
+        {
+          "name": "Ousmane Dembélé",
+          "minute": "66"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "France",
       "_awayEn": "Iraq"
@@ -1512,17 +1525,39 @@
       "group": "I组",
       "home": "挪威",
       "away": "塞内加尔",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 3,
+      "awayScore": 2,
+      "score": "3:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "New York/New Jersey (East Rutherford)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Marcus Holmgren Pedersen",
+          "minute": "43"
+        },
+        {
+          "name": "Erling Haaland",
+          "minute": "48"
+        },
+        {
+          "name": "Erling Haaland",
+          "minute": "58"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Ismaïla Sarr",
+          "minute": "53"
+        },
+        {
+          "name": "Ismaïla Sarr",
+          "minute": "90+3"
+        }
+      ],
       "_homeEn": "Norway",
       "_awayEn": "Senegal"
     },
@@ -1534,17 +1569,31 @@
       "group": "J组",
       "home": "约旦",
       "away": "阿尔及利亚",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 2,
+      "score": "1:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "San Francisco Bay Area (Santa Clara)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Nizar Al-Rashdan",
+          "minute": "36"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Nadhir Benbouali",
+          "minute": "69"
+        },
+        {
+          "name": "Amine Gouiri",
+          "minute": "82"
+        }
+      ],
       "_homeEn": "Jordan",
       "_awayEn": "Algeria"
     },
@@ -2895,6 +2944,18 @@
       "group": "D组"
     },
     {
+      "team": "法国",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 1,
+      "points": 6,
+      "goalDifference": 5,
+      "group": "I组"
+    },
+    {
       "team": "阿根廷",
       "played": 2,
       "won": 2,
@@ -2905,6 +2966,18 @@
       "points": 6,
       "goalDifference": 5,
       "group": "J组"
+    },
+    {
+      "team": "挪威",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 3,
+      "points": 6,
+      "goalDifference": 4,
+      "group": "I组"
     },
     {
       "team": "墨西哥",
@@ -3013,30 +3086,6 @@
       "points": 4,
       "goalDifference": 1,
       "group": "C组"
-    },
-    {
-      "team": "挪威",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 4,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 3,
-      "group": "I组"
-    },
-    {
-      "team": "法国",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 3,
-      "goalsAgainst": 1,
-      "points": 3,
-      "goalDifference": 2,
-      "group": "I组"
     },
     {
       "team": "哥伦比亚",
@@ -3157,6 +3206,18 @@
       "points": 3,
       "goalDifference": -2,
       "group": "D组"
+    },
+    {
+      "team": "阿尔及利亚",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 4,
+      "points": 3,
+      "goalDifference": -2,
+      "group": "J组"
     },
     {
       "team": "比利时",
@@ -3339,30 +3400,6 @@
       "group": "L组"
     },
     {
-      "team": "塞内加尔",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 3,
-      "points": 0,
-      "goalDifference": -2,
-      "group": "I组"
-    },
-    {
-      "team": "约旦",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 3,
-      "points": 0,
-      "goalDifference": -2,
-      "group": "J组"
-    },
-    {
       "team": "乌兹别克斯坦",
       "played": 1,
       "won": 0,
@@ -3399,25 +3436,25 @@
       "group": "D组"
     },
     {
-      "team": "伊拉克",
-      "played": 1,
+      "team": "塞内加尔",
+      "played": 2,
       "won": 0,
       "drawn": 0,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
+      "lost": 2,
+      "goalsFor": 3,
+      "goalsAgainst": 6,
       "points": 0,
       "goalDifference": -3,
       "group": "I组"
     },
     {
-      "team": "阿尔及利亚",
-      "played": 1,
+      "team": "约旦",
+      "played": 2,
       "won": 0,
       "drawn": 0,
-      "lost": 1,
-      "goalsFor": 0,
-      "goalsAgainst": 3,
+      "lost": 2,
+      "goalsFor": 2,
+      "goalsAgainst": 5,
       "points": 0,
       "goalDifference": -3,
       "group": "J组"
@@ -3433,6 +3470,18 @@
       "points": 0,
       "goalDifference": -4,
       "group": "C组"
+    },
+    {
+      "team": "伊拉克",
+      "played": 2,
+      "won": 0,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "points": 0,
+      "goalDifference": -6,
+      "group": "I组"
     },
     {
       "team": "突尼斯",
