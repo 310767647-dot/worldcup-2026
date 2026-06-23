@@ -4,21 +4,21 @@
     "reportDate": "2026-06-23",
     "resultsDate": "2026-06-23",
     "tomorrowDate": "2026-06-24",
-    "generatedAt": "2026-06-23 10:47:53",
+    "generatedAt": "2026-06-23 22:22:03",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 44,
+    "completedMatches": 46,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 6
   },
   "hotspot": {
-    "title": "2026-06-23 今日赛事",
-    "body": "葡萄牙 vs 乌兹别克斯坦 | 哥伦比亚 vs 刚果(金) | 英格兰 vs 加纳 | 巴拿马 vs 克罗地亚",
+    "title": "2026-06-23 完赛焦点：葡萄牙5:0乌兹别克斯坦 | 英格兰0:0加纳",
+    "body": "葡萄牙5:0乌兹别克斯坦 | 英格兰0:0加纳 | 捷克 vs 墨西哥 | 南非 vs 韩国 | 瑞士 vs 加拿大 | 波黑 vs 卡塔尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1605,16 +1605,37 @@
       "group": "K组",
       "home": "葡萄牙",
       "away": "乌兹别克斯坦",
-      "homeScore": 0,
+      "homeScore": 5,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "5:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Cristiano Ronaldo",
+          "minute": "6"
+        },
+        {
+          "name": "Nuno Mendes",
+          "minute": "17"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "minute": "39"
+        },
+        {
+          "name": "Abduvohid Nematov",
+          "minute": "60"
+        },
+        {
+          "name": "Rafael Leão",
+          "minute": "87"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Portugal",
       "_awayEn": "Uzbekistan"
@@ -1629,12 +1650,12 @@
       "away": "加纳",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Boston (Foxborough)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
@@ -3004,6 +3025,18 @@
       "group": "B组"
     },
     {
+      "team": "葡萄牙",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 1,
+      "points": 4,
+      "goalDifference": 5,
+      "group": "K组"
+    },
+    {
       "team": "荷兰",
       "played": 2,
       "won": 1,
@@ -3076,6 +3109,18 @@
       "group": "G组"
     },
     {
+      "team": "英格兰",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 4,
+      "goalsAgainst": 2,
+      "points": 4,
+      "goalDifference": 2,
+      "group": "L组"
+    },
+    {
       "team": "摩洛哥",
       "played": 2,
       "won": 1,
@@ -3088,6 +3133,18 @@
       "group": "C组"
     },
     {
+      "team": "加纳",
+      "played": 2,
+      "won": 1,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 0,
+      "points": 4,
+      "goalDifference": 1,
+      "group": "L组"
+    },
+    {
       "team": "哥伦比亚",
       "played": 1,
       "won": 1,
@@ -3098,30 +3155,6 @@
       "points": 3,
       "goalDifference": 2,
       "group": "K组"
-    },
-    {
-      "team": "英格兰",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 4,
-      "goalsAgainst": 2,
-      "points": 3,
-      "goalDifference": 2,
-      "group": "L组"
-    },
-    {
-      "team": "加纳",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 0,
-      "points": 3,
-      "goalDifference": 1,
-      "group": "L组"
     },
     {
       "team": "韩国",
@@ -3268,18 +3301,6 @@
       "group": "H组"
     },
     {
-      "team": "葡萄牙",
-      "played": 1,
-      "won": 0,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": 0,
-      "group": "K组"
-    },
-    {
       "team": "刚果(金)",
       "played": 1,
       "won": 0,
@@ -3400,18 +3421,6 @@
       "group": "L组"
     },
     {
-      "team": "乌兹别克斯坦",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 3,
-      "points": 0,
-      "goalDifference": -2,
-      "group": "K组"
-    },
-    {
       "team": "克罗地亚",
       "played": 1,
       "won": 0,
@@ -3482,6 +3491,18 @@
       "points": 0,
       "goalDifference": -6,
       "group": "I组"
+    },
+    {
+      "team": "乌兹别克斯坦",
+      "played": 2,
+      "won": 0,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 1,
+      "goalsAgainst": 8,
+      "points": 0,
+      "goalDifference": -7,
+      "group": "K组"
     },
     {
       "team": "突尼斯",
