@@ -4,21 +4,21 @@
     "reportDate": "2026-06-25",
     "resultsDate": "2026-06-25",
     "tomorrowDate": "2026-06-26",
-    "generatedAt": "2026-06-25 17:33:45",
+    "generatedAt": "2026-06-25 23:01:40",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 54,
+    "completedMatches": 56,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 6
   },
   "hotspot": {
-    "title": "2026-06-25 今日赛事",
-    "body": "土耳其 vs 美国 | 巴拉圭 vs 澳大利亚 | 库拉索 vs 科特迪瓦 | 厄瓜多尔 vs 德国 | 日本 vs 瑞典 | 突尼斯 vs 荷兰",
+    "title": "2026-06-25 完赛焦点：库拉索0:2科特迪瓦 | 厄瓜多尔2:1德国",
+    "body": "库拉索0:2科特迪瓦 | 厄瓜多尔2:1德国 | 埃及 vs 伊朗 | 新西兰 vs 比利时 | 佛得角 vs 沙特阿拉伯 | 乌拉圭 vs 西班牙",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -1946,16 +1946,25 @@
       "home": "库拉索",
       "away": "科特迪瓦",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 2,
+      "score": "0:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Philadelphia",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Nicolas Pépé",
+          "minute": "7"
+        },
+        {
+          "name": "Nicolas Pépé",
+          "minute": "64"
+        }
+      ],
       "_homeEn": "Curaçao",
       "_awayEn": "Ivory Coast"
     },
@@ -1967,17 +1976,31 @@
       "group": "E组",
       "home": "厄瓜多尔",
       "away": "德国",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "score": "2:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "New York/New Jersey (East Rutherford)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Nilson Angulo",
+          "minute": "9"
+        },
+        {
+          "name": "Gonzalo Plata",
+          "minute": "77"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Leroy Sané",
+          "minute": "2"
+        }
+      ],
       "_homeEn": "Ecuador",
       "_awayEn": "Germany"
     },
@@ -3089,14 +3112,14 @@
     },
     {
       "team": "德国",
-      "played": 2,
+      "played": 3,
       "won": 2,
       "drawn": 0,
-      "lost": 0,
-      "goalsFor": 9,
-      "goalsAgainst": 2,
+      "lost": 1,
+      "goalsFor": 10,
+      "goalsAgainst": 4,
       "points": 6,
-      "goalDifference": 7,
+      "goalDifference": 6,
       "group": "E组"
     },
     {
@@ -3158,6 +3181,18 @@
       "points": 6,
       "goalDifference": 3,
       "group": "K组"
+    },
+    {
+      "team": "科特迪瓦",
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 4,
+      "goalsAgainst": 2,
+      "points": 6,
+      "goalDifference": 2,
+      "group": "E组"
     },
     {
       "team": "加拿大",
@@ -3256,6 +3291,18 @@
       "group": "L组"
     },
     {
+      "team": "厄瓜多尔",
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 4,
+      "goalDifference": 0,
+      "group": "E组"
+    },
+    {
       "team": "南非",
       "played": 3,
       "won": 1,
@@ -3290,18 +3337,6 @@
       "points": 3,
       "goalDifference": 0,
       "group": "D组"
-    },
-    {
-      "team": "科特迪瓦",
-      "played": 2,
-      "won": 1,
-      "drawn": 0,
-      "lost": 1,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 3,
-      "goalDifference": 0,
-      "group": "E组"
     },
     {
       "team": "瑞典",
@@ -3436,18 +3471,6 @@
       "group": "H组"
     },
     {
-      "team": "厄瓜多尔",
-      "played": 2,
-      "won": 0,
-      "drawn": 1,
-      "lost": 1,
-      "goalsFor": 0,
-      "goalsAgainst": 1,
-      "points": 1,
-      "goalDifference": -1,
-      "group": "E组"
-    },
-    {
       "team": "刚果(金)",
       "played": 2,
       "won": 0,
@@ -3496,18 +3519,6 @@
       "group": "H组"
     },
     {
-      "team": "库拉索",
-      "played": 2,
-      "won": 0,
-      "drawn": 1,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 7,
-      "points": 1,
-      "goalDifference": -6,
-      "group": "E组"
-    },
-    {
       "team": "卡塔尔",
       "played": 3,
       "won": 0,
@@ -3518,6 +3529,18 @@
       "points": 1,
       "goalDifference": -8,
       "group": "B组"
+    },
+    {
+      "team": "库拉索",
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 1,
+      "goalsAgainst": 9,
+      "points": 1,
+      "goalDifference": -8,
+      "group": "E组"
     },
     {
       "team": "巴拿马",
