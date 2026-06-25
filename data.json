@@ -4,7 +4,7 @@
     "reportDate": "2026-06-25",
     "resultsDate": "2026-06-25",
     "tomorrowDate": "2026-06-26",
-    "generatedAt": "2026-06-25 10:23:31",
+    "generatedAt": "2026-06-25 17:33:45",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -2339,8 +2339,8 @@
       "date": "2026-06-28",
       "stage": "32强赛",
       "group": "",
-      "home": "2A",
-      "away": "2B",
+      "home": "南非",
+      "away": "加拿大",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -2352,8 +2352,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "2A",
-      "_awayEn": "2B"
+      "_homeEn": "South Africa",
+      "_awayEn": "Canada"
     },
     {
       "id": "M76",
@@ -2361,7 +2361,7 @@
       "date": "2026-06-29",
       "stage": "32强赛",
       "group": "",
-      "home": "1C",
+      "home": "巴西",
       "away": "2F",
       "homeScore": 0,
       "awayScore": 0,
@@ -2374,7 +2374,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1C",
+      "_homeEn": "Brazil",
       "_awayEn": "2F"
     },
     {
@@ -2406,7 +2406,7 @@
       "stage": "32强赛",
       "group": "",
       "home": "1F",
-      "away": "2C",
+      "away": "摩洛哥",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -2419,7 +2419,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "1F",
-      "_awayEn": "2C"
+      "_awayEn": "Morocco"
     },
     {
       "id": "M78",
@@ -2603,7 +2603,7 @@
       "date": "2026-07-02",
       "stage": "32强赛",
       "group": "",
-      "home": "1B",
+      "home": "瑞士",
       "away": "3E/F/G/I/J",
       "homeScore": 0,
       "awayScore": 0,
@@ -2616,7 +2616,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1B",
+      "_homeEn": "Switzerland",
       "_awayEn": "3E/F/G/I/J"
     },
     {
