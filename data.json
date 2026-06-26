@@ -4,21 +4,21 @@
     "reportDate": "2026-06-26",
     "resultsDate": "2026-06-26",
     "tomorrowDate": "2026-06-27",
-    "generatedAt": "2026-06-26 17:20:02",
+    "generatedAt": "2026-06-26 21:50:27",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 60,
+    "completedMatches": 62,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 6
   },
   "hotspot": {
-    "title": "2026-06-26 今日赛事",
-    "body": "埃及 vs 伊朗 | 新西兰 vs 比利时 | 佛得角 vs 沙特阿拉伯 | 乌拉圭 vs 西班牙 | 挪威 vs 法国 | 塞内加尔 vs 伊拉克",
+    "title": "2026-06-26 完赛焦点：挪威1:4法国 | 塞内加尔5:0伊拉克",
+    "body": "挪威1:4法国 | 塞内加尔5:0伊拉克 | 阿尔及利亚 vs 奥地利 | 约旦 vs 阿根廷 | 哥伦比亚 vs 葡萄牙 | 刚果(金) vs 乌兹别克斯坦",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2150,17 +2150,39 @@
       "group": "I组",
       "home": "挪威",
       "away": "法国",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 4,
+      "score": "1:4",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Boston (Foxborough)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Thelo Aasgaard",
+          "minute": "21"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Ousmane Dembélé",
+          "minute": "7"
+        },
+        {
+          "name": "Ousmane Dembélé",
+          "minute": "20"
+        },
+        {
+          "name": "Ousmane Dembélé",
+          "minute": "32"
+        },
+        {
+          "name": "Désiré Doué",
+          "minute": "90+4"
+        }
+      ],
       "_homeEn": "Norway",
       "_awayEn": "France"
     },
@@ -2172,16 +2194,37 @@
       "group": "I组",
       "home": "塞内加尔",
       "away": "伊拉克",
-      "homeScore": 0,
+      "homeScore": 5,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "5:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Toronto",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Habib Diarra",
+          "minute": "4"
+        },
+        {
+          "name": "Ismaïla Sarr",
+          "minute": "56"
+        },
+        {
+          "name": "Pape Gueye",
+          "minute": "59"
+        },
+        {
+          "name": "Pape Gueye",
+          "minute": "71"
+        },
+        {
+          "name": "Iliman Ndiaye",
+          "minute": "82"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Senegal",
       "_awayEn": "Iraq"
@@ -3113,6 +3156,18 @@
   ],
   "standings": [
     {
+      "team": "法国",
+      "played": 3,
+      "won": 3,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 10,
+      "goalsAgainst": 2,
+      "points": 9,
+      "goalDifference": 8,
+      "group": "I组"
+    },
+    {
       "team": "墨西哥",
       "played": 3,
       "won": 3,
@@ -3185,18 +3240,6 @@
       "group": "E组"
     },
     {
-      "team": "法国",
-      "played": 2,
-      "won": 2,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 6,
-      "goalsAgainst": 1,
-      "points": 6,
-      "goalDifference": 5,
-      "group": "I组"
-    },
-    {
       "team": "阿根廷",
       "played": 2,
       "won": 2,
@@ -3221,18 +3264,6 @@
       "group": "D组"
     },
     {
-      "team": "挪威",
-      "played": 2,
-      "won": 2,
-      "drawn": 0,
-      "lost": 0,
-      "goalsFor": 7,
-      "goalsAgainst": 3,
-      "points": 6,
-      "goalDifference": 4,
-      "group": "I组"
-    },
-    {
       "team": "哥伦比亚",
       "played": 2,
       "won": 2,
@@ -3255,6 +3286,18 @@
       "points": 6,
       "goalDifference": 2,
       "group": "E组"
+    },
+    {
+      "team": "挪威",
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 8,
+      "goalsAgainst": 7,
+      "points": 6,
+      "goalDifference": 1,
+      "group": "I组"
     },
     {
       "team": "日本",
@@ -3411,6 +3454,18 @@
       "points": 4,
       "goalDifference": -2,
       "group": "D组"
+    },
+    {
+      "team": "塞内加尔",
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 8,
+      "goalsAgainst": 6,
+      "points": 3,
+      "goalDifference": 2,
+      "group": "I组"
     },
     {
       "team": "奥地利",
@@ -3617,18 +3672,6 @@
       "group": "L组"
     },
     {
-      "team": "塞内加尔",
-      "played": 2,
-      "won": 0,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 3,
-      "goalsAgainst": 6,
-      "points": 0,
-      "goalDifference": -3,
-      "group": "I组"
-    },
-    {
       "team": "约旦",
       "played": 2,
       "won": 0,
@@ -3653,18 +3696,6 @@
       "group": "C组"
     },
     {
-      "team": "伊拉克",
-      "played": 2,
-      "won": 0,
-      "drawn": 0,
-      "lost": 2,
-      "goalsFor": 1,
-      "goalsAgainst": 7,
-      "points": 0,
-      "goalDifference": -6,
-      "group": "I组"
-    },
-    {
       "team": "乌兹别克斯坦",
       "played": 2,
       "won": 0,
@@ -3687,6 +3718,18 @@
       "points": 0,
       "goalDifference": -10,
       "group": "F组"
+    },
+    {
+      "team": "伊拉克",
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goalsFor": 1,
+      "goalsAgainst": 12,
+      "points": 0,
+      "goalDifference": -11,
+      "group": "I组"
     }
   ],
   "discipline": [
