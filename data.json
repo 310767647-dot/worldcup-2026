@@ -4,7 +4,7 @@
     "reportDate": "2026-06-26",
     "resultsDate": "2026-06-26",
     "tomorrowDate": "2026-06-27",
-    "generatedAt": "2026-06-26 10:38:50",
+    "generatedAt": "2026-06-26 17:20:02",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -2435,7 +2435,7 @@
       "stage": "32强赛",
       "group": "",
       "home": "巴西",
-      "away": "2F",
+      "away": "日本",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -2448,7 +2448,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "Brazil",
-      "_awayEn": "2F"
+      "_awayEn": "Japan"
     },
     {
       "id": "M74",
@@ -2478,7 +2478,7 @@
       "date": "2026-06-29",
       "stage": "32强赛",
       "group": "",
-      "home": "1F",
+      "home": "荷兰",
       "away": "摩洛哥",
       "homeScore": 0,
       "awayScore": 0,
@@ -2491,7 +2491,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "1F",
+      "_homeEn": "Netherlands",
       "_awayEn": "Morocco"
     },
     {
@@ -2500,7 +2500,7 @@
       "date": "2026-06-30",
       "stage": "32强赛",
       "group": "",
-      "home": "2E",
+      "home": "科特迪瓦",
       "away": "2I",
       "homeScore": 0,
       "awayScore": 0,
@@ -2513,7 +2513,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "2E",
+      "_homeEn": "Ivory Coast",
       "_awayEn": "2I"
     },
     {
@@ -2698,7 +2698,7 @@
       "date": "2026-07-03",
       "stage": "32强赛",
       "group": "",
-      "home": "2D",
+      "home": "澳大利亚",
       "away": "2G",
       "homeScore": 0,
       "awayScore": 0,
@@ -2711,7 +2711,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "2D",
+      "_homeEn": "Australia",
       "_awayEn": "2G"
     },
     {
