@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-26",
-    "resultsDate": "2026-06-26",
-    "tomorrowDate": "2026-06-27",
-    "generatedAt": "2026-06-26 21:50:27",
+    "reportDate": "2026-06-27",
+    "resultsDate": "2026-06-27",
+    "tomorrowDate": "2026-06-28",
+    "generatedAt": "2026-06-27 08:10:08",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 62,
+    "completedMatches": 66,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 6
+    "tomorrowFixtures": 1
   },
   "hotspot": {
-    "title": "2026-06-26 完赛焦点：挪威1:4法国 | 塞内加尔5:0伊拉克",
-    "body": "挪威1:4法国 | 塞内加尔5:0伊拉克 | 阿尔及利亚 vs 奥地利 | 约旦 vs 阿根廷 | 哥伦比亚 vs 葡萄牙 | 刚果(金) vs 乌兹别克斯坦",
+    "title": "2026-06-27 今日赛事",
+    "body": "阿尔及利亚 vs 奥地利 | 约旦 vs 阿根廷 | 哥伦比亚 vs 葡萄牙 | 刚果(金) vs 乌兹别克斯坦 | 巴拿马 vs 英格兰 | 克罗地亚 vs 加纳",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2238,16 +2238,21 @@
       "home": "乌拉圭",
       "away": "西班牙",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 1,
+      "score": "0:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Guadalajara (Zapopan)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Álex Baena",
+          "minute": "42"
+        }
+      ],
       "_homeEn": "Uruguay",
       "_awayEn": "Spain"
     },
@@ -2261,12 +2266,12 @@
       "away": "沙特阿拉伯",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
@@ -2281,17 +2286,27 @@
       "group": "G组",
       "home": "埃及",
       "away": "伊朗",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Seattle",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Mahmoud Saber",
+          "minute": "5"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Ramin Rezaeian",
+          "minute": "14"
+        }
+      ],
       "_homeEn": "Egypt",
       "_awayEn": "Iran"
     },
@@ -2303,17 +2318,43 @@
       "group": "G组",
       "home": "新西兰",
       "away": "比利时",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 5,
+      "score": "1:5",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Vancouver",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Elijah Just",
+          "minute": "84"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Leandro Trossard",
+          "minute": "28"
+        },
+        {
+          "name": "Leandro Trossard",
+          "minute": "50"
+        },
+        {
+          "name": "Kevin De Bruyne",
+          "minute": "66"
+        },
+        {
+          "name": "Romelu Lukaku",
+          "minute": "86"
+        },
+        {
+          "name": "Alexis Saelemaekers",
+          "minute": "90+4"
+        }
+      ],
       "_homeEn": "New Zealand",
       "_awayEn": "Belgium"
     },
@@ -3204,6 +3245,18 @@
       "group": "F组"
     },
     {
+      "team": "西班牙",
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 0,
+      "points": 7,
+      "goalDifference": 5,
+      "group": "H组"
+    },
+    {
       "team": "瑞士",
       "played": 3,
       "won": 2,
@@ -3312,6 +3365,30 @@
       "group": "F组"
     },
     {
+      "team": "比利时",
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 2,
+      "points": 5,
+      "goalDifference": 4,
+      "group": "G组"
+    },
+    {
+      "team": "埃及",
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 3,
+      "points": 5,
+      "goalDifference": 2,
+      "group": "G组"
+    },
+    {
       "team": "加拿大",
       "played": 3,
       "won": 1,
@@ -3334,30 +3411,6 @@
       "points": 4,
       "goalDifference": 5,
       "group": "K组"
-    },
-    {
-      "team": "西班牙",
-      "played": 2,
-      "won": 1,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 4,
-      "goalsAgainst": 0,
-      "points": 4,
-      "goalDifference": 4,
-      "group": "H组"
-    },
-    {
-      "team": "埃及",
-      "played": 2,
-      "won": 1,
-      "drawn": 1,
-      "lost": 0,
-      "goalsFor": 4,
-      "goalsAgainst": 2,
-      "points": 4,
-      "goalDifference": 2,
-      "group": "G组"
     },
     {
       "team": "英格兰",
@@ -3468,6 +3521,30 @@
       "group": "I组"
     },
     {
+      "team": "伊朗",
+      "played": 3,
+      "won": 0,
+      "drawn": 3,
+      "lost": 0,
+      "goalsFor": 3,
+      "goalsAgainst": 3,
+      "points": 3,
+      "goalDifference": 0,
+      "group": "G组"
+    },
+    {
+      "team": "佛得角",
+      "played": 3,
+      "won": 0,
+      "drawn": 3,
+      "lost": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "points": 3,
+      "goalDifference": 0,
+      "group": "H组"
+    },
+    {
       "team": "奥地利",
       "played": 2,
       "won": 1,
@@ -3540,51 +3617,27 @@
       "group": "C组"
     },
     {
-      "team": "比利时",
-      "played": 2,
+      "team": "乌拉圭",
+      "played": 3,
       "won": 0,
       "drawn": 2,
-      "lost": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
+      "lost": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 4,
       "points": 2,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
-      "team": "伊朗",
-      "played": 2,
-      "won": 0,
-      "drawn": 2,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 2,
-      "goalDifference": 0,
-      "group": "G组"
-    },
-    {
-      "team": "佛得角",
-      "played": 2,
-      "won": 0,
-      "drawn": 2,
-      "lost": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
-      "points": 2,
-      "goalDifference": 0,
+      "goalDifference": -1,
       "group": "H组"
     },
     {
-      "team": "乌拉圭",
-      "played": 2,
+      "team": "沙特阿拉伯",
+      "played": 3,
       "won": 0,
       "drawn": 2,
-      "lost": 0,
-      "goalsFor": 3,
-      "goalsAgainst": 3,
+      "lost": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 5,
       "points": 2,
-      "goalDifference": 0,
+      "goalDifference": -4,
       "group": "H组"
     },
     {
@@ -3600,18 +3653,6 @@
       "group": "K组"
     },
     {
-      "team": "新西兰",
-      "played": 2,
-      "won": 0,
-      "drawn": 1,
-      "lost": 1,
-      "goalsFor": 3,
-      "goalsAgainst": 5,
-      "points": 1,
-      "goalDifference": -2,
-      "group": "G组"
-    },
-    {
       "team": "捷克",
       "played": 3,
       "won": 0,
@@ -3624,16 +3665,16 @@
       "group": "A组"
     },
     {
-      "team": "沙特阿拉伯",
-      "played": 2,
+      "team": "新西兰",
+      "played": 3,
       "won": 0,
       "drawn": 1,
-      "lost": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 5,
+      "lost": 2,
+      "goalsFor": 4,
+      "goalsAgainst": 10,
       "points": 1,
-      "goalDifference": -4,
-      "group": "H组"
+      "goalDifference": -6,
+      "group": "G组"
     },
     {
       "team": "卡塔尔",
