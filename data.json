@@ -4,21 +4,21 @@
     "reportDate": "2026-06-28",
     "resultsDate": "2026-06-28",
     "tomorrowDate": "2026-06-29",
-    "generatedAt": "2026-06-28 08:33:56",
+    "generatedAt": "2026-06-28 22:40:58",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 72,
+    "completedMatches": 73,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-28 今日赛事",
-    "body": "南非 vs 加拿大",
+    "title": "2026-06-28 完赛焦点：南非0:1加拿大",
+    "body": "南非0:1加拿大 | 德国 vs 巴拉圭 | 荷兰 vs 摩洛哥 | 巴西 vs 日本",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2584,16 +2584,21 @@
       "home": "南非",
       "away": "加拿大",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 1,
+      "score": "0:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Los Angeles (Inglewood)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Stephan Eustáquio",
+          "minute": "90+2"
+        }
+      ],
       "_homeEn": "South Africa",
       "_awayEn": "Canada"
     },
