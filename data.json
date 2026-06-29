@@ -4,21 +4,21 @@
     "reportDate": "2026-06-29",
     "resultsDate": "2026-06-29",
     "tomorrowDate": "2026-06-30",
-    "generatedAt": "2026-06-29 14:36:32",
+    "generatedAt": "2026-06-29 21:01:02",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 73,
+    "completedMatches": 74,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-29 今日赛事",
-    "body": "德国 vs 巴拉圭 | 荷兰 vs 摩洛哥 | 巴西 vs 日本",
+    "title": "2026-06-29 完赛焦点：巴西2:1日本",
+    "body": "巴西2:1日本 | 法国 vs 瑞典 | 科特迪瓦 vs 挪威 | 墨西哥 vs 厄瓜多尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2610,17 +2610,31 @@
       "group": "",
       "home": "巴西",
       "away": "日本",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "score": "2:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Casemiro",
+          "minute": "56"
+        },
+        {
+          "name": "Gabriel Martinelli",
+          "minute": "90+5"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Kaishu Sano",
+          "minute": "29"
+        }
+      ],
       "_homeEn": "Brazil",
       "_awayEn": "Japan"
     },
