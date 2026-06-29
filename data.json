@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-28",
-    "resultsDate": "2026-06-28",
-    "tomorrowDate": "2026-06-29",
-    "generatedAt": "2026-06-28 22:40:58",
+    "reportDate": "2026-06-29",
+    "resultsDate": "2026-06-29",
+    "tomorrowDate": "2026-06-30",
+    "generatedAt": "2026-06-29 14:36:32",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -17,8 +17,8 @@
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-28 完赛焦点：南非0:1加拿大",
-    "body": "南非0:1加拿大 | 德国 vs 巴拉圭 | 荷兰 vs 摩洛哥 | 巴西 vs 日本",
+    "title": "2026-06-29 今日赛事",
+    "body": "德国 vs 巴拉圭 | 荷兰 vs 摩洛哥 | 巴西 vs 日本",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2938,7 +2938,7 @@
       "date": "2026-07-04",
       "stage": "16强赛",
       "group": "",
-      "home": "W73",
+      "home": "加拿大",
       "away": "W75",
       "homeScore": 0,
       "awayScore": 0,
@@ -2951,7 +2951,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W73",
+      "_homeEn": "Canada",
       "_awayEn": "W75"
     },
     {
