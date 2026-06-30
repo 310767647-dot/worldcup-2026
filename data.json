@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-29",
-    "resultsDate": "2026-06-29",
-    "tomorrowDate": "2026-06-30",
-    "generatedAt": "2026-06-29 21:01:02",
+    "reportDate": "2026-06-30",
+    "resultsDate": "2026-06-30",
+    "tomorrowDate": "2026-07-01",
+    "generatedAt": "2026-06-30 08:48:19",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 74,
+    "completedMatches": 76,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-29 完赛焦点：巴西2:1日本",
-    "body": "巴西2:1日本 | 法国 vs 瑞典 | 科特迪瓦 vs 挪威 | 墨西哥 vs 厄瓜多尔",
+    "title": "2026-06-30 今日赛事",
+    "body": "法国 vs 瑞典 | 科特迪瓦 vs 挪威 | 墨西哥 vs 厄瓜多尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2646,17 +2646,27 @@
       "group": "",
       "home": "德国",
       "away": "巴拉圭",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Boston (Foxborough)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Kai Havertz",
+          "minute": "54"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Julio Enciso",
+          "minute": "42"
+        }
+      ],
       "_homeEn": "Germany",
       "_awayEn": "Paraguay"
     },
@@ -2668,17 +2678,27 @@
       "group": "",
       "home": "荷兰",
       "away": "摩洛哥",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Monterrey (Guadalupe)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Cody Gakpo",
+          "minute": "72"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Issa Diop",
+          "minute": "90+1"
+        }
+      ],
       "_homeEn": "Netherlands",
       "_awayEn": "Morocco"
     },
