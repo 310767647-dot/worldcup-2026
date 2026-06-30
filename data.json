@@ -4,21 +4,21 @@
     "reportDate": "2026-06-30",
     "resultsDate": "2026-06-30",
     "tomorrowDate": "2026-07-01",
-    "generatedAt": "2026-06-30 08:48:19",
+    "generatedAt": "2026-06-30 22:03:24",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 76,
+    "completedMatches": 77,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-30 今日赛事",
-    "body": "法国 vs 瑞典 | 科特迪瓦 vs 挪威 | 墨西哥 vs 厄瓜多尔",
+    "title": "2026-06-30 完赛焦点：科特迪瓦1:2挪威",
+    "body": "科特迪瓦1:2挪威 | 英格兰 vs 刚果(金) | 美国 vs 波黑 | 比利时 vs 塞内加尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2710,17 +2710,31 @@
       "group": "",
       "home": "科特迪瓦",
       "away": "挪威",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 2,
+      "score": "1:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Dallas (Arlington)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Amad Diallo",
+          "minute": "74"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Antonio Nusa",
+          "minute": "39"
+        },
+        {
+          "name": "Erling Haaland",
+          "minute": "86"
+        }
+      ],
       "_homeEn": "Ivory Coast",
       "_awayEn": "Norway"
     },
