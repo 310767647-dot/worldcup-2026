@@ -4,7 +4,7 @@
     "reportDate": "2026-07-01",
     "resultsDate": "2026-07-01",
     "tomorrowDate": "2026-07-02",
-    "generatedAt": "2026-07-01 10:56:58",
+    "generatedAt": "2026-07-01 17:33:11",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -3074,7 +3074,7 @@
       "date": "2026-07-05",
       "stage": "16强赛",
       "group": "",
-      "home": "W79",
+      "home": "墨西哥",
       "away": "W80",
       "homeScore": 0,
       "awayScore": 0,
@@ -3087,7 +3087,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W79",
+      "_homeEn": "Mexico",
       "_awayEn": "W80"
     },
     {
