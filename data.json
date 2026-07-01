@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-06-30",
-    "resultsDate": "2026-06-30",
-    "tomorrowDate": "2026-07-01",
-    "generatedAt": "2026-06-30 22:03:24",
+    "reportDate": "2026-07-01",
+    "resultsDate": "2026-07-01",
+    "tomorrowDate": "2026-07-02",
+    "generatedAt": "2026-07-01 10:56:58",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 77,
+    "completedMatches": 79,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-06-30 完赛焦点：科特迪瓦1:2挪威",
-    "body": "科特迪瓦1:2挪威 | 英格兰 vs 刚果(金) | 美国 vs 波黑 | 比利时 vs 塞内加尔",
+    "title": "2026-07-01 今日赛事",
+    "body": "英格兰 vs 刚果(金) | 美国 vs 波黑 | 比利时 vs 塞内加尔",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2746,16 +2746,29 @@
       "group": "",
       "home": "法国",
       "away": "瑞典",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "3:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "New York/New Jersey (East Rutherford)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Kylian Mbappé",
+          "minute": "45"
+        },
+        {
+          "name": "Bradley Barcola",
+          "minute": "53"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "minute": "74"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "France",
       "_awayEn": "Sweden"
@@ -2768,16 +2781,25 @@
       "group": "",
       "home": "墨西哥",
       "away": "厄瓜多尔",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "2:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Mexico City",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Julián Quiñones",
+          "minute": "31"
+        },
+        {
+          "name": "Raúl Jiménez",
+          "minute": "45+1"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Mexico",
       "_awayEn": "Ecuador"
@@ -2987,7 +3009,7 @@
       "stage": "16强赛",
       "group": "",
       "home": "加拿大",
-      "away": "W75",
+      "away": "摩洛哥",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3000,7 +3022,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "Canada",
-      "_awayEn": "W75"
+      "_awayEn": "Morocco"
     },
     {
       "id": "M89",
@@ -3008,8 +3030,8 @@
       "date": "2026-07-04",
       "stage": "16强赛",
       "group": "",
-      "home": "W74",
-      "away": "W77",
+      "home": "巴拉圭",
+      "away": "法国",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3021,8 +3043,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W74",
-      "_awayEn": "W77"
+      "_homeEn": "Paraguay",
+      "_awayEn": "France"
     },
     {
       "id": "M91",
@@ -3030,8 +3052,8 @@
       "date": "2026-07-05",
       "stage": "16强赛",
       "group": "",
-      "home": "W76",
-      "away": "W78",
+      "home": "巴西",
+      "away": "挪威",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3043,8 +3065,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W76",
-      "_awayEn": "W78"
+      "_homeEn": "Brazil",
+      "_awayEn": "Norway"
     },
     {
       "id": "M92",
