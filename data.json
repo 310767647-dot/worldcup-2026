@@ -4,21 +4,21 @@
     "reportDate": "2026-07-01",
     "resultsDate": "2026-07-01",
     "tomorrowDate": "2026-07-02",
-    "generatedAt": "2026-07-01 17:33:11",
+    "generatedAt": "2026-07-01 22:46:14",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 79,
+    "completedMatches": 80,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-07-01 今日赛事",
-    "body": "英格兰 vs 刚果(金) | 美国 vs 波黑 | 比利时 vs 塞内加尔",
+    "title": "2026-07-01 完赛焦点：英格兰2:1刚果(金)",
+    "body": "英格兰2:1刚果(金) | 葡萄牙 vs 克罗地亚 | 西班牙 vs 奥地利 | 瑞士 vs 阿尔及利亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2812,17 +2812,31 @@
       "group": "",
       "home": "英格兰",
       "away": "刚果(金)",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 1,
+      "score": "2:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Atlanta",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Harry Kane",
+          "minute": "75"
+        },
+        {
+          "name": "Harry Kane",
+          "minute": "86"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Brian Cipenga",
+          "minute": "7"
+        }
+      ],
       "_homeEn": "England",
       "_awayEn": "DR Congo"
     },
