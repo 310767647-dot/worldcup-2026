@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-01",
-    "resultsDate": "2026-07-01",
-    "tomorrowDate": "2026-07-02",
-    "generatedAt": "2026-07-01 22:46:14",
+    "reportDate": "2026-07-02",
+    "resultsDate": "2026-07-02",
+    "tomorrowDate": "2026-07-03",
+    "generatedAt": "2026-07-02 10:15:48",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 80,
+    "completedMatches": 82,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 3
   },
   "hotspot": {
-    "title": "2026-07-01 完赛焦点：英格兰2:1刚果(金)",
-    "body": "英格兰2:1刚果(金) | 葡萄牙 vs 克罗地亚 | 西班牙 vs 奥地利 | 瑞士 vs 阿尔及利亚",
+    "title": "2026-07-02 今日赛事",
+    "body": "葡萄牙 vs 克罗地亚 | 西班牙 vs 奥地利 | 瑞士 vs 阿尔及利亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -2848,17 +2848,39 @@
       "group": "",
       "home": "比利时",
       "away": "塞内加尔",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 2,
+      "score": "2:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Seattle",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Romelu Lukaku",
+          "minute": "86"
+        },
+        {
+          "name": "Youri Tielemans",
+          "minute": "89"
+        },
+        {
+          "name": "Youri Tielemans",
+          "minute": "120+5"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Habib Diarra",
+          "minute": "25"
+        },
+        {
+          "name": "Ismaïla Sarr",
+          "minute": "51"
+        }
+      ],
       "_homeEn": "Belgium",
       "_awayEn": "Senegal"
     },
@@ -2870,16 +2892,25 @@
       "group": "",
       "home": "美国",
       "away": "波黑",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "2:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "San Francisco Bay Area (Santa Clara)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Folarin Balogun",
+          "minute": "45"
+        },
+        {
+          "name": "Malik Tillman",
+          "minute": "82"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "USA",
       "_awayEn": "Bosnia & Herzegovina"
@@ -3089,7 +3120,7 @@
       "stage": "16强赛",
       "group": "",
       "home": "墨西哥",
-      "away": "W80",
+      "away": "英格兰",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3102,7 +3133,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "Mexico",
-      "_awayEn": "W80"
+      "_awayEn": "England"
     },
     {
       "id": "M93",
@@ -3132,8 +3163,8 @@
       "date": "2026-07-06",
       "stage": "16强赛",
       "group": "",
-      "home": "W81",
-      "away": "W82",
+      "home": "美国",
+      "away": "比利时",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3145,8 +3176,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W81",
-      "_awayEn": "W82"
+      "_homeEn": "USA",
+      "_awayEn": "Belgium"
     },
     {
       "id": "M95",
