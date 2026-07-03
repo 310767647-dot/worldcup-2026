@@ -4,7 +4,7 @@
     "reportDate": "2026-07-03",
     "resultsDate": "2026-07-03",
     "tomorrowDate": "2026-07-04",
-    "generatedAt": "2026-07-03 08:37:47",
+    "generatedAt": "2026-07-03 15:58:49",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -2761,12 +2761,12 @@
           "minute": "45"
         },
         {
-          "name": "Bradley Barcola",
-          "minute": "53"
-        },
-        {
           "name": "Kylian Mbappé",
           "minute": "74"
+        },
+        {
+          "name": "Bradley Barcola",
+          "minute": "53"
         }
       ],
       "awayScorers": [],
@@ -2938,12 +2938,12 @@
           "minute": "36"
         },
         {
-          "name": "Pedro Porro",
-          "minute": "66"
-        },
-        {
           "name": "Mikel Oyarzabal",
           "minute": "89"
+        },
+        {
+          "name": "Pedro Porro",
+          "minute": "66"
         }
       ],
       "awayScorers": [],
@@ -3177,8 +3177,8 @@
       "date": "2026-07-06",
       "stage": "16强赛",
       "group": "",
-      "home": "W83",
-      "away": "W84",
+      "home": "葡萄牙",
+      "away": "西班牙",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3190,8 +3190,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W83",
-      "_awayEn": "W84"
+      "_homeEn": "Portugal",
+      "_awayEn": "Spain"
     },
     {
       "id": "M94",
@@ -3243,7 +3243,7 @@
       "date": "2026-07-07",
       "stage": "16强赛",
       "group": "",
-      "home": "W85",
+      "home": "瑞士",
       "away": "W87",
       "homeScore": 0,
       "awayScore": 0,
@@ -3256,7 +3256,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W85",
+      "_homeEn": "Switzerland",
       "_awayEn": "W87"
     },
     {
