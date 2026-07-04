@@ -4,7 +4,7 @@
     "reportDate": "2026-07-04",
     "resultsDate": "2026-07-04",
     "tomorrowDate": "2026-07-05",
-    "generatedAt": "2026-07-04 09:29:13",
+    "generatedAt": "2026-07-04 14:47:08",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -3258,8 +3258,8 @@
       "date": "2026-07-07",
       "stage": "16强赛",
       "group": "",
-      "home": "W86",
-      "away": "W88",
+      "home": "阿根廷",
+      "away": "埃及",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3271,8 +3271,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W86",
-      "_awayEn": "W88"
+      "_homeEn": "Argentina",
+      "_awayEn": "Egypt"
     },
     {
       "id": "M96",
@@ -3281,7 +3281,7 @@
       "stage": "16强赛",
       "group": "",
       "home": "瑞士",
-      "away": "W87",
+      "away": "哥伦比亚",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3294,7 +3294,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "Switzerland",
-      "_awayEn": "W87"
+      "_awayEn": "Colombia"
     },
     {
       "id": "M97",
