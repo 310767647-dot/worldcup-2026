@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-03",
-    "resultsDate": "2026-07-03",
-    "tomorrowDate": "2026-07-04",
-    "generatedAt": "2026-07-03 15:58:49",
+    "reportDate": "2026-07-04",
+    "resultsDate": "2026-07-04",
+    "tomorrowDate": "2026-07-05",
+    "generatedAt": "2026-07-04 00:16:37",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 85,
+    "completedMatches": 86,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 2
   },
   "hotspot": {
-    "title": "2026-07-03 今日赛事",
-    "body": "阿根廷 vs 佛得角 | 哥伦比亚 vs 加纳 | 澳大利亚 vs 埃及",
+    "title": "2026-07-04 今日赛事",
+    "body": "巴拉圭 vs 法国 | 加拿大 vs 摩洛哥",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3025,17 +3025,27 @@
       "group": "",
       "home": "澳大利亚",
       "away": "埃及",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Dallas (Arlington)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Mohamed Hany",
+          "minute": "55"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Emam Ashour",
+          "minute": "13"
+        }
+      ],
       "_homeEn": "Australia",
       "_awayEn": "Egypt"
     },
