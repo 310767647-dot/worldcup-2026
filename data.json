@@ -4,13 +4,13 @@
     "reportDate": "2026-07-04",
     "resultsDate": "2026-07-04",
     "tomorrowDate": "2026-07-05",
-    "generatedAt": "2026-07-04 00:16:37",
+    "generatedAt": "2026-07-04 09:29:13",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 86,
+    "completedMatches": 88,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
@@ -3057,17 +3057,39 @@
       "group": "",
       "home": "阿根廷",
       "away": "佛得角",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Miami (Miami Gardens)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Lionel Messi",
+          "minute": "29"
+        },
+        {
+          "name": "Lisandro Martínez",
+          "minute": "92"
+        },
+        {
+          "name": "Diney Borges",
+          "minute": "111"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Deroy Duarte",
+          "minute": "59"
+        },
+        {
+          "name": "Sidny Lopes Cabral",
+          "minute": "103"
+        }
+      ],
       "_homeEn": "Argentina",
       "_awayEn": "Cape Verde"
     },
@@ -3079,16 +3101,21 @@
       "group": "",
       "home": "哥伦比亚",
       "away": "加纳",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "1:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Kansas City",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Jhon Arias",
+          "minute": "14"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Colombia",
       "_awayEn": "Ghana"
