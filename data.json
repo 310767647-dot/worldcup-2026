@@ -4,21 +4,21 @@
     "reportDate": "2026-07-04",
     "resultsDate": "2026-07-04",
     "tomorrowDate": "2026-07-05",
-    "generatedAt": "2026-07-04 14:47:08",
+    "generatedAt": "2026-07-04 21:42:14",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 88,
+    "completedMatches": 89,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 2
   },
   "hotspot": {
-    "title": "2026-07-04 今日赛事",
-    "body": "巴拉圭 vs 法国 | 加拿大 vs 摩洛哥",
+    "title": "2026-07-04 完赛焦点：加拿大0:3摩洛哥",
+    "body": "加拿大0:3摩洛哥 | 巴西 vs 挪威 | 墨西哥 vs 英格兰",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3129,16 +3129,29 @@
       "home": "加拿大",
       "away": "摩洛哥",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 3,
+      "score": "0:3",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Houston",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Azzedine Ounahi",
+          "minute": "50"
+        },
+        {
+          "name": "Azzedine Ounahi",
+          "minute": "82"
+        },
+        {
+          "name": "Soufiane Rahimi",
+          "minute": "90+8"
+        }
+      ],
       "_homeEn": "Canada",
       "_awayEn": "Morocco"
     },
