@@ -4,7 +4,7 @@
     "reportDate": "2026-07-05",
     "resultsDate": "2026-07-05",
     "tomorrowDate": "2026-07-06",
-    "generatedAt": "2026-07-05 08:31:50",
+    "generatedAt": "2026-07-05 20:38:24",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -3320,8 +3320,8 @@
       "date": "2026-07-09",
       "stage": "1/4决赛",
       "group": "",
-      "home": "W89",
-      "away": "W90",
+      "home": "法国",
+      "away": "摩洛哥",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3333,8 +3333,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W89",
-      "_awayEn": "W90"
+      "_homeEn": "France",
+      "_awayEn": "Morocco"
     },
     {
       "id": "M98",
