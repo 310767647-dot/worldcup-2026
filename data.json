@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-04",
-    "resultsDate": "2026-07-04",
-    "tomorrowDate": "2026-07-05",
-    "generatedAt": "2026-07-04 21:42:14",
+    "reportDate": "2026-07-05",
+    "resultsDate": "2026-07-05",
+    "tomorrowDate": "2026-07-06",
+    "generatedAt": "2026-07-05 08:31:50",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 89,
+    "completedMatches": 90,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 2
   },
   "hotspot": {
-    "title": "2026-07-04 完赛焦点：加拿大0:3摩洛哥",
-    "body": "加拿大0:3摩洛哥 | 巴西 vs 挪威 | 墨西哥 vs 英格兰",
+    "title": "2026-07-05 今日赛事",
+    "body": "巴西 vs 挪威 | 墨西哥 vs 英格兰",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3164,16 +3164,21 @@
       "home": "巴拉圭",
       "away": "法国",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 1,
+      "score": "0:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Philadelphia",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Kylian Mbappé",
+          "minute": "70"
+        }
+      ],
       "_homeEn": "Paraguay",
       "_awayEn": "France"
     },
