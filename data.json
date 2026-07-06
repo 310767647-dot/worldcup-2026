@@ -4,7 +4,7 @@
     "reportDate": "2026-07-06",
     "resultsDate": "2026-07-06",
     "tomorrowDate": "2026-07-07",
-    "generatedAt": "2026-07-06 12:15:50",
+    "generatedAt": "2026-07-06 19:11:43",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -3400,8 +3400,8 @@
       "date": "2026-07-11",
       "stage": "1/4决赛",
       "group": "",
-      "home": "W91",
-      "away": "W92",
+      "home": "挪威",
+      "away": "英格兰",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3413,8 +3413,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W91",
-      "_awayEn": "W92"
+      "_homeEn": "Norway",
+      "_awayEn": "England"
     },
     {
       "id": "M100",
