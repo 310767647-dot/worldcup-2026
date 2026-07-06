@@ -4,21 +4,21 @@
     "reportDate": "2026-07-06",
     "resultsDate": "2026-07-06",
     "tomorrowDate": "2026-07-07",
-    "generatedAt": "2026-07-06 19:11:43",
+    "generatedAt": "2026-07-06 23:37:43",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 92,
+    "completedMatches": 93,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 2
   },
   "hotspot": {
-    "title": "2026-07-06 今日赛事",
-    "body": "葡萄牙 vs 西班牙 | 美国 vs 比利时",
+    "title": "2026-07-06 完赛焦点：葡萄牙0:1西班牙",
+    "body": "葡萄牙0:1西班牙 | 阿根廷 vs 埃及 | 瑞士 vs 哥伦比亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3271,16 +3271,21 @@
       "home": "葡萄牙",
       "away": "西班牙",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 1,
+      "score": "0:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Dallas (Arlington)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Mikel Merino",
+          "minute": "90+1"
+        }
+      ],
       "_homeEn": "Portugal",
       "_awayEn": "Spain"
     },
