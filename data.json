@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-05",
-    "resultsDate": "2026-07-05",
-    "tomorrowDate": "2026-07-06",
-    "generatedAt": "2026-07-05 20:38:24",
+    "reportDate": "2026-07-06",
+    "resultsDate": "2026-07-06",
+    "tomorrowDate": "2026-07-07",
+    "generatedAt": "2026-07-06 12:15:50",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 90,
+    "completedMatches": 92,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 2
   },
   "hotspot": {
-    "title": "2026-07-05 今日赛事",
-    "body": "巴西 vs 挪威 | 墨西哥 vs 英格兰",
+    "title": "2026-07-06 今日赛事",
+    "body": "葡萄牙 vs 西班牙 | 美国 vs 比利时",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3190,17 +3190,31 @@
       "group": "",
       "home": "巴西",
       "away": "挪威",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 2,
+      "score": "1:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "New York/New Jersey (East Rutherford)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Neymar",
+          "minute": "90+10"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Erling Haaland",
+          "minute": "79"
+        },
+        {
+          "name": "Erling Haaland",
+          "minute": "90"
+        }
+      ],
       "_homeEn": "Brazil",
       "_awayEn": "Norway"
     },
@@ -3212,17 +3226,39 @@
       "group": "",
       "home": "墨西哥",
       "away": "英格兰",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 2,
+      "awayScore": 3,
+      "score": "2:3",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Mexico City",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Julián Quiñones",
+          "minute": "42"
+        },
+        {
+          "name": "Raúl Jiménez",
+          "minute": "69"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Jude Bellingham",
+          "minute": "36"
+        },
+        {
+          "name": "Jude Bellingham",
+          "minute": "38"
+        },
+        {
+          "name": "Harry Kane",
+          "minute": "60"
+        }
+      ],
       "_homeEn": "Mexico",
       "_awayEn": "England"
     },
