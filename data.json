@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-06",
-    "resultsDate": "2026-07-06",
-    "tomorrowDate": "2026-07-07",
-    "generatedAt": "2026-07-06 23:37:43",
+    "reportDate": "2026-07-07",
+    "resultsDate": "2026-07-07",
+    "tomorrowDate": "2026-07-08",
+    "generatedAt": "2026-07-07 11:20:31",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 93,
+    "completedMatches": 94,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 2
+    "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-06 完赛焦点：葡萄牙0:1西班牙",
-    "body": "葡萄牙0:1西班牙 | 阿根廷 vs 埃及 | 瑞士 vs 哥伦比亚",
+    "title": "2026-07-07 今日赛事",
+    "body": "阿根廷 vs 埃及 | 瑞士 vs 哥伦比亚",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3297,17 +3297,39 @@
       "group": "",
       "home": "美国",
       "away": "比利时",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 4,
+      "score": "1:4",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Seattle",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Malik Tillman",
+          "minute": "31"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Charles De Ketelaere",
+          "minute": "9"
+        },
+        {
+          "name": "Charles De Ketelaere",
+          "minute": "33"
+        },
+        {
+          "name": "Hans Vanaken",
+          "minute": "57"
+        },
+        {
+          "name": "Romelu Lukaku",
+          "minute": "90+3"
+        }
+      ],
       "_homeEn": "USA",
       "_awayEn": "Belgium"
     },
@@ -3383,8 +3405,8 @@
       "date": "2026-07-10",
       "stage": "1/4决赛",
       "group": "",
-      "home": "W93",
-      "away": "W94",
+      "home": "西班牙",
+      "away": "比利时",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3396,8 +3418,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W93",
-      "_awayEn": "W94"
+      "_homeEn": "Spain",
+      "_awayEn": "Belgium"
     },
     {
       "id": "M99",
