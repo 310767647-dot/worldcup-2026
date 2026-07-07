@@ -4,21 +4,21 @@
     "reportDate": "2026-07-07",
     "resultsDate": "2026-07-07",
     "tomorrowDate": "2026-07-08",
-    "generatedAt": "2026-07-07 11:20:31",
+    "generatedAt": "2026-07-07 18:35:18",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 94,
+    "completedMatches": 95,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-07 今日赛事",
-    "body": "阿根廷 vs 埃及 | 瑞士 vs 哥伦比亚",
+    "title": "2026-07-07 完赛焦点：阿根廷3:2埃及",
+    "body": "阿根廷3:2埃及",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3341,17 +3341,39 @@
       "group": "",
       "home": "阿根廷",
       "away": "埃及",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 3,
+      "awayScore": 2,
+      "score": "3:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Atlanta",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Cristian Romero",
+          "minute": "79"
+        },
+        {
+          "name": "Lionel Messi",
+          "minute": "83"
+        },
+        {
+          "name": "Enzo Fernández",
+          "minute": "90+2"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Yasser Ibrahim",
+          "minute": "15"
+        },
+        {
+          "name": "Mostafa Zico",
+          "minute": "67"
+        }
+      ],
       "_homeEn": "Argentina",
       "_awayEn": "Egypt"
     },
