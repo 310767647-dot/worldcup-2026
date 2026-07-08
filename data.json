@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-07",
-    "resultsDate": "2026-07-07",
-    "tomorrowDate": "2026-07-08",
-    "generatedAt": "2026-07-07 23:26:27",
+    "reportDate": "2026-07-08",
+    "resultsDate": "2026-07-08",
+    "tomorrowDate": "2026-07-09",
+    "generatedAt": "2026-07-08 11:20:25",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -14,11 +14,11 @@
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 0
+    "tomorrowFixtures": 1
   },
   "hotspot": {
-    "title": "2026-07-07 完赛焦点：阿根廷3:2埃及 | 瑞士0:0哥伦比亚",
-    "body": "阿根廷3:2埃及 | 瑞士0:0哥伦比亚",
+    "title": "2026-07-08 今日赛事",
+    "body": "暂无赛事",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3471,8 +3471,8 @@
       "date": "2026-07-11",
       "stage": "1/4决赛",
       "group": "",
-      "home": "W95",
-      "away": "W96",
+      "home": "阿根廷",
+      "away": "瑞士",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3484,8 +3484,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W95",
-      "_awayEn": "W96"
+      "_homeEn": "Argentina",
+      "_awayEn": "Switzerland"
     },
     {
       "id": "M101",
