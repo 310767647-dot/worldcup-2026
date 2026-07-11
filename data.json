@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-10",
-    "resultsDate": "2026-07-10",
-    "tomorrowDate": "2026-07-11",
-    "generatedAt": "2026-07-10 21:56:54",
+    "reportDate": "2026-07-11",
+    "resultsDate": "2026-07-11",
+    "tomorrowDate": "2026-07-12",
+    "generatedAt": "2026-07-11 14:15:32",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -14,11 +14,11 @@
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 2
+    "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-10 完赛焦点：西班牙2:1比利时",
-    "body": "西班牙2:1比利时 | 挪威 vs 英格兰 | 阿根廷 vs 瑞士",
+    "title": "2026-07-11 今日赛事",
+    "body": "挪威 vs 英格兰 | 阿根廷 vs 瑞士",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3516,8 +3516,8 @@
       "date": "2026-07-14",
       "stage": "半决赛",
       "group": "",
-      "home": "W97",
-      "away": "W98",
+      "home": "法国",
+      "away": "西班牙",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3529,8 +3529,8 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W97",
-      "_awayEn": "W98"
+      "_homeEn": "France",
+      "_awayEn": "Spain"
     },
     {
       "id": "M102",
