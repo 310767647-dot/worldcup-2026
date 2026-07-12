@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-11",
-    "resultsDate": "2026-07-11",
-    "tomorrowDate": "2026-07-12",
-    "generatedAt": "2026-07-11 14:15:32",
+    "reportDate": "2026-07-12",
+    "resultsDate": "2026-07-12",
+    "tomorrowDate": "2026-07-13",
+    "generatedAt": "2026-07-12 01:19:17",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 98,
+    "completedMatches": 99,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-11 今日赛事",
-    "body": "挪威 vs 英格兰 | 阿根廷 vs 瑞士",
+    "title": "2026-07-12 今日赛事",
+    "body": "暂无赛事",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3474,17 +3474,31 @@
       "group": "",
       "home": "挪威",
       "away": "英格兰",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Miami (Miami Gardens)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Andreas Schjelderup",
+          "minute": "36"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Jude Bellingham",
+          "minute": "45+2"
+        },
+        {
+          "name": "Jude Bellingham",
+          "minute": "93"
+        }
+      ],
       "_homeEn": "Norway",
       "_awayEn": "England"
     },
