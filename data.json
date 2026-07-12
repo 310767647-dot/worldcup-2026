@@ -4,13 +4,13 @@
     "reportDate": "2026-07-12",
     "resultsDate": "2026-07-12",
     "tomorrowDate": "2026-07-13",
-    "generatedAt": "2026-07-12 01:19:17",
+    "generatedAt": "2026-07-12 04:44:34",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 99,
+    "completedMatches": 100,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
@@ -3510,17 +3510,35 @@
       "group": "",
       "home": "阿根廷",
       "away": "瑞士",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 1,
+      "score": "1:1",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Kansas City",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Alexis Mac Allister",
+          "minute": "10"
+        },
+        {
+          "name": "Julián Álvarez",
+          "minute": "112"
+        },
+        {
+          "name": "Lautaro Martínez",
+          "minute": "120+1"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Dan Ndoye",
+          "minute": "67"
+        }
+      ],
       "_homeEn": "Argentina",
       "_awayEn": "Switzerland"
     },
