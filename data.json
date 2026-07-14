@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-12",
-    "resultsDate": "2026-07-12",
-    "tomorrowDate": "2026-07-13",
-    "generatedAt": "2026-07-12 15:30:08",
+    "reportDate": "2026-07-14",
+    "resultsDate": "2026-07-14",
+    "tomorrowDate": "2026-07-15",
+    "generatedAt": "2026-07-14 21:27:22",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 100,
+    "completedMatches": 101,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 0
+    "tomorrowFixtures": 1
   },
   "hotspot": {
-    "title": "2026-07-12 今日赛事",
-    "body": "暂无赛事",
+    "title": "2026-07-14 完赛焦点：法国0:2西班牙",
+    "body": "法国0:2西班牙 | 英格兰 vs 阿根廷",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3551,16 +3551,25 @@
       "home": "法国",
       "away": "西班牙",
       "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "awayScore": 2,
+      "score": "0:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Dallas (Arlington)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
       "homeScorers": [],
-      "awayScorers": [],
+      "awayScorers": [
+        {
+          "name": "Mikel Oyarzabal",
+          "minute": "22"
+        },
+        {
+          "name": "Pedro Porro",
+          "minute": "58"
+        }
+      ],
       "_homeEn": "France",
       "_awayEn": "Spain"
     },
