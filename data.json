@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-14",
-    "resultsDate": "2026-07-14",
-    "tomorrowDate": "2026-07-15",
-    "generatedAt": "2026-07-14 21:27:22",
+    "reportDate": "2026-07-15",
+    "resultsDate": "2026-07-15",
+    "tomorrowDate": "2026-07-16",
+    "generatedAt": "2026-07-15 08:39:35",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
@@ -14,11 +14,11 @@
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 1
+    "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-14 完赛焦点：法国0:2西班牙",
-    "body": "法国0:2西班牙 | 英格兰 vs 阿根廷",
+    "title": "2026-07-15 今日赛事",
+    "body": "英格兰 vs 阿根廷",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3601,7 +3601,7 @@
       "date": "2026-07-18",
       "stage": "三四名决赛",
       "group": "",
-      "home": "L101",
+      "home": "法国",
       "away": "L102",
       "homeScore": 0,
       "awayScore": 0,
@@ -3614,7 +3614,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "L101",
+      "_homeEn": "France",
       "_awayEn": "L102"
     },
     {
@@ -3623,7 +3623,7 @@
       "date": "2026-07-19",
       "stage": "决赛",
       "group": "",
-      "home": "W101",
+      "home": "西班牙",
       "away": "W102",
       "homeScore": 0,
       "awayScore": 0,
@@ -3636,7 +3636,7 @@
       "live": false,
       "homeScorers": [],
       "awayScorers": [],
-      "_homeEn": "W101",
+      "_homeEn": "Spain",
       "_awayEn": "W102"
     }
   ],
