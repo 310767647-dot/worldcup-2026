@@ -4,21 +4,21 @@
     "reportDate": "2026-07-15",
     "resultsDate": "2026-07-15",
     "tomorrowDate": "2026-07-16",
-    "generatedAt": "2026-07-15 08:39:35",
+    "generatedAt": "2026-07-15 21:52:08",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 101,
+    "completedMatches": 102,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
     "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-15 今日赛事",
-    "body": "英格兰 vs 阿根廷",
+    "title": "2026-07-15 完赛焦点：英格兰1:2阿根廷",
+    "body": "英格兰1:2阿根廷",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3581,17 +3581,31 @@
       "group": "",
       "home": "英格兰",
       "away": "阿根廷",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 1,
+      "awayScore": 2,
+      "score": "1:2",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Atlanta",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Anthony Gordon",
+          "minute": "55"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Enzo Fernández",
+          "minute": "86"
+        },
+        {
+          "name": "Lautaro Martínez",
+          "minute": "92"
+        }
+      ],
       "_homeEn": "England",
       "_awayEn": "Argentina"
     },
@@ -3602,7 +3616,7 @@
       "stage": "三四名决赛",
       "group": "",
       "home": "法国",
-      "away": "L102",
+      "away": "英格兰",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3615,7 +3629,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "France",
-      "_awayEn": "L102"
+      "_awayEn": "England"
     },
     {
       "id": "M104",
@@ -3624,7 +3638,7 @@
       "stage": "决赛",
       "group": "",
       "home": "西班牙",
-      "away": "W102",
+      "away": "阿根廷",
       "homeScore": 0,
       "awayScore": 0,
       "score": "-",
@@ -3637,7 +3651,7 @@
       "homeScorers": [],
       "awayScorers": [],
       "_homeEn": "Spain",
-      "_awayEn": "W102"
+      "_awayEn": "Argentina"
     }
   ],
   "standings": [
