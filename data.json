@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-15",
-    "resultsDate": "2026-07-15",
-    "tomorrowDate": "2026-07-16",
-    "generatedAt": "2026-07-15 21:52:08",
+    "reportDate": "2026-07-18",
+    "resultsDate": "2026-07-18",
+    "tomorrowDate": "2026-07-19",
+    "generatedAt": "2026-07-18 23:39:27",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 102,
+    "completedMatches": 103,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 0
+    "tomorrowFixtures": 1
   },
   "hotspot": {
-    "title": "2026-07-15 完赛焦点：英格兰1:2阿根廷",
-    "body": "英格兰1:2阿根廷",
+    "title": "2026-07-18 完赛焦点：法国4:6英格兰",
+    "body": "法国4:6英格兰 | 西班牙 vs 阿根廷",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3617,17 +3617,59 @@
       "group": "",
       "home": "法国",
       "away": "英格兰",
-      "homeScore": 0,
-      "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "homeScore": 4,
+      "awayScore": 6,
+      "score": "4:6",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "Miami (Miami Gardens)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
-      "awayScorers": [],
+      "homeScorers": [
+        {
+          "name": "Kylian Mbappé",
+          "minute": "48"
+        },
+        {
+          "name": "Bradley Barcola",
+          "minute": "54"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "minute": "66"
+        },
+        {
+          "name": "Ousmane Dembélé",
+          "minute": "90+6"
+        }
+      ],
+      "awayScorers": [
+        {
+          "name": "Declan Rice",
+          "minute": "3"
+        },
+        {
+          "name": "Ezri Konsa",
+          "minute": "18"
+        },
+        {
+          "name": "Bukayo Saka",
+          "minute": "37"
+        },
+        {
+          "name": "Bukayo Saka",
+          "minute": "45+1"
+        },
+        {
+          "name": "Bukayo Saka",
+          "minute": "87"
+        },
+        {
+          "name": "Jude Bellingham",
+          "minute": "90+8"
+        }
+      ],
       "_homeEn": "France",
       "_awayEn": "England"
     },
