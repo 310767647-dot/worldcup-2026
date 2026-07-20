@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "2026 世界杯实时战报中心",
-    "reportDate": "2026-07-18",
-    "resultsDate": "2026-07-18",
-    "tomorrowDate": "2026-07-19",
-    "generatedAt": "2026-07-18 23:39:27",
+    "reportDate": "2026-07-20",
+    "resultsDate": "2026-07-20",
+    "tomorrowDate": "2026-07-21",
+    "generatedAt": "2026-07-20 12:58:40",
     "timezone": "Asia/Shanghai",
     "source": "OpenFootball 社区数据 (自动更新)"
   },
   "metrics": {
     "totalMatches": 104,
-    "completedMatches": 103,
+    "completedMatches": 104,
     "liveMatches": 0,
     "standingsRows": 48,
     "disciplineEvents": 29,
-    "tomorrowFixtures": 1
+    "tomorrowFixtures": 0
   },
   "hotspot": {
-    "title": "2026-07-18 完赛焦点：法国4:6英格兰",
-    "body": "法国4:6英格兰 | 西班牙 vs 阿根廷",
+    "title": "2026-07-20 今日赛事",
+    "body": "暂无赛事",
     "chips": [
       "今日完赛",
       "次日赛程",
@@ -3683,14 +3683,19 @@
       "away": "阿根廷",
       "homeScore": 0,
       "awayScore": 0,
-      "score": "-",
-      "status": "未开赛",
-      "statusRaw": "TIMED",
+      "score": "0:0",
+      "status": "已完赛",
+      "statusRaw": "FULL_TIME",
       "venue": "New York/New Jersey (East Rutherford)",
       "source": "OpenFootball 社区数据",
-      "completed": false,
+      "completed": true,
       "live": false,
-      "homeScorers": [],
+      "homeScorers": [
+        {
+          "name": "Ferran Torres",
+          "minute": "106"
+        }
+      ],
       "awayScorers": [],
       "_homeEn": "Spain",
       "_awayEn": "Argentina"
